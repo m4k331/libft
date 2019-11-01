@@ -6,12 +6,11 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:32:17 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/01 21:07:36 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "stdio.h"
 
 int			ft_vpush_back(t_vector *v, void *val, size_t val_size)
 {

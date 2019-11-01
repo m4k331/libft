@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:33:08 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ typedef struct		s_vector
 	const void		*const_con;
 	void			*con;
 	size_t			head;
+	size_t			iter;
 	size_t			type_size;
 	size_t			size;
 }					t_vector;

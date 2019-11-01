@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:05:48 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/26 14:35:54 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_vector		*ft_vnew(size_t v_size, size_t type_size)
 		v->type_size = type_size;
 		v->size = v_size;
 		v->head = 0;
+		v->iter = 0;
 		if ((v->const_con = (const void*)malloc(v_size)))
 			v->con = (void*)v->const_con;
 		else
