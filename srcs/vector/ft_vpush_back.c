@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:32:17 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:35:30 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int			ft_vpush_back(t_vector *v, void *val, size_t val_size)
 		while (old_size + val_size <= v->size)
 			if (ft_vresize(v, v->size * EXPAND) == FALSE)
 				return (FALSE);
-	ft_memcpy((&v->con)[v->head], val, val_size);
+	ft_memcpy(v->con + v->head * v->type_size, val, val_size);
 	v->head += val_size / v->type_size;
 	return (TRUE);
 }
