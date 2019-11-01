@@ -19,7 +19,7 @@ void		ft_vpush_back(t_vector *v, void *val, size_t val_size)
 
 	free = v->size - v->iter * v->type_size;
 	old_size = v->size;
-	if (v && val && val_size)
+	if (val && val_size)
 	{
 		if (val_size > free)
 			while (v->size - v->iter * v->type_size <= free)
