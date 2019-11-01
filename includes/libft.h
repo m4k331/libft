@@ -23,6 +23,8 @@
 # include "list.h"
 # include "dlist.h"
 # include "get_next_line.h"
+# define FALSE 0
+# define TRUE 1
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_isdigit(int c);
