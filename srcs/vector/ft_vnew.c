@@ -21,7 +21,7 @@ t_vector		*ft_vnew(size_t v_size, size_t type_size)
 	{
 		v->type_size = type_size;
 		v->size = v_size;
-		v->iter = 0;
+		v->head = 0;
 		if ((v->const_con = (const void*)malloc(v_size)))
 			v->con = (void*)v->const_con;
 		else

@@ -19,7 +19,7 @@ void		ft_verase(t_vector *v)
 		if (v->const_con)
 			ft_memdel((void**)&v->const_con);
 		v->con = (void*)v->const_con;
-		v->iter = 0;
+		v->head = 0;
 		v->size = 0;
 	}
 }

@@ -15,6 +15,6 @@
 size_t				ft_vsize(t_vector *v)
 {
 	if (v)
-		return (v->iter * v->type_size);
+		return (v->head * v->type_size);
 	return (0);
 }

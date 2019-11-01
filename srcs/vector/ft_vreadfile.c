@@ -25,9 +25,9 @@ int					ft_vreadfile(t_vector *v, int fd, size_t buff_size)
 				ft_vresize(v, EXPAND * v->size);
 			if (rb == -1)
 				return (-1);
-			rb = read(fd, ft_vat(v, v->iter), buff_size);
-			v->iter += rb;
-			((char*)v->con)[v->iter] = 0;
+			rb = read(fd, ft_vat(v, v->head), buff_size);
+			v->head += rb;
+			((char*)v->con)[v->head] = 0;
 		}
 		if (rb != -1)
 			return (0);

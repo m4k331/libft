@@ -9,3 +9,4 @@ main.c
 *.o
 *.dSYM/*
 mm
+test

@@ -15,6 +15,6 @@
 size_t				ft_vcapacity(t_vector *v)
 {
 	if (v)
-		return (v->iter);
+		return (v->head);
 	return (0);
 }
