@@ -6,16 +6,16 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 18:37:57 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:33:08 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 15:09:05 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int				ft_vresize(t_vector *v, size_t v_size)
+int				ft_vresize(t_vector *v, long v_size)
 {
 	const void	*con;
-	size_t		copy_size;
+	long		copy_size;
 
 	if (v == NULL || v_size == 0)
 		return (FALSE);

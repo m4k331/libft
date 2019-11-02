@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 22:57:24 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 18:40:32 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 13:56:59 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@ void				*ft_vpop_back(t_vector *v)
 	void			*element;
 
 	element = NULL;
-	if (v->head)
+	if (v && v->head)
 	{
 		v->head--;
-		element = (void*)(((char*)v->con) + v->type_size * (v->head - 1));
+		element = (void*)(v->con + v->type_size * v->head);
 	}
 	return (element);
 }

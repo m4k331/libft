@@ -6,13 +6,13 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/24 23:20:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/02/26 14:37:30 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 14:25:35 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_vreserve(t_vector *v, size_t count)
+void		ft_vreserve(t_vector *v, long count)
 {
 	ft_vresize(v, count * v->type_size);
 }

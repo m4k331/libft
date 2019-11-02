@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 13:01:25 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 14:43:26 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,21 @@ typedef struct		s_vector
 {
 	const void		*const_con;
 	void			*con;
-	size_t			head;
-	size_t			iter;
-	size_t			type_size;
-	size_t			size;
+	long			head;
+	long			iter;
+	long			type_size;
+	long			size;
 }					t_vector;
 
-t_vector			*ft_vnew(size_t v_size, size_t type_size);
-size_t				ft_vsize(t_vector *v);
-size_t				ft_vunused_size(t_vector *v);
-void				*ft_vat(t_vector *v, size_t position);
-void				ft_verase(t_vector *v);
+t_vector			*ft_vnew(long v_size, long type_size);
+void				*ft_vat(t_vector *v, long position);
+long				ft_vsize(t_vector *v);
+long				ft_vunused_size(t_vector *v);
 void				*ft_vpop_back(t_vector *v);
+void				ft_verase(t_vector *v);
 void				ft_vdel(t_vector **v);
-void				ft_vreserve(t_vector *v, size_t count);
-int					ft_vresize(t_vector *v, size_t v_size);
-int					ft_vpush_back(t_vector *v, void *val, size_t val_size);
-int					ft_vreadfile(t_vector *v, int fd, size_t buff_size);
+void				ft_vreserve(t_vector *v, long count);
+int					ft_vresize(t_vector *v, long v_size);
+int					ft_vpush_back(t_vector *v, void *val, long val_size);
 
 #endif

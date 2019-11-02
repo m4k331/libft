@@ -6,13 +6,13 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 17:05:48 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 12:50:47 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_vector		*ft_vnew(size_t v_size, size_t type_size)
+t_vector		*ft_vnew(long v_size, long type_size)
 {
 	t_vector	*v;
 

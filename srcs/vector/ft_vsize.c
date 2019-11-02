@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t				ft_vsize(t_vector *v)
+long			ft_vsize(t_vector *v)
 {
 	if (v)
 		return (v->head * v->type_size);

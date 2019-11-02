@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/02 13:01:25 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/02 13:07:48 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -119,7 +119,6 @@ VEC				=	ft_verase.c \
 					ft_vsize.c \
 					ft_vpop_back.c \
 					ft_vreserve.c \
-					ft_vreadfile.c \
 					ft_vunused_size.c \
 					ft_vdel.c
 

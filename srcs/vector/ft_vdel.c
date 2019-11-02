@@ -6,17 +6,17 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/03/30 19:27:06 by ahugh             #+#    #+#             */
-/*   Updated: 2019/03/30 19:29:31 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 14:23:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				ft_vdel(t_vector **v)
+void		ft_vdel(t_vector **v)
 {
 	if (v)
 	{
 		ft_verase(*v);
-		ft_memdel((void **)v);
+		ft_memdel((void**)v);
 	}
 }
