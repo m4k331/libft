@@ -14,14 +14,12 @@
 
 int			ft_vpush_back(t_vector *v, void *val, size_t val_size)
 {
-	size_t	free;
 	size_t	old_size;
 
 	if (v == NULL || val == NULL || val_size == 0)
 		return (FALSE);
-	free = v->size - v->head * v->type_size;
 	old_size = v->size;
-	if (val_size > free)
+	if (val_size > ft_vunused_size(v))
 		while (old_size + val_size <= v->size)
 			if (ft_vresize(v, v->size * EXPAND) == FALSE)
 				return (FALSE);

@@ -16,14 +16,15 @@ t_vector		*ft_vnew(size_t v_size, size_t type_size)
 {
 	t_vector	*v;
 
-	v = 0;
-	if (v_size && type_size && (v = (t_vector*)malloc(sizeof(t_vector))))
+	v = (t_vector*)malloc(sizeof(t_vector));
+	if (v && v_size && type_size)
 	{
 		v->type_size = type_size;
 		v->size = v_size;
 		v->head = 0;
 		v->iter = 0;
-		if ((v->const_con = (const void*)malloc(v_size)))
+		v->const_con = (const void*)malloc(v_size);
+		if (v->const_con)
 			v->con = (void*)v->const_con;
 		else
 			ft_memdel((void**)&v);

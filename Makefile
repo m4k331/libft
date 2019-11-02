@@ -116,7 +116,6 @@ VEC				=	ft_verase.c \
 					ft_vresize.c \
 					ft_vpush_back.c \
 					ft_vat.c \
-					ft_vmax_size.c \
 					ft_vsize.c \
 					ft_vpop_back.c \
 					ft_vcapacity.c \

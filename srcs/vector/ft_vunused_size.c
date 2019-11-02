@@ -15,6 +15,6 @@
 size_t				ft_vunused_size(t_vector *v)
 {
 	if (v)
-		return (v->size - v->head);
+		return (v->size - v->head * v->type_size);
 	return (0);
 }

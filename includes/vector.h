@@ -25,7 +25,6 @@ typedef struct		s_vector
 }					t_vector;
 
 t_vector			*ft_vnew(size_t v_size, size_t type_size);
-size_t				ft_vmax_size(t_vector *v);
 size_t				ft_vsize(t_vector *v);
 size_t				ft_vunused_size(t_vector *v);
 size_t				ft_vcapacity(t_vector *v);
