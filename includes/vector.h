@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/01 19:40:16 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/02 13:01:25 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct		s_vector
 t_vector			*ft_vnew(size_t v_size, size_t type_size);
 size_t				ft_vsize(t_vector *v);
 size_t				ft_vunused_size(t_vector *v);
-size_t				ft_vcapacity(t_vector *v);
 void				*ft_vat(t_vector *v, size_t position);
 void				ft_verase(t_vector *v);
 void				*ft_vpop_back(t_vector *v);
