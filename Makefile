@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/02 13:07:48 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/02 15:53:45 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -120,6 +120,9 @@ VEC				=	ft_verase.c \
 					ft_vpop_back.c \
 					ft_vreserve.c \
 					ft_vunused_size.c \
+					ft_vnext_con.c \
+					ft_vback_con.c \
+					ft_vcurr_con.c \
 					ft_vdel.c
 
 DLST			=	ft_dlstnew.c \

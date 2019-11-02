@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vreserve.c                                      :+:      :+:    :+:   */
+/*   ft_vnext_con.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 23:20:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 14:45:43 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/02 15:44:26 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/02 15:59:49 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		ft_vreserve(t_vector *v, long count)
+void		*ft_vnext_con(t_vector *v)
 {
-	return (ft_vresize(v, count * v->type_size));
+	if (v->iter < v->head)
+	{
+		v->iter++;
+		return (ft_vcurr_con(v));
+	}
+	if (v->iter == v->head)
+		v->iter++;
+	return (NULL);
 }
