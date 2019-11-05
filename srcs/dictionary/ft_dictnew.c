@@ -1,41 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   dict.h                                             :+:      :+:    :+:   */
+/*   ft_dictnew.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
+/*   Created: 2019/11/05 16:25:38 by ahugh             #+#    #+#             */
 /*   Updated: 2019/11/05 16:46:03 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DICT_H
-# define DICT_H
-# define DICT_MINSIZE 8
-# define DK_SIZE 16
-# define GROW_RATE(d) ((d)->mask * 3)
-# define PERTURB_SHIFT 5
+#include "libft.h"
 
-typedef struct		s_slot
+t_dict				*ft_dictnew(void)
 {
-	unsigned long	ix;
-	unsigned long	hash;
-	char			*key;
-	void			*value;
-}					t_slot;
+	t_dict			*dict;
 
-typedef struct		s_dict
-{
-	long			fill;
-	long			used;
-	long			mask;
-	t_slot			*table;
-	t_vector		*keys;
-	t_vector		*items;
-}					t_dict;
-
-t_dict				*ft_dictnew(void);
-void				ft_dictdel(t_dict **dict);
-
-#endif
+	dict = (t_dict*)malloc(sizeof(t_dict));
+	if (dict == NULL)
+		return (NULL);
+	dict->fill = 0;
+	dict->used = 0;
+	dict->mask = DICT_MINSIZE;
+	dict->table = (t_slot*)ft_memalloc(sizeof(t_slot) * DICT_MINSIZE);
+	dict->keys = ft_vnew(GROW_RATE(dict), DK_SIZE);
+	dict->items = ft_vnew(GROW_RATE(dict), sizeof(void*));
+	if (dict->table == NULL || dict->keys == NULL || dict->items == NULL)
+		ft_dictdel(&dict);
+	return (dict);
+}

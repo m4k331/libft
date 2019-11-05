@@ -26,6 +26,7 @@ LST_DIR			=	list
 DLST_DIR		=	dlist
 UTL_DIR			=	utils
 VEC_DIR			=	vector
+DICT_DIR		=	dictionary
 
 # files
 
@@ -143,13 +144,17 @@ DLST			=	ft_dlstnew.c \
 					ft_dlstdellast.c \
 					ft_dlstdelnbr.c
 
+DICT			=	ft_dictnew.c \
+					ft_dictdel.c
+
 FILES			+=	$(MEM) \
 					$(PRT) \
 					$(STR) \
 					$(LST) \
 					$(DLST) \
 					$(UTL) \
-					$(VEC)
+					$(VEC) \
+					$(DICT)
 
 OBJ				=	$(FILES:%.c=%.o)
 
