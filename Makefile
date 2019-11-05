@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/05 16:49:12 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/05 21:02:15 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -147,7 +147,9 @@ DLST			=	ft_dlstnew.c \
 DICT			=	ft_dictnew.c \
 					ft_dictdel.c \
 					ft_slotsdel.c \
-					ft_slotsnew.c
+					ft_slotsnew.c \
+					ft_dictset.c \
+					ft_hash.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
@@ -181,7 +183,8 @@ $(NAME):
 					$(addprefix ./$(SRC_DIR)/$(LST_DIR)/, $(LST)) \
 					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
 					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
-					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC))
+					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC)) \
+					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT))
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
 				@echo "libft created!"

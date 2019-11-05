@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 18:42:01 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/05 20:38:35 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,5 +40,8 @@ typedef struct		s_dict
 
 t_dict				*ft_dictnew(void);
 void				ft_dictdel(t_dict **dict, void del(void*));
+int					ft_dictset(char *key, void *value);
+
+unsigned long		ft_hash(char *key);
 
 #endif

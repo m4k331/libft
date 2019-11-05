@@ -1,35 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_slotsnew.c                                      :+:      :+:    :+:   */
+/*   ft_hash.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 18:42:12 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 19:30:55 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/05 20:38:55 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/05 21:03:57 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_slot				**ft_slotsnew(long length)
+unsigned long		ft_hash(char *key)
 {
-	t_slot			**slots;
-	long			iter;
+	unsigned long	hash;
+	unsigned long	len;
+	unsigned long	iter;
 
-	slots = (t_slot**)malloc(sizeof(t_slot*) * length);
-	if (slots == NULL)
-		return (NULL);
+	len = ft_strlen(key);
+	if (len > DK_SIZE)
+		len = DK_SIZE;
+	hash = ((unsigned long)*key) << 7ULL;
 	iter = 0;
-	while (iter < length)
+	while (iter < len)
 	{
-		slots[iter] = (t_slot*)ft_memalloc(sizeof(t_slot));
-		if (slots[iter] == NULL)
-		{
-			ft_slotsdel(&slots, NULL, iter);
-			return (NULL);
-		}
+		hash = (1000003 * hash) ^ (unsigned long)key[iter];
 		iter++;
 	}
-	return (slots);
+	return (hash ^ len);
 }
