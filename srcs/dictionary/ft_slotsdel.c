@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:03:09 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 18:29:47 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/05 18:42:01 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,21 @@ void				ft_slotdel(t_slot *slot, void del(void*))
 			ft_memdel((void**)&slot->key);
 		if (slot->value && del)
 			del(&slot->value);
-		ft_memdel((void**)&slot);
+		free(slot);
 	}
 }
 
 void				ft_slotsdel(t_slot ***slots, void del(void*), long length)
 {
 	t_slot			**tape;
+	long			iter;
 
 	tape = *slots;
-	while (length > -1)
+	iter = 0;
+	while (iter < length)
 	{
-		length--;
-		ft_slotdel(tape[length], del);
+		ft_slotdel(tape[iter], del);
+		iter++;
 	}
 	*slots = NULL;
 }

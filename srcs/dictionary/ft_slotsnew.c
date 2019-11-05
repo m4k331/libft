@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:12 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 18:53:02 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/05 19:04:01 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_slot				**ft_slotsnew(long length)
 	iter = 0;
 	while (iter < length)
 	{
-		slots[iter] = (t_slot*)malloc(sizeof(t_slot));
+		slots[iter] = (t_slot*)ft_memalloc(sizeof(t_slot));
 		if (slots[iter] == NULL)
 		{
 			ft_slotsdel(&slots, NULL, iter + 1);
