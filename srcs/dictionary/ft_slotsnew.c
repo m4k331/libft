@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dictnew.c                                       :+:      :+:    :+:   */
+/*   ft_slotsnew.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 16:25:38 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 18:42:01 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/05 18:42:12 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/05 18:53:02 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_dict				*ft_dictnew(void)
+t_slot				**ft_slotsnew(long length)
 {
-	t_dict			*dict;
+	t_slot			**slots;
+	long			iter;
 
-	dict = (t_dict*)malloc(sizeof(t_dict));
-	if (dict == NULL)
+	slots = (t_slot**)malloc(sizeof(t_slot*) * length);
+	if (slots == NULL)
 		return (NULL);
-	dict->fill = 0;
-	dict->used = 0;
-	dict->mask = DICT_MINSIZE;
-	dict->table = ft_slotsnew(DICT_MINSIZE);
-	dict->keys = ft_vnew(GROW_RATE(dict), DK_SIZE);
-	dict->items = ft_vnew(GROW_RATE(dict), sizeof(void*));
-	if (dict->table == NULL || dict->keys == NULL || dict->items == NULL)
-		ft_dictdel(&dict, NULL);
-	return (dict);
+	iter = 0;
+	while (iter < length)
+	{
+		slots[iter] = (t_slot*)malloc(sizeof(t_slot));
+		if (slots[iter] == NULL)
+		{
+			ft_slotsdel(&slots, NULL, iter + 1);
+			return (NULL);
+		}
+		iter++;
+	}
+	return (slots);
 }

@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/02 15:53:45 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/05 16:49:12 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -145,7 +145,9 @@ DLST			=	ft_dlstnew.c \
 					ft_dlstdelnbr.c
 
 DICT			=	ft_dictnew.c \
-					ft_dictdel.c
+					ft_dictdel.c \
+					ft_slotsdel.c \
+					ft_slotsnew.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
