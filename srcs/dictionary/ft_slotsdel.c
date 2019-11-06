@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:03:09 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 13:50:20 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 13:55:18 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static inline void	slotdel(t_slot *slot, void del(void*))
 {
 	if (slot)
 	{
-		if (slot->key)
+		if (slot->key && del)
 			ft_memdel((void**)&slot->key);
 		if (slot->value && del)
 			del(&slot->value);
