@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 14:32:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 15:05:19 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define DKIX_EMPTY(ix)  ((ix) == 0)
 # define DKIX(ix)        ((ix) & MASK_INDICES)
 
-# define USABLE_FRACTION(n) ((n) < (((n) << 1) / 3))
+# define USABLE_FRACTION(n) (((n) << 1ULL) / 3ULL)
 
 /*
 ** ix bit field which containing values indices slots and his flags
