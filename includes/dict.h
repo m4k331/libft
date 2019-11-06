@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 03:21:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 14:04:03 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,20 @@
 # define DICT_MINSIZE 8
 # define DK_SIZE 16
 # define GROW_RATE(d) ((d)->mask * 3)
-# define PERTURB_SHIFT 5
+# define PERTURB_SHIFT 5ULL
 
-# define MASK_ACTIVE  0x8000000000000000
-# define MASK_DUMMY   0x4000000000000000
-# define MASK_ERROR   0x2000000000000000
-# define MASK_INDICES 0x0FFFFFFFFFFFFFFF
+# define MASK_ACTIVE  0x8000000000000000ULL
+# define MASK_DUMMY   0x4000000000000000ULL
+# define MASK_ERROR   0x2000000000000000ULL
+# define MASK_INDICES 0x0FFFFFFFFFFFFFFFULL
 
 # define DKIX_ACTIVE(ix) ((ix) & MASK_ACTIVE)
 # define DKIX_DUMMY(ix)  ((ix) & MASK_DUMMY)
 # define DKIX_ERROR(ix)  ((ix) & MASK_ERROR)
 # define DKIX_EMPTY(ix)  ((ix) == 0)
 # define DKIX(ix)        ((ix) & MASK_INDICES)
+
+# define USABLE_FRACTION(n) ((n) < (((n) << 1) / 3))
 
 /*
 ** ix bit field which containing values indices slots and his flags
@@ -58,5 +60,6 @@ void			ft_dictdel(t_dict **dict, void del(void*));
 int				ft_dictset(t_dict *dict, char *key, void *value);
 
 size_t			ft_hash(char *key);
+size_t			ft_lookup(t_dict *dict, size_t hash);
 
 #endif

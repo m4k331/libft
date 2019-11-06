@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_slotsdel.c                                      :+:      :+:    :+:   */
+/*   ft_lookup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 17:03:09 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 13:50:20 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/06 14:04:11 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/06 14:04:11 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static inline void	slotdel(t_slot *slot, void del(void*))
+size_t			ft_lookup(t_dict *dict, size_t hash)
 {
-	if (slot)
-	{
-		if (slot->key)
-			ft_memdel((void**)&slot->key);
-		if (slot->value && del)
-			del(&slot->value);
-		free(slot);
-	}
-}
+	size_t		perturb;
+	size_t		i;
 
-void				ft_slotsdel(t_slot ***slots, void del(void*), size_t length)
-{
-	t_slot			**tape;
-	size_t			iter;
-
-	tape = *slots;
-	iter = 0;
-	while (iter < length)
+	perturb = hash;
+	i = hash & dict->mask;
+	while (TRUE)
 	{
-		slotdel(tape[iter], del);
-		iter++;
+		if (DKIX_DUMMY(dict->table[i]->ix) || DKIX_EMPTY(dict->table[i]->ix))
+			return (i);
+		if (dict->table[i]->hash == hash)
+			return (i);
+		perturb >>= PERTURB_SHIFT;
+		i = (i * 5 + perturb + 1) & dict->mask;
 	}
-	*slots = NULL;
 }

@@ -149,7 +149,8 @@ DICT			=	ft_dictnew.c \
 					ft_slotsdel.c \
 					ft_slotsnew.c \
 					ft_dictset.c \
-					ft_hash.c
+					ft_hash.c \
+					ft_lookup.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
