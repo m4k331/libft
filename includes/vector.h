@@ -25,6 +25,7 @@ typedef struct		s_vector
 }					t_vector;
 
 t_vector			*ft_vnew(long v_size, long type_size);
+t_vector			*ft_vcopy(t_vector *v);
 void				*ft_vat(t_vector *v, long position);
 void				*ft_vpop_back(t_vector *v);
 void				*ft_vnext_con(t_vector *v);

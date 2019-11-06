@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 20:34:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 17:03:58 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 17:52:30 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ int					ft_dictset(t_dict *dict, char *key, void *value)
 
 	if (dict == NULL || key == NULL || value == NULL)
 		return (FALSE);
+	if (dict->fill > USABLE_FRACTION(dict->mask))
+		if (ft_dictresize(dict, TRUE) == FALSE)
+			return (FALSE);
 	hash = ft_hash(key);
 	slot = ft_lookup(dict, hash, key);
-	if (dict->fill > USABLE_FRACTION(dict->mask))
-		if (ft_dictresize(dict) == FALSE)
-			return (FALSE);
 	set_ix(dict, slot);
 	set_keys(dict, slot, key);
 	set_items(dict, slot, value);

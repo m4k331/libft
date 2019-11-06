@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 15:05:19 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 18:07:28 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 # define DICT_H
 # define DICT_MINSIZE 8
 # define DK_SIZE 16
-# define GROW_RATE(d) ((d)->mask * 3)
+# define GROW_RATE(dict)   ((dict)->mask * 3ULL)
+# define REDUCE_RATE(dict) ((dict)->used * 3ULL)
 # define PERTURB_SHIFT 5ULL
 
 # define MASK_ACTIVE  0x8000000000000000ULL
@@ -58,6 +59,7 @@ typedef struct	s_dict
 t_dict			*ft_dictnew(void);
 void			ft_dictdel(t_dict **dict, void del(void*));
 int				ft_dictset(t_dict *dict, char *key, void *value);
+int				ft_dictresize(t_dict *dict, int grow);
 
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key);

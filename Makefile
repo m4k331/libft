@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/05 21:02:15 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/06 17:16:23 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -124,7 +124,8 @@ VEC				=	ft_verase.c \
 					ft_vnext_con.c \
 					ft_vback_con.c \
 					ft_vcurr_con.c \
-					ft_vdel.c
+					ft_vdel.c \
+					ft_vcopy.c
 
 DLST			=	ft_dlstnew.c \
 					ft_dlstadd.c \
@@ -150,7 +151,8 @@ DICT			=	ft_dictnew.c \
 					ft_slotsnew.c \
 					ft_dictset.c \
 					ft_hash.c \
-					ft_lookup.c
+					ft_lookup.c \
+					ft_dictresize.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
