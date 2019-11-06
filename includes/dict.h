@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 23:27:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 03:21:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,46 @@
 # define GROW_RATE(d) ((d)->mask * 3)
 # define PERTURB_SHIFT 5
 
-# define DKIX_ACTIVE(ix) ((ix) & 0x80000000)
-# define DKIX_DUMMY(ix)  ((ix) & 0x40000000)
-# define DKIX_ERROR(ix)  ((ix) & 0x20000000)
+# define MASK_ACTIVE  0x8000000000000000
+# define MASK_DUMMY   0x4000000000000000
+# define MASK_ERROR   0x2000000000000000
+# define MASK_INDICES 0x0FFFFFFFFFFFFFFF
+
+# define DKIX_ACTIVE(ix) ((ix) & MASK_ACTIVE)
+# define DKIX_DUMMY(ix)  ((ix) & MASK_DUMMY)
+# define DKIX_ERROR(ix)  ((ix) & MASK_ERROR)
 # define DKIX_EMPTY(ix)  ((ix) == 0)
-# define DKIX(ix)        ((ix) & 0x0FFFFFFF)
+# define DKIX(ix)        ((ix) & MASK_INDICES)
 
 /*
 ** ix bit field which containing values indices slots and his flags
-** ix & 0x0FFFFFFF containing indices
-** ix & 0x80000000 active slot
-** ix & 0x40000000 dummy slot
-** ix & 0x20000000 error slot
-** ix & 0x10000000 empty slot
 */
 
-typedef struct		s_slot
+typedef struct	s_slot
 {
-	unsigned long	hash;
-	char			*key;
-	void			*value;
-	unsigned int	ix;
-}					t_slot;
+	size_t		ix;
+	size_t		hash;
+	char		*key;
+	void		*value;
+}				t_slot;
 
-t_slot				**ft_slotsnew(long length);
-void				ft_slotsdel(t_slot ***slots, void del(void*), long length);
+t_slot			**ft_slotsnew(size_t length);
+void			ft_slotsdel(t_slot ***slots, void del(void*), size_t length);
 
-typedef struct		s_dict
+typedef struct	s_dict
 {
-	t_slot			**table;
-	t_vector		*keys;
-	t_vector		*items;
-	unsigned long	mask;
-	unsigned int	used;
-	unsigned int	fill;
-}					t_dict;
+	size_t		mask;
+	size_t		used;
+	size_t		fill;
+	t_slot		**table;
+	t_vector	*keys;
+	t_vector	*items;
+}				t_dict;
 
-t_dict				*ft_dictnew(void);
-void				ft_dictdel(t_dict **dict, void del(void*));
-int					ft_dictset(t_dict *dict, char *key, void *value);
+t_dict			*ft_dictnew(void);
+void			ft_dictdel(t_dict **dict, void del(void*));
+int				ft_dictset(t_dict *dict, char *key, void *value);
 
-unsigned long		ft_hash(char *key);
+size_t			ft_hash(char *key);
 
 #endif

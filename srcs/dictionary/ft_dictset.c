@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-int					ft_dictset(t_dict *dict, char *key, void *value)
+int				ft_dictset(t_dict *dict, char *key, void *value)
 {
-	unsigned long	hash;
-	unsigned long	perturb;
-	unsigned long	i;
+	size_t		hash;
+	size_t		perturb;
+	size_t		i;
 
 	if (dict == NULL || key == NULL || value == NULL)
 		return (FALSE);

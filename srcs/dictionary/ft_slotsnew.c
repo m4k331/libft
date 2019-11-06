@@ -6,16 +6,16 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 18:42:12 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 21:49:24 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/06 03:11:50 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_slot				**ft_slotsnew(long length)
+t_slot			**ft_slotsnew(size_t length)
 {
-	t_slot			**slots;
-	long			iter;
+	t_slot		**slots;
+	size_t		iter;
 
 	slots = (t_slot**)malloc(sizeof(t_slot*) * length);
 	if (slots == NULL)

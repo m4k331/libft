@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-unsigned long		ft_hash(char *key)
+size_t			ft_hash(char *key)
 {
-	unsigned long	hash;
-	unsigned long	len;
-	unsigned long	iter;
+	size_t		hash;
+	size_t		len;
+	size_t		iter;
 
 	len = ft_strlen(key);
 	if (len > DK_SIZE)

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void				ft_slotdel(t_slot *slot, void del(void*))
+void			ft_slotdel(t_slot *slot, void del(void*))
 {
 	if (slot)
 	{
@@ -24,10 +24,10 @@ void				ft_slotdel(t_slot *slot, void del(void*))
 	}
 }
 
-void				ft_slotsdel(t_slot ***slots, void del(void*), long length)
+void			ft_slotsdel(t_slot ***slots, void del(void*), size_t length)
 {
-	t_slot			**tape;
-	long			iter;
+	t_slot		**tape;
+	size_t		iter;
 
 	tape = *slots;
 	iter = 0;
