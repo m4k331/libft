@@ -1,31 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lookup.c                                        :+:      :+:    :+:   */
+/*   ft_dictget.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/06 14:04:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 14:35:34 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/06 22:22:34 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/06 22:22:34 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set)
+void			*ft_dictget(t_dict *dict, char *key)
 {
-	size_t		perturb;
-	size_t		i;
+	size_t		hash;
+	t_slot		*slot;
 
-	perturb = hash;
-	i = hash & d->mask;
-	while (TRUE)
-	{
-		if ((DKIX_DUMMY(d->table[i]->ix) && set) || DKIX_EMPTY(d->table[i]->ix))
-			return (d->table[i]);
-		if (d->table[i]->hash == hash && ft_strcmp(d->table[i]->key, key) == 0)
-			return (d->table[i]);
-		perturb >>= PERTURB_SHIFT;
-		i = (i * 5 + perturb + 1) & d->mask;
-	}
+	if (dict == NULL || key == NULL)
+		return (NULL);
+	hash = ft_hash(key);
+	slot = ft_lookup(dict, hash, key, FALSE);
+	if (slot)
+		return (slot->value);
+	return (NULL);
 }

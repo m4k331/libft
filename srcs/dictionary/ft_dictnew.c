@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-t_dict				*ft_dictnew(void)
+t_dict				*ft_dictnew(size_t size)
 {
 	t_dict			*dict;
 
@@ -21,8 +21,8 @@ t_dict				*ft_dictnew(void)
 		return (NULL);
 	dict->fill = 0;
 	dict->used = 0;
-	dict->mask = DICT_MINSIZE;
-	dict->table = ft_slotsnew(DICT_MINSIZE);
+	dict->mask = size < DICT_MINSIZE ? DICT_MINSIZE : size;
+	dict->table = ft_slotsnew(size);
 	dict->keys = ft_vnew(GROW_RATE(dict), DK_SIZE);
 	dict->items = ft_vnew(GROW_RATE(dict), sizeof(void*));
 	if (dict->table == NULL || dict->keys == NULL || dict->items == NULL)
