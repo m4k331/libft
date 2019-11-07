@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 16:25:38 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/05 18:42:01 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/07 05:45:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ t_dict				*ft_dictnew(size_t size)
 	dict->fill = 0;
 	dict->used = 0;
 	dict->mask = size < DICT_MINSIZE ? DICT_MINSIZE : size;
-	dict->table = ft_slotsnew(size);
-	dict->keys = ft_vnew(GROW_RATE(dict), DK_SIZE);
-	dict->items = ft_vnew(GROW_RATE(dict), sizeof(void*));
+	dict->table = ft_slotsnew(dict->mask);
+	dict->keys = ft_vnew((long)(dict->mask * DK_SIZE), DK_SIZE);
+	dict->items = ft_vnew((long)(dict->mask * VOID_SIZE), VOID_SIZE);
 	if (dict->table == NULL || dict->keys == NULL || dict->items == NULL)
 		ft_dictdel(&dict, NULL);
 	return (dict);

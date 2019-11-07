@@ -1,0 +1,3 @@
+/Users/ahugh/libft/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/ahugh/libft/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/ahugh/libft/cmake-build-debug/CMakeFiles/ft.dir

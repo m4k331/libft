@@ -6,14 +6,15 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 22:29:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/07 05:45:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DICT_H
 # define DICT_H
-# define DICT_MINSIZE 8
-# define DK_SIZE 16
+# define DICT_MINSIZE 8ULL
+# define DK_SIZE 16ULL
+# define VOID_SIZE 8ULL
 # define GROW_RATE(dict)   ((dict)->mask * 3ULL)
 # define REDUCE_RATE(dict) ((dict)->used * 3ULL)
 # define PERTURB_SHIFT 5ULL

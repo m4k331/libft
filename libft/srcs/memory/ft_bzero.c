@@ -1,33 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vnew.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/23 17:05:48 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 15:45:40 by ahugh            ###   ########.fr       */
+/*   Created: 2018/11/21 12:26:46 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/07 06:19:56 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_vector		*ft_vnew(long v_size, long type_size)
+void			ft_bzero(void *s, size_t n)
 {
-	t_vector	*v;
+	size_t		count_big;
+	size_t		count_small;
+	uint64_t	*big;
+	uint8_t		*small;
 
-	v = (t_vector*)malloc(sizeof(t_vector));
-	if (v && v_size && type_size)
-	{
-		v->type_size = type_size;
-		v->size = v_size;
-		v->head = 0;
-		v->iter = -1;
-		v->const_con = (const void*)malloc(v_size);
-		if (v->const_con)
-			v->con = (void*)v->const_con;
-		else
-			ft_memdel((void**)&v);
-	}
-	return (v);
+	count_big = n >> 3ULL;
+	count_small = n - (count_big << 3ULL);
+	small = s;
+	while (count_small--)
+		*small++ = 0;
+	small--;
+	big = (uint64_t*)small;
+	while (count_big--)
+		*big++ = 0ULL;
 }

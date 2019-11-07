@@ -18,7 +18,7 @@ t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set)
 	size_t		i;
 
 	perturb = hash;
-	i = hash & d->mask;
+	i = hash & (d->mask - 1);
 	while (TRUE)
 	{
 		if ((DKIX_DUMMY(d->table[i]->ix) && set) || DKIX_EMPTY(d->table[i]->ix))
@@ -26,6 +26,6 @@ t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set)
 		if (d->table[i]->hash == hash && ft_strcmp(d->table[i]->key, key) == 0)
 			return (d->table[i]);
 		perturb >>= PERTURB_SHIFT;
-		i = (i * 5 + perturb + 1) & d->mask;
+		i = (i * 5 + perturb + 1) & (d->mask - 1);
 	}
 }

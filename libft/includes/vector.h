@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 15:54:37 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/07 05:38:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef struct		s_vector
 	long			size;
 }					t_vector;
 
-t_vector			*ft_vnew(long v_size, long type_size);
+t_vector			*ft_vnew(long bytes_size, long type_size);
 t_vector			*ft_vcopy(t_vector *v);
 void				*ft_vat(t_vector *v, long position);
 void				*ft_vpop_back(t_vector *v);
