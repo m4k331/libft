@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 20:34:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 18:11:29 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/07 19:02:35 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,30 +30,30 @@ static inline void	set_ix(t_dict *dict, t_slot *slot)
 static inline void	set_keys(t_dict *dict, t_slot *slot, char *key)
 {
 	slot->key = key;
-	ft_vpush_back(dict->keys, key, sizeof(char*));
+	ft_vpush_back(dict->keys, key, DK_SIZE);
 }
 
 static inline void	set_items(t_dict *dict, t_slot *slot, char *value)
 {
 	slot->value = value;
-	ft_vpush_back(dict->items, value, sizeof(void*));
+	ft_vpush_back(dict->items, value, VOID_SIZE);
 }
 
-int					ft_dictset(t_dict *dict, char *key, void *value)
+int					ft_dictset(t_dict **dict, char *key, void *value)
 {
 	size_t			hash;
 	t_slot			*slot;
 
-	if (dict == NULL || key == NULL || value == NULL)
+	if (*dict == NULL || key == NULL || value == NULL)
 		return (FALSE);
-	if (dict->fill > USABLE_FRACTION(dict->mask))
+	if ((*dict)->fill > USABLE_FRACTION((*dict)->mask))
 		if (ft_dictresize(dict, TRUE) == FALSE)
 			return (FALSE);
 	hash = ft_hash(key);
-	slot = ft_lookup(dict, hash, key, TRUE);
-	set_ix(dict, slot);
-	set_keys(dict, slot, key);
-	set_items(dict, slot, value);
+	slot = ft_lookup(*dict, hash, key, TRUE);
+	set_ix(*dict, slot);
+	set_keys(*dict, slot, key);
+	set_items(*dict, slot, value);
 	slot->hash = hash;
 	return (TRUE);
 }

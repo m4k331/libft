@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 12:37:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/07 07:13:39 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/08 17:12:34 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void			*ft_memcpy(void *dst, const void *src, size_t n)
 	if (dst == src)
 		return (dst);
 	big_src = (uint64_t*)src;
-	big_dst = dst;
+	big_dst = (uint64_t*)dst;
 	while (n > 7ULL)
 	{
 		*big_dst++ = *big_src++;
