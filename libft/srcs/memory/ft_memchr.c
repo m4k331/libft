@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:24:58 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/08 20:15:08 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/08 21:46:18 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 
 void				*ft_memchr(const void *s, int c, size_t n)
 {
-	uint64_t		ull;
 	uint64_t		*big;
+	uint64_t		ull;
 	uint8_t			*small;
 	uint8_t			uc;
 
-	uc = (unsigned char)c;
-	ull = uc | uc << 8ULL;
+	ull = (unsigned char)c;
+	ull |= ull << 8ULL;
 	ull |= ull << 16ULL;
 	ull |= ull << 32ULL;
 	big = (uint64_t*)s;
@@ -34,6 +34,7 @@ void				*ft_memchr(const void *s, int c, size_t n)
 		big++;
 		n -= 8ULL;
 	}
+	uc = ull;
 	small = (uint8_t*)big;
 	while (n--)
 	{
