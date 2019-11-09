@@ -4,7 +4,7 @@ project(libft)
 
 file(GLOB SRC "srcs/*/*.c")
 
-set(GCC_FLAGS "-Wall -Werror -Wextra")
+set(GCC_FLAGS "-Wall -Werror -Wextra -Ofast3 -march=native")
 
 add_definitions(${GCC_FLAGS})
 add_library(ft STATIC ${SRC})
