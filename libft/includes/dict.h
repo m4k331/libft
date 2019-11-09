@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 16:29:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/09 18:07:20 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,13 @@ typedef struct	s_dict
 }				t_dict;
 
 t_dict			*ft_dictnew(size_t size);
+void			**ft_dictkeys(t_dict *dict);
 void			*ft_dictget(t_dict *dict, char *key);
 void			ft_dictdel(t_dict **dict, void del(void*));
 void			ft_dictunset(t_dict *dict, char *key, void del(void*));
 int				ft_dictset(t_dict *dict, char *key, void *value);
 int				ft_dictresize(t_dict *dict, int grow);
+
 
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set);

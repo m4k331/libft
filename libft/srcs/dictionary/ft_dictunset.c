@@ -6,26 +6,19 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 16:14:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 17:21:13 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/09 18:03:11 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static inline void	unset_items(t_vector *items, size_t ix)
+static inline void	unset(t_vector *keys, size_t ix, size_t size)
 {
-	void			*pitems;
+	void			*ptr;
 
-	pitems = ft_vat(items, ix);
-	ft_bzero(pitems, VOID_SIZE);
-}
-
-static inline void	unset_keys(t_vector *keys, size_t ix)
-{
-	void			*pkey;
-
-	pkey = ft_vat(keys, ix);
-	ft_bzero(pkey, DK_SIZE);
+	ptr = ft_vat(keys, ix);
+	if (ptr)
+		ft_bzero(ptr, size);
 }
 
 void			ft_dictunset(t_dict *dict, char *key, void del(void*))
@@ -37,9 +30,9 @@ void			ft_dictunset(t_dict *dict, char *key, void del(void*))
 	hash = ft_hash(key);
 	slot = ft_lookup(dict, hash, key, FALSE);
 	index = DKIX(slot->ix);
-	unset_items(dict->items, index);
-	unset_keys(dict->keys, index);
-	slot->ix = DKIX_DUMMY(slot->ix);
+	unset(dict->items, index, VOID_SIZE);
+	unset(dict->keys, index, DK_SIZE);
+	slot->ix = DKIX_DUMMY(slot->ix) | DKIX(slot->ix);
 	ft_memdel((void**)&slot->key);
 	del(slot->value);
 }

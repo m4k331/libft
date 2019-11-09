@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/09 14:16:38 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/09 17:22:05 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -154,7 +154,8 @@ DICT			=	ft_dictnew.c \
 					ft_lookup.c \
 					ft_dictresize.c \
 					ft_dictget.c \
-					ft_dictunset.c
+					ft_dictunset.c \
+					ft_dictkeys.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
