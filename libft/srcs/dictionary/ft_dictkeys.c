@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:03:14 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 19:10:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/09 19:49:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static inline void	del_table(void **table, size_t len)
 	iter = 0;
 	while (iter < len)
 	{
-		ft_memdel((void**)table[iter]);
+		ft_memdel((void**)&table[iter]);
 		iter++;
 	}
 }
@@ -39,7 +39,7 @@ static inline void	**allocate_keytable(size_t len)
 		if (table[iter] == NULL)
 		{
 			del_table(table, iter);
-			ft_memdel(table);
+			ft_memdel((void**)&table);
 			return (NULL);
 		}
 		iter++;
