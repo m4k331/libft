@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 17:03:09 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/06 13:55:18 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/09 16:02:32 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,6 @@ void				ft_slotsdel(t_slot ***slots, void del(void*), size_t length)
 		slotdel(tape[iter], del);
 		iter++;
 	}
+	ft_memdel((void**)slots);
 	*slots = NULL;
 }

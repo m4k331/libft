@@ -6,45 +6,70 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:13:15 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/07 20:22:17 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/09 15:31:54 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static inline void	data_transfer(t_dict **dst, t_dict *src)
+static inline void	reindexing(t_dict *dst, t_dict *src)
 {
+	t_slot			*slot;
+	size_t			hash;
 	char			*key;
-	void			*value;
 
 	src->keys->iter = -1;
 	while (src->keys->iter < src->keys->head)
 	{
 		key = ft_vnext_con(src->keys);
-		value = ft_dictget(src, key);
-		ft_dictset(dst, key, value);
+		hash = ft_hash(key);
+		slot = ft_lookup(src, hash, key, FALSE);
+		ft_dictset(dst, slot->key, slot->value);
 	}
 }
 
-static inline int	resize(t_dict **dict, size_t size)
+static inline void	data_transfer(t_dict *dict, t_dict *tmp)
 {
-	t_dict			*new_dict;
+	t_slot			**table;
+	t_vector		*keys;
+	t_vector		*items;
+	size_t			mask;
+
+	reindexing(tmp, dict);
+	table = dict->table;
+	keys = dict->keys;
+	items = dict->items;
+	mask = dict->mask;
+	dict->mask = tmp->mask;
+	dict->used = tmp->used;
+	dict->fill = tmp->fill;
+	dict->table = tmp->table;
+	dict->keys = tmp->keys;
+	dict->items = tmp->items;
+	tmp->table = table;
+	tmp->keys = keys;
+	tmp->items = items;
+	tmp->mask = mask;
+}
+
+static inline int	resize(t_dict *dict, size_t size)
+{
+	t_dict			*tmp;
 
 	if (dict == NULL)
 		return (FALSE);
-	new_dict = ft_dictnew(size);
-	if (new_dict == NULL)
+	tmp = ft_dictnew(size);
+	if (tmp == NULL)
 		return (FALSE);
-	data_transfer(&new_dict, *dict);
-	ft_dictdel(dict, NULL);
-	*dict = new_dict;
+	data_transfer(dict, tmp);
+	ft_dictdel(&tmp, NULL);
 	return (TRUE);
 }
 
-int					ft_dictresize(t_dict **dict, int grow)
+int					ft_dictresize(t_dict *dict, int grow)
 {
 	if (grow)
-		return (resize(dict, GROW_RATE(*dict)));
+		return (resize(dict, GROW_RATE(dict)));
 	else
-		return (resize(dict, REDUCE_RATE(*dict)));
+		return (resize(dict, REDUCE_RATE(dict)));
 }

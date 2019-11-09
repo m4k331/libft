@@ -39,21 +39,21 @@ static inline void	set_items(t_dict *dict, t_slot *slot, char *value)
 	ft_vpush_back(dict->items, value, VOID_SIZE);
 }
 
-int					ft_dictset(t_dict **dict, char *key, void *value)
+int					ft_dictset(t_dict *dict, char *key, void *value)
 {
 	size_t			hash;
 	t_slot			*slot;
 
-	if (*dict == NULL || key == NULL || value == NULL)
+	if (dict == NULL || key == NULL || value == NULL)
 		return (FALSE);
-	if ((*dict)->fill > USABLE_FRACTION((*dict)->mask))
+	if (dict->fill > USABLE_FRACTION(dict->mask))
 		if (ft_dictresize(dict, TRUE) == FALSE)
 			return (FALSE);
 	hash = ft_hash(key);
-	slot = ft_lookup(*dict, hash, key, TRUE);
-	set_ix(*dict, slot);
-	set_keys(*dict, slot, key);
-	set_items(*dict, slot, value);
+	slot = ft_lookup(dict, hash, key, TRUE);
+	set_ix(dict, slot);
+	set_keys(dict, slot, key);
+	set_items(dict, slot, value);
 	slot->hash = hash;
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/07 22:39:30 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/09 14:16:38 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -172,7 +172,7 @@ OBJ				=	$(FILES:%.c=%.o)
 
 # flags
 
-FLAGS			=	-Wextra -Wall -Werror -O3 -I./$(INC_DIR)/ -c
+FLAGS			=	-Wextra -Wall -Werror -Ofast3 -march=native -I./$(INC_DIR)/ -c
 CC				=	gcc
 
 # rules

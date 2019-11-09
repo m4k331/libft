@@ -2,6 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(test)
 
+
 file(GLOB SRC_TEST "main.c")
 
 add_subdirectory(libft)
