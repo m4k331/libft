@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 13:20:00 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 14:06:16 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@
 
 typedef struct		s_fn
 {
-	struct s_fn		*r;
-	struct s_fn		*l;
-	struct s_fn		*p;
-	struct s_fn		*ch;
-	void			*val;
-	size_t			d;
+	struct s_fn		*right;
+	struct s_fn		*left;
+	struct s_fn		*parent;
+	struct s_fn		*child;
+	void			*value;
+	size_t			degree;
 	uint8_t			mark;
 }					t_fn;
+
+t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
 
 /*
 ** fibonacci heap:
