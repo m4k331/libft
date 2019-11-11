@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 19:13:41 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 22:56:45 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,10 @@ void				insert_child_node(t_fn *parent, t_fn *child);
 **		number of nodes
 **		potential fibonacci heap
 **		*ptr on function compare
+**		*ptr on function delete t_fn->value
+**
+**	Note:
+**	function cmp(value_1, value_2) return TRUE if value_1 priority than value_2
 */
 
 typedef struct		s_fib
@@ -57,11 +61,13 @@ typedef struct		s_fib
 	size_t			n;
 	size_t			pot;
 	int				(*cmp)(void*, void*);
+	void			(*del)(void*);
 }					t_fib;
 
-t_fib				*ft_fibnew(int (*cmp)(void*, void*));
-void				*ft_fibpop(t_fib *fib);
+t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
+t_fn				*ft_fibpop(t_fib *fib);
 int					ft_fibset(t_fib *fib, void *value);
+int					ft_fibupdval(t_fib *fib, t_fn *node, void *val);
 
 void				set_fibpot(t_fib *fib);
 

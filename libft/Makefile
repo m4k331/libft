@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 18:57:43 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 21:04:51 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -162,12 +162,12 @@ DICT			=	ft_dictnew.c \
 FIB				=	ft_fibnew.c \
 					ft_fibset.c \
 					ft_fibpop.c \
+					ft_fibupdval.c \
 					fnnew.c \
 					fndel.c \
 					create_rootlist.c \
 					insert_node_in_rootlist.c \
 					unbind_node.c \
-					extract_value_from_list.c \
 					set_fibpot.c \
 					insert_child_node.c
 

@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 21:17:44 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 21:43:26 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static inline void	root_binding(t_fib *fib, t_fn **roots, t_fn *unbound)
 	while (roots[d] != NULL)
 	{
 		bound = roots[d];
-		if (fib->cmp(unbound, bound) == TRUE)
+		if (fib->cmp(unbound->value, bound->value) == TRUE)
 			ft_swap64((uint64_t*)&unbound, (uint64_t*)&bound);
 		fibheap_link(bound, unbound);
 		roots[d] = NULL;
@@ -46,7 +46,7 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 	while (fib->priority->right)
 	{
 		next = fib->priority->right;
-		if (fib->cmp(fib->priority, prior) == TRUE)
+		if (fib->cmp(fib->priority->value, prior->value) == TRUE)
 			prior = fib->priority;
 		root = unbind_node(fib->priority);
 		fib->priority = next;
@@ -56,11 +56,10 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 	create_rootlist(roots, fib->pot);
 }
 
-void				*ft_fibpop(t_fib *fib)
+t_fn				*ft_fibpop(t_fib *fib)
 {
 	t_fn			*priority;
 	t_fn			**roots;
-	void			*value;
 
 	if (fib->priority == NULL)
 		return (NULL);
@@ -72,15 +71,14 @@ void				*ft_fibpop(t_fib *fib)
 	if (priority->right == priority)
 	{
 		fib->priority = NULL;
-		value = extract_value_from_list(&priority);
+		unbind_node(priority);
 	}
 	else
 	{
 		fib->priority = priority->right;
-		value = extract_value_from_list(&priority);
+		unbind_node(priority);
 		consolidate(fib, roots);
-		ft_memdel((void**)&roots);
 	}
 	fib->n--;
-	return (value);
+	return (priority);
 }
