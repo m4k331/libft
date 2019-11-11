@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 22:33:10 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 23:23:24 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -169,7 +169,6 @@ FIB				=	ft_fibnew.c \
 					create_rootlist.c \
 					insert_node_in_rootlist.c \
 					unbind_node.c \
-					set_fibpot.c \
 					insert_child_node.c
 
 FILES			+=	$(MEM) \

@@ -6,11 +6,26 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 21:43:26 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 21:53:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+
+static inline void	set_fibpot(t_fib *fib)
+{
+	size_t			pot;
+	size_t			shift;
+
+	shift = 0;
+	pot = 0;
+	while (pot < fib->pot)
+	{
+		shift++;
+		pot = fib->pot << shift;
+	}
+	fib->pot = shift;
+}
 
 static inline void	fibheap_link(t_fn *bound, t_fn *unbound)
 {
