@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 14:06:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 14:21:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 14:24:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,13 @@ t_fn				*create_rootlist(t_fn **array_nodes, size_t len)
 	right = array_nodes[0];
 	while (i < len)
 	{
-		right = array_nodes[i];
-		right->left = left;
-		left->right = right;
-		left = right;
+		if (array_nodes[i])
+		{
+			right = array_nodes[i];
+			right->left = left;
+			left->right = right;
+			left = right;
+		}
 		i++;
 	}
 	right->left = first;

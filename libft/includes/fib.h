@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 18:57:43 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 19:13:41 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ void				*extract_value_from_list(t_fn **node);
 t_fn				*unbind_node(t_fn *list);
 t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
+void				insert_child_node(t_fn *parent, t_fn *child);
 
 /*
 ** fibonacci heap:
@@ -63,6 +64,5 @@ void				*ft_fibpop(t_fib *fib);
 int					ft_fibset(t_fib *fib, void *value);
 
 void				set_fibpot(t_fib *fib);
-int					consolidate(t_fib *fib, t_fn **roots);
 
 #endif
