@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibset.c                                        :+:      :+:    :+:   */
+/*   unbind_node.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 16:15:15 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 16:57:45 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/11 17:45:00 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/11 17:50:25 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_fibset(t_fib *fib, void *value)
+t_fn				*unbind_node(t_fn *list)
 {
 	t_fn			*node;
+	t_fn			*right;
+	t_fn			*left;
 
-	node = fnnew(value);
-	if (node == NULL)
-		return (FALSE);
-	if (fib->priority == NULL)
-		fib->priority = create_rootlist(&node, 1);
-	else
-	{
-		insert_node_in_rootlist(fib->priority, node);
-		if (fib->cmp(fib->priority, node) == FALSE)
-			fib->priority = node;
-	}
-	fib->n++;
-	return (TRUE);
+	node = list;
+	right = node->right;
+	left = node->left;
+	left->right = right;
+	right->left = left;
+	return (node);
 }

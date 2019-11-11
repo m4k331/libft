@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 16:49:58 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 17:44:57 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ typedef struct		s_fn
 	uint8_t			mark;
 }					t_fn;
 
-t_fn				*ft_fnnew(void *value);
+t_fn				*fnnew(void *value);
+void				fndel(t_fn **node, void del(void*));
+void				*extract_value_from_list(t_fn **node);
+t_fn				*unbind_node(t_fn *list);
 t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 
@@ -55,6 +58,7 @@ typedef struct		s_fib
 }					t_fib;
 
 t_fib				*ft_fibnew(int (*cmp)(void*, void*));
+void				*ft_fibpop(t_fib *fib);
 int					ft_fibset(t_fib *fib, void *value);
 
 #endif

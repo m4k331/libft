@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 14:47:17 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 17:54:45 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,9 +160,14 @@ DICT			=	ft_dictnew.c \
 					ft_dictiterate.c
 
 FIB				=	ft_fibnew.c \
-					ft_fnnew.c \
+					ft_fibset.c \
+					ft_fibpop.c \
+					fnnew.c \
+					fndel.c \
 					create_rootlist.c \
-					insert_node_in_rootlist.c
+					insert_node_in_rootlist.c \
+					unbind_node.c \
+					extract_value_from_list.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
@@ -182,7 +187,7 @@ OBJ				=	$(FILES:%.c=%.o)
 
 # flags
 
-FLAGS			=	-Wextra -Wall -Werror -Ofast3 -march=native -I./$(INC_DIR)/ -c
+FLAGS			=	-Wextra -Wall -Werror -O3 -march=native -I./$(INC_DIR)/ -c
 CC				=	gcc
 
 # rules

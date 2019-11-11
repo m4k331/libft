@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibset.c                                        :+:      :+:    :+:   */
+/*   fndel.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 16:15:15 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 16:57:45 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/11 17:32:09 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/11 17:32:09 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_fibset(t_fib *fib, void *value)
+void				fndel(t_fn **node, void del(void*))
 {
-	t_fn			*node;
-
-	node = fnnew(value);
-	if (node == NULL)
-		return (FALSE);
-	if (fib->priority == NULL)
-		fib->priority = create_rootlist(&node, 1);
-	else
+	if (*node)
 	{
-		insert_node_in_rootlist(fib->priority, node);
-		if (fib->cmp(fib->priority, node) == FALSE)
-			fib->priority = node;
+		if (del)
+			del((*node)->value);
+		(*node)->value = NULL;
+		ft_memdel((void**)node);
 	}
-	fib->n++;
-	return (TRUE);
 }
