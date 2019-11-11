@@ -21,11 +21,11 @@ static inline void	unset(t_vector *keys, size_t ix, size_t size)
 		ft_bzero(ptr, size);
 }
 
-int				ft_dictunset(t_dict *dict, char *key, void del(void*))
+int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 {
-	t_slot		*slot;
-	size_t		hash;
-	size_t		index;
+	t_slot			*slot;
+	size_t			hash;
+	size_t			index;
 
 	hash = ft_hash(key);
 	slot = ft_lookup(dict, hash, key, FALSE);

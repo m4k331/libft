@@ -27,6 +27,7 @@ DLST_DIR		=	dlist
 UTL_DIR			=	utils
 VEC_DIR			=	vector
 DICT_DIR		=	dictionary
+FIB_DIR			=	fib_heap
 
 # files
 
@@ -158,6 +159,8 @@ DICT			=	ft_dictnew.c \
 					ft_dictkeys.c \
 					ft_dictiterate.c
 
+FIB				=	ft_fibnew.c
+
 FILES			+=	$(MEM) \
 					$(PRT) \
 					$(STR) \
@@ -165,7 +168,8 @@ FILES			+=	$(MEM) \
 					$(DLST) \
 					$(UTL) \
 					$(VEC) \
-					$(DICT)
+					$(DICT) \
+					$(FIB)
 
 OBJ				=	$(FILES:%.c=%.o)
 
@@ -191,7 +195,8 @@ $(NAME):
 					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
 					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
 					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC)) \
-					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT))
+					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT)) \
+					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
 				@echo "libft created!"

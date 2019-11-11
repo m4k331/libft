@@ -66,7 +66,6 @@ int				ft_dictset(t_dict *dict, char *key, void *value);
 int				ft_dictresize(t_dict *dict, int grow);
 int				ft_dictiterate(t_dict *dict, int map(void*));
 
-
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set);
 

@@ -23,6 +23,7 @@
 # include "list.h"
 # include "dlist.h"
 # include "dict.h"
+# include "fib.h"
 # include "get_next_line.h"
 # define FALSE 0
 # define TRUE 1
