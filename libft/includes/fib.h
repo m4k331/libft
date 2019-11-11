@@ -37,7 +37,6 @@ typedef struct		s_fn
 
 t_fn				*fnnew(void *value);
 void				fndel(t_fn **node, void del(void*));
-void				*extract_value_from_list(t_fn **node);
 t_fn				*unbind_node(t_fn *list);
 t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
@@ -48,7 +47,7 @@ void				insert_child_node(t_fn *parent, t_fn *child);
 **		*ptr on priority node and root list
 **		number of nodes
 **		potential fibonacci heap
-**		top priority contains a value to unset an element from a heap
+**		higher priority contains a value to unset an element from a heap
 **		*ptr on function compare
 **		*ptr on function delete t_fn->value
 **
