@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 14:30:36 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 14:47:17 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,6 +160,7 @@ DICT			=	ft_dictnew.c \
 					ft_dictiterate.c
 
 FIB				=	ft_fibnew.c \
+					ft_fnnew.c \
 					create_rootlist.c \
 					insert_node_in_rootlist.c
 

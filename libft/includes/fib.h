@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 14:21:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 16:01:02 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct		s_fn
 	uint8_t			mark;
 }					t_fn;
 
+t_fn				*ft_fnnew(void *value);
 t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 
@@ -50,8 +51,9 @@ typedef struct		s_fib
 	t_fn			*min;
 	size_t			n;
 	size_t			pot;
+	uint8_t			(*cmp)(void*, void*);
 }					t_fib;
 
-t_fib				*ft_fibnew(void);
+t_fib				*ft_fibnew(uint8_t (*cmp)(void*, void*));
 
 #endif
