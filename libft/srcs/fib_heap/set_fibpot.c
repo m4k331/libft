@@ -1,30 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fnnew.c                                            :+:      :+:    :+:   */
+/*   set_fibpot.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 18:10:39 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 18:10:39 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/11 18:51:11 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/11 18:57:43 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_fn				*fnnew(void *value)
+void				set_fibpot(t_fib *fib)
 {
-	t_fn			*node;
+	size_t			pot;
+	size_t			shift;
 
-	node = (t_fn*)malloc(sizeof(t_fn));
-	if (node == NULL)
-		return (NULL);
-	node->left = NULL;
-	node->right = NULL;
-	node->parent = NULL;
-	node->child = NULL;
-	node->value = value;
-	node->degree = 0;
-	node->mark = FALSE;
-	return (node);
+	shift = 0;
+	pot = 0;
+	while (pot < fib->pot)
+	{
+		shift++;
+		pot = fib->pot << shift;
+	}
+	fib->pot = shift;
 }

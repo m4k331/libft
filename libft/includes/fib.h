@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 17:44:57 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 18:57:43 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 
 /*
 ** fibonacci heap:
-**		*ptr on minimum node and root list
+**		*ptr on priority node and root list
 **		number of nodes
 **		potential fibonacci heap
+**		*ptr on function compare
 */
 
 typedef struct		s_fib
@@ -60,5 +61,8 @@ typedef struct		s_fib
 t_fib				*ft_fibnew(int (*cmp)(void*, void*));
 void				*ft_fibpop(t_fib *fib);
 int					ft_fibset(t_fib *fib, void *value);
+
+void				set_fibpot(t_fib *fib);
+int					consolidate(t_fib *fib, t_fn **roots);
 
 #endif
