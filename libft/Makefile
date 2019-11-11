@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 14:30:36 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -159,7 +159,9 @@ DICT			=	ft_dictnew.c \
 					ft_dictkeys.c \
 					ft_dictiterate.c
 
-FIB				=	ft_fibnew.c
+FIB				=	ft_fibnew.c \
+					create_rootlist.c \
+					insert_node_in_rootlist.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \

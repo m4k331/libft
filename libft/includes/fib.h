@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 14:06:16 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 14:21:45 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct		s_fn
 }					t_fn;
 
 t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
+void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 
 /*
 ** fibonacci heap:
