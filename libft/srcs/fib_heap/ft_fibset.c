@@ -1,30 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fnnew.c                                         :+:      :+:    :+:   */
+/*   ft_fibset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 16:07:45 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 16:10:21 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/11 16:15:15 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/11 16:56:30 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-t_fn				*ft_fnnew(void *value)
+int					ft_fibset(t_fib *fib, void *value)
 {
 	t_fn			*node;
 
-	node = (t_fn*)malloc(sizeof(t_fn));
+	node = ft_fnnew(value);
 	if (node == NULL)
-		return (NULL);
-	node->left = NULL;
-	node->right = NULL;
-	node->parent = NULL;
-	node->child = NULL;
-	node->value = value;
-	node->degree = 0;
-	node->mark = FALSE;
-	return (node);
+		return (FALSE);
+	if (fib->priority == NULL)
+		fib->priority = create_rootlist(&node, 1);
+	else
+	{
+		insert_node_in_rootlist(fib->priority, node);
+		if (fib->cmp(fib->priority, node) == FALSE)
+			fib->priority = node;
+	}
+	fib->n++;
+	return (TRUE);
 }

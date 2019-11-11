@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 16:01:02 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 16:49:58 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,13 @@ void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 
 typedef struct		s_fib
 {
-	t_fn			*min;
+	t_fn			*priority;
 	size_t			n;
 	size_t			pot;
-	uint8_t			(*cmp)(void*, void*);
+	int				(*cmp)(void*, void*);
 }					t_fib;
 
-t_fib				*ft_fibnew(uint8_t (*cmp)(void*, void*));
+t_fib				*ft_fibnew(int (*cmp)(void*, void*));
+int					ft_fibset(t_fib *fib, void *value);
 
 #endif
