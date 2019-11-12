@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:10:39 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 18:10:39 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/12 17:58:56 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,9 @@ t_fn				*fnnew(void *value)
 {
 	t_fn			*node;
 
-	node = (t_fn*)malloc(sizeof(t_fn));
+	node = (t_fn*)ft_memalloc(sizeof(t_fn));
 	if (node == NULL)
 		return (NULL);
-	node->left = NULL;
-	node->right = NULL;
-	node->parent = NULL;
-	node->child = NULL;
 	node->value = value;
-	node->degree = 0;
-	node->mark = FALSE;
 	return (node);
 }

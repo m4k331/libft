@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 21:53:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/12 17:56:18 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@ static inline void	set_fibpot(t_fib *fib)
 
 	shift = 0;
 	pot = 0;
-	while (pot < fib->pot)
+	while (pot < fib->n)
 	{
 		shift++;
-		pot = fib->pot << shift;
+		pot = 1ULL << shift;
 	}
 	fib->pot = shift;
 }

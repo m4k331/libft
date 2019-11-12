@@ -17,12 +17,9 @@ t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*), \
 {
 	t_fib			*fib;
 
-	fib = (t_fib*)malloc(sizeof(fib));
+	fib = (t_fib*)ft_memalloc(sizeof(fib));
 	if (fib == NULL)
 		return (NULL);
-	fib->priority = NULL;
-	fib->n = 0;
-	fib->pot = 0;
 	fib->higher = higher;
 	fib->cmp = cmp;
 	fib->del = del;
