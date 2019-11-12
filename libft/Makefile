@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 23:23:24 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/11 23:35:14 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -164,6 +164,7 @@ FIB				=	ft_fibnew.c \
 					ft_fibpop.c \
 					ft_fibupdval.c \
 					ft_fibunset.c \
+					ft_fibdel.c \
 					fnnew.c \
 					fndel.c \
 					create_rootlist.c \

@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 23:29:50 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/11 23:35:14 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ t_fn				*ft_fibpop(t_fib *fib);
 int					ft_fibset(t_fib *fib, void *value);
 int					ft_fibupdval(t_fib *fib, t_fn *node, void *val);
 int					ft_fibunset(t_fib *fib, t_fn **node);
+void				ft_fibdel(t_fib **fib);
 
 #endif
