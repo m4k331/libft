@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 14:47:50 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 14:47:50 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 17:05:08 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,9 @@ void				*extract_priority_value(t_fib *fib)
 		add_child_nodes_in_rootlist(fib, prior->child);
 	fib->priority = ((prior->right == prior) ? NULL : prior->right);
 	value = prior->value;
+	if (del_node_to_dictionary(fib, prior) == FALSE)
+		return (NULL);
+	unbind_node(prior);
 	fndel(&prior, NULL);
 	return (value);
 }

@@ -19,6 +19,7 @@
 # include <inttypes.h>
 # include <stdbool.h>
 # include <limits.h>
+# include <stdio.h>
 # include "vector.h"
 # include "list.h"
 # include "dlist.h"

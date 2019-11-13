@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:18:30 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 13:18:30 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 15:57:06 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ int					ft_fibpush(t_fib *fib, void *value)
 	node = fnnew(value);
 	if (node == NULL)
 		return (FALSE);
+	if (add_node_to_dictionary(fib, node) == FALSE)
+	{
+		fndel(&node, NULL);
+		return (FALSE);
+	}
 	if (fib->priority == NULL)
 		fib->priority = create_rootlist(&node, 1);
 	else

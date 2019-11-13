@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/13 13:12:13 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/13 15:57:06 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,9 @@ FIB				=	ft_fibnew.c \
 					insert_node_in_rootlist.c \
 					unbind_node.c \
 					insert_child_node.c \
-					extract_priority.c
+					extract_priority.c \
+					add_node_to_dictionary.c \
+					del_node_to_dictionary.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \
@@ -180,8 +182,8 @@ FILES			+=	$(MEM) \
 					$(DLST) \
 					$(UTL) \
 					$(VEC) \
-					$(DICT) \
-					$(FIB)
+					$(DICT)
+#					$(FIB)
 
 OBJ				=	$(FILES:%.c=%.o)
 
@@ -207,8 +209,8 @@ $(NAME):
 					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
 					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
 					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC)) \
-					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT)) \
-					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
+					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT))
+#					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
 				@echo "libft created!"
