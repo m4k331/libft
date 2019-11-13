@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/13 11:52:15 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/13 13:12:13 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -103,6 +103,7 @@ UTL				=	ft_arrdel.c \
 					ft_isascii.c \
 					ft_isprint.c \
 					ft_itoa.c \
+					ft_itoa_base.c \
 					ft_toupper.c \
 					ft_atoi.c \
 					ft_isalpha.c \

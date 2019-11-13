@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 13:24:03 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 13:30:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,9 +75,9 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 	create_rootlist(roots, fib->pot);
 }
 
-t_fn				*ft_fibpop(t_fib *fib)
+void				*ft_fibpop(t_fib *fib)
 {
-	t_fn			*prior;
+	void			*priority_value;
 	t_fn			**roots;
 
 	if (fib->priority == NULL)
@@ -86,10 +86,10 @@ t_fn				*ft_fibpop(t_fib *fib)
 	roots = (t_fn**)ft_memalloc(sizeof(t_fn*) * fib->pot);
 	if (roots == NULL)
 		return (NULL);
-	prior = extract_priority(fib);
+	priority_value = extract_priority_value(fib);
 	if (fib->priority)
 		consolidate(fib, roots);
 	ft_memdel((void**)&roots);
 	fib->n--;
-	return (prior);
+	return (priority_value);
 }

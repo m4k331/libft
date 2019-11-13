@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:34:31 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 14:30:13 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void				*ft_realloc(void *ptr, size_t size);
 void				del_any_matrix(void **matrix, int dimension);
 char				**ft_strsplit(char const *s, char c);
 char				*ft_itoa(int n);
+char				*ft_itoa_base(uint64_t num, uint8_t base);
 char				*ft_strtrim(char const *s);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);

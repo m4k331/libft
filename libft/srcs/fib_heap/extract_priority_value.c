@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_priority.c                                 :+:      :+:    :+:   */
+/*   extract_priority_value.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/13 12:31:53 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 12:55:08 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/13 14:47:50 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/13 14:47:50 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,16 @@ static inline void	add_child_nodes_in_rootlist(t_fib *fib, t_fn *child)
 	}
 }
 
-t_fn				*extract_priority(t_fib *fib)
+void				*extract_priority_value(t_fib *fib)
 {
 	t_fn			*prior;
+	void			*value;
 
 	prior = fib->priority;
 	if (prior->child)
 		add_child_nodes_in_rootlist(fib, prior->child);
 	fib->priority = ((prior->right == prior) ? NULL : prior->right);
-	unbind_node(prior);
-	return (prior);
+	value = prior->value;
+	fndel(&prior, NULL);
+	return (value);
 }

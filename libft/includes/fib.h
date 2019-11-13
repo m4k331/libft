@@ -6,12 +6,14 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 11:52:15 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 12:32:53 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FIB_H
 # define FIB_H
+
+# define LEN_VALUES 16
 
 /*
 ** fibonacci node:
@@ -59,16 +61,18 @@ typedef struct		s_fib
 	t_fn			*priority;
 	size_t			n;
 	size_t			pot;
+	t_dict			*values;
 	int				(*cmp)(void*, void*);
 	void			(*del)(void*);
 }					t_fib;
 
+void				*extract_priority_value(t_fib *fib);
+
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
-t_fn				*ft_fibpop(t_fib *fib);
+void				*ft_fibpop(t_fib *fib);
 int					ft_fibpush(t_fib *fib, void *value);
 int					ft_fibupd(t_fib *fib, t_fn *node, void *val);
 void				ft_fibdel(t_fib **fib);
 
-t_fn				*extract_priority(t_fib *fib);
 
 #endif

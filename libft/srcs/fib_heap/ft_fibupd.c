@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:17:36 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 13:17:36 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 13:17:54 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int					ft_fibupd(t_fib *fib, t_fn *node, void *val)
 		cascading_cut(fib, parent);
 	}
 	else if (fib->cmp(node->value, fib->priority) == TRUE)
-		fib->priority = node->value;
+		fib->priority = node;
 	return (TRUE);
 }
