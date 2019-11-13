@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 18:11:02 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 22:42:23 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 11:55:24 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,6 @@ t_fn				*unbind_node(t_fn *list)
 	right->left = left;
 	node->left = NULL;
 	node->right = NULL;
-	node->child = NULL;
 	node->parent = NULL;
 	return (node);
 }

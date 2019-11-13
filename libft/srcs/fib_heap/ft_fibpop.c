@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/12 17:56:18 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 13:24:03 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static inline void	set_fibpot(t_fib *fib)
 		shift++;
 		pot = 1ULL << shift;
 	}
-	fib->pot = shift;
+	fib->pot = shift + 1;
 }
 
 static inline void	fibheap_link(t_fn *bound, t_fn *unbound)
@@ -42,7 +42,7 @@ static inline void	root_binding(t_fib *fib, t_fn **roots, t_fn *unbound)
 	while (roots[d] != NULL)
 	{
 		bound = roots[d];
-		if (fib->cmp(unbound->value, bound->value) == TRUE)
+		if (fib->cmp(bound->value, unbound->value) == TRUE)
 			ft_swap64((uint64_t*)&unbound, (uint64_t*)&bound);
 		fibheap_link(bound, unbound);
 		roots[d] = NULL;
@@ -54,18 +54,22 @@ static inline void	root_binding(t_fib *fib, t_fn **roots, t_fn *unbound)
 static inline void	consolidate(t_fib *fib, t_fn **roots)
 {
 	t_fn			*next;
-	t_fn			*root;
+	t_fn			*unbind;
 	t_fn			*prior;
+	t_fn			*last;
 
 	prior = fib->priority;
-	while (fib->priority->right)
+	last = prior->left;
+	while (TRUE)
 	{
 		next = fib->priority->right;
 		if (fib->cmp(fib->priority->value, prior->value) == TRUE)
 			prior = fib->priority;
-		root = unbind_node(fib->priority);
+		unbind = unbind_node(fib->priority);
+		root_binding(fib, roots, unbind);
+		if (fib->priority == last)
+			break ;
 		fib->priority = next;
-		root_binding(fib, roots, root);
 	}
 	fib->priority = prior;
 	create_rootlist(roots, fib->pot);
@@ -73,7 +77,7 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 
 t_fn				*ft_fibpop(t_fib *fib)
 {
-	t_fn			*priority;
+	t_fn			*prior;
 	t_fn			**roots;
 
 	if (fib->priority == NULL)
@@ -82,18 +86,10 @@ t_fn				*ft_fibpop(t_fib *fib)
 	roots = (t_fn**)ft_memalloc(sizeof(t_fn*) * fib->pot);
 	if (roots == NULL)
 		return (NULL);
-	priority = fib->priority;
-	if (priority->right == priority)
-	{
-		fib->priority = NULL;
-		unbind_node(priority);
-	}
-	else
-	{
-		fib->priority = priority->right;
-		unbind_node(priority);
+	prior = extract_priority(fib);
+	if (fib->priority)
 		consolidate(fib, roots);
-	}
+	ft_memdel((void**)&roots);
 	fib->n--;
-	return (priority);
+	return (prior);
 }

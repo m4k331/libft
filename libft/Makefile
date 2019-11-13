@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/11 23:35:14 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/13 11:52:15 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,17 +160,17 @@ DICT			=	ft_dictnew.c \
 					ft_dictiterate.c
 
 FIB				=	ft_fibnew.c \
-					ft_fibset.c \
+					ft_fibpush.c \
 					ft_fibpop.c \
-					ft_fibupdval.c \
-					ft_fibunset.c \
+					ft_fibupd.c \
 					ft_fibdel.c \
 					fnnew.c \
 					fndel.c \
 					create_rootlist.c \
 					insert_node_in_rootlist.c \
 					unbind_node.c \
-					insert_child_node.c
+					insert_child_node.c \
+					extract_priority.c
 
 FILES			+=	$(MEM) \
 					$(PRT) \

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibupdval.c                                     :+:      :+:    :+:   */
+/*   ft_fibupd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 21:29:55 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 22:58:34 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/13 13:17:36 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/13 13:17:36 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static inline void	cascading_cut(t_fib *fib, t_fn *node)
 	}
 }
 
-int					ft_fibupdval(t_fib *fib, t_fn *node, void *val)
+int					ft_fibupd(t_fib *fib, t_fn *node, void *val)
 {
 	t_fn			*parent;
 

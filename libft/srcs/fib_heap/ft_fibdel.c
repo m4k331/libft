@@ -18,7 +18,7 @@ static inline void	destroy_heap(t_fn **roots, void del(void*))
 	t_fn			*next;
 
 	node = *roots;
-	while(node)
+	while (node)
 	{
 		if (node->child)
 			destroy_heap(&node->child, del);

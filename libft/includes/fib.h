@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 23:35:14 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/13 11:52:15 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct		s_fn
 t_fn				*fnnew(void *value);
 void				fndel(t_fn **node, void del(void*));
 t_fn				*unbind_node(t_fn *list);
-t_fn				*create_rootlist(t_fn **array_nodes, size_t len);
+t_fn				*create_rootlist(t_fn **nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 void				insert_child_node(t_fn *parent, t_fn *child);
 
@@ -47,7 +47,6 @@ void				insert_child_node(t_fn *parent, t_fn *child);
 **		*ptr on priority node and root list
 **		number of nodes
 **		potential fibonacci heap
-**		higher priority contains a value to unset an element from a heap
 **		*ptr on function compare
 **		*ptr on function delete t_fn->value
 **
@@ -60,17 +59,16 @@ typedef struct		s_fib
 	t_fn			*priority;
 	size_t			n;
 	size_t			pot;
-	void			*higher;
 	int				(*cmp)(void*, void*);
 	void			(*del)(void*);
 }					t_fib;
 
-t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*), \
-																void *higher);
+t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 t_fn				*ft_fibpop(t_fib *fib);
-int					ft_fibset(t_fib *fib, void *value);
-int					ft_fibupdval(t_fib *fib, t_fn *node, void *val);
-int					ft_fibunset(t_fib *fib, t_fn **node);
+int					ft_fibpush(t_fib *fib, void *value);
+int					ft_fibupd(t_fib *fib, t_fn *node, void *val);
 void				ft_fibdel(t_fib **fib);
+
+t_fn				*extract_priority(t_fib *fib);
 
 #endif
