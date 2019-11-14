@@ -14,23 +14,26 @@
 
 int					ft_fibpush(t_fib *fib, void *value)
 {
-	t_fn			*node;
+	t_fn			**node;
 
-	node = fnnew(value);
+	node = (t_fn**)ft_memalloc(sizeof(t_fn*));
 	if (node == NULL)
+		return (FALSE);
+	*node = fnnew(value);
+	if (*node == NULL)
 		return (FALSE);
 	if (add_node_to_dictionary(fib, node) == FALSE)
 	{
-		fndel(&node, NULL);
+		fndel(node, NULL);
 		return (FALSE);
 	}
 	if (fib->priority == NULL)
-		fib->priority = create_rootlist(&node, 1);
+		fib->priority = create_rootlist(node, 1);
 	else
 	{
-		insert_node_in_rootlist(fib->priority, node);
-		if (fib->cmp(fib->priority->value, node->value) == FALSE)
-			fib->priority = node;
+		insert_node_in_rootlist(fib->priority, *node);
+		if (fib->cmp(fib->priority->value, (*node)->value) == FALSE)
+			fib->priority = *node;
 	}
 	fib->n++;
 	return (TRUE);

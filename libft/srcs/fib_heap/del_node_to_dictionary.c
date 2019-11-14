@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 17:07:12 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 21:51:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/14 19:37:00 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,12 @@
 
 static void			vdel(void *v)
 {
-	ft_vdel((t_vector**)v);
+	ft_vdel((t_vector**)&v);
 }
 
 int					del_node_to_dictionary(t_fib *fib, t_fn *node)
 {
-	t_vector		**vvals;
-	t_vector		*vec;
+	t_vector		*vvals;
 	char			*key;
 	void			**vnode;
 	void			**ft;
@@ -34,16 +33,15 @@ int					del_node_to_dictionary(t_fib *fib, t_fn *node)
 		ft_memdel((void**)&key);
 		return (FALSE);
 	}
-	vec = *vvals;
-	vec->iter = -1;
-	while (vec->iter < vec->head)
+	vvals->iter = -1;
+	while (vvals->iter < vvals->head)
 	{
-		vnode = ft_vnext_con(vec);
+		vnode = ft_vnext_con(vvals);
 		if (node == *vnode)
 		{
-			ft = ft_vpop_back(vec);
+			ft = ft_vpop_back(vvals);
 			*vnode = *ft;
-			if (vec->head == 0)
+			if (vvals->head == 0)
 				ft_dictunset(fib->values, key, vdel);
 			else
 				ft_memdel((void**)&key);
