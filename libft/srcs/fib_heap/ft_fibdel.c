@@ -12,6 +12,13 @@
 
 #include "libft.h"
 
+//static void			vdel(void *v)
+//{
+//	printf("vdel: %p - %zx\n", v, *(size_t*)v);
+//	if (v && *(t_vector**)v->con)
+//		ft_vdel((t_vector**)v);
+//}
+
 static inline void	destroy_heap(t_fn **roots, void del(void*))
 {
 	t_fn			*node;
@@ -31,5 +38,6 @@ static inline void	destroy_heap(t_fn **roots, void del(void*))
 void				ft_fibdel(t_fib **fib)
 {
 	destroy_heap(&(*fib)->priority, (*fib)->del);
+	ft_dictdel(&(*fib)->values, NULL);
 	ft_memdel((void**)fib);
 }

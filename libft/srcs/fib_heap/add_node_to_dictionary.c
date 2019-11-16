@@ -24,7 +24,7 @@ static inline int	set(t_fib *f, t_fn **n, char **k)
 {
 	t_vector		*v;
 
-	v = ft_vnew(VOID_SIZE * 4, VOID_SIZE);
+	v = ft_vnew(VOID_SIZE * DICT_MINSIZE, VOID_SIZE);
 	if (v == NULL)
 	{
 		ft_memdel((void**)k);
@@ -43,13 +43,12 @@ static inline int	set(t_fib *f, t_fn **n, char **k)
 
 int 				add_node_to_dictionary(t_fib *fib, t_fn **node)
 {
-	void			*vvals;
+	void			*vec_vals;
 	char			*k;
 
 	k = ft_itoa_base((uint64_t)(*node)->value, 16);
 	if (k == NULL)
 		return (FALSE);
-	vvals = ft_dictget(fib->values, k);
-	printf("%p -> %ld\n", *node, *(long*)(*node)->value);
-	return (vvals == NULL ? set(fib, node, &k) : add(vvals, node, &k));
+	vec_vals = ft_dictget(fib->values, k);
+	return (vec_vals == NULL ? set(fib, node, &k) : add(vec_vals, node, &k));
 }

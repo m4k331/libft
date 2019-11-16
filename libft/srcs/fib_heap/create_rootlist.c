@@ -37,14 +37,12 @@ static inline void	delete_null_nodes(t_fn **nodes, size_t *len)
 	i = 0;
 	while (i < *len)
 	{
-//		printf("i = %zu p = %p\n", i, nodes[i]);
 		if (nodes[i] == NULL)
 		{
 			replace_null_node(nodes, i, *len);
 			if (nodes[i] == NULL)
 				break ;
 		}
-//		printf("p:i = %zu p = %p\n", i, nodes[i]);
 		i++;
 	}
 	*len = i;

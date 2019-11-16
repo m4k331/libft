@@ -22,5 +22,6 @@ void				insert_child_node(t_fn *parent, t_fn *child)
 		parent->child = child;
 	}
 	child->parent = parent;
-	parent->degree += (child->degree == 0 ? 1 : child->degree);
+	if (child->degree + 1 > parent->degree)
+		parent->degree = child->degree + 1;
 }

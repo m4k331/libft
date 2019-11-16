@@ -24,13 +24,7 @@ static inline void	set_fibpot(t_fib *fib)
 		shift++;
 		pot = 1ULL << shift;
 	}
-	fib->pot = shift + 1 + 10;
-}
-
-static inline void	fibheap_link(t_fn *bound, t_fn *unbound)
-{
-	insert_child_node(unbound, bound);
-	bound->mark = FALSE;
+	fib->pot = shift + 1;
 }
 
 static inline void	root_binding(t_fib *fib, t_fn **roots, t_fn *unbound)
@@ -44,7 +38,8 @@ static inline void	root_binding(t_fib *fib, t_fn **roots, t_fn *unbound)
 		bound = roots[d];
 		if (fib->cmp(bound->value, unbound->value) == TRUE)
 			ft_swap64((uint64_t*)&unbound, (uint64_t*)&bound);
-		fibheap_link(bound, unbound);
+		insert_child_node(unbound, bound);
+		bound->mark = FALSE;
 		roots[d] = NULL;
 		d++;
 	}
@@ -55,24 +50,35 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 {
 	t_fn			*next;
 	t_fn			*unbind;
-	t_fn			*prior;
 	t_fn			*last;
 
-	prior = fib->priority;
-	last = prior->left;
+	last = fib->priority->left;
 	while (TRUE)
 	{
 		next = fib->priority->right;
-		if (fib->cmp(fib->priority->value, prior->value) == TRUE)
-			prior = fib->priority;
 		unbind = unbind_node(fib->priority);
 		root_binding(fib, roots, unbind);
 		if (fib->priority == last)
 			break ;
 		fib->priority = next;
 	}
-	fib->priority = prior;
 	create_rootlist(roots, fib->pot);
+}
+
+static inline t_fn	*get_priority(t_fn **nodes, int (*cmp)(void*, void*))
+{
+	t_fn			*prior;
+	size_t			i;
+
+	prior = nodes[0];
+	i = 1;
+	while (nodes[i])
+	{
+		if (cmp(nodes[i]->value, prior->value) == TRUE)
+			prior = nodes[i];
+		i++;
+	}
+	return (prior);
 }
 
 void				*ft_fibpop(t_fib *fib)
@@ -89,6 +95,7 @@ void				*ft_fibpop(t_fib *fib)
 	priority_value = extract_priority_value(fib);
 	if (fib->priority)
 		consolidate(fib, roots);
+	fib->priority = get_priority(roots, fib->cmp);
 	ft_memdel((void**)&roots);
 	fib->n--;
 	return (priority_value);
