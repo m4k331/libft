@@ -50,5 +50,6 @@ int 				add_node_to_dictionary(t_fib *fib, t_fn **node)
 	if (k == NULL)
 		return (FALSE);
 	vvals = ft_dictget(fib->values, k);
+	printf("%p -> %ld\n", *node, *(long*)(*node)->value);
 	return (vvals == NULL ? set(fib, node, &k) : add(vvals, node, &k));
 }

@@ -36,6 +36,7 @@ void				*extract_priority_value(t_fib *fib)
 	void			*value;
 
 	prior = fib->priority;
+	printf("select: %p\n", prior);
 	if (prior->child)
 		add_child_nodes_in_rootlist(fib, prior->child);
 	fib->priority = ((prior->right == prior) ? NULL : prior->right);

@@ -25,15 +25,21 @@ static inline void	del_table(void **table, size_t len)
 	}
 }
 
-char		**getmems(char **tmp, size_t len, size_t size)
+char		**get_vals(char *prefix, size_t count, size_t size_vals)
 {
 	char	**keys;
+	char	*num;
+	size_t	offset;
 
-	keys = (char**)malloc(sizeof(char*) * len);
-	for (int i = 0; i < len; ++i)
+	keys = (char**)malloc(sizeof(char*) * count);
+	offset = ft_strlen(prefix);
+	for (size_t i = 0; i < count; ++i)
 	{
-		keys[i] = ft_memalloc(size);
-		ft_memcpy(keys[i], tmp[i], size);
+		keys[i] = ft_memalloc(size_vals);
+		ft_memcpy(keys[i], prefix, offset);
+		num = ft_itoa(i);
+		ft_memcpy(keys[i] + offset, num, ft_strlen(num));
+		free(num);
 	}
 	return (keys);
 }
@@ -66,30 +72,35 @@ int			main(int ac, char **av)
 	long 	d = 10;
 	long 	e = 8;
 	long 	f = 77;
+	long 	g = 13;
 	long 	upd = 1;
 
 	fib = ft_fibnew(cmp, del);
+	ft_fibpush(fib, (void*)&e);
 	ft_fibpush(fib, (void*)&a);
 //	t_fn	*one_hundred = (t_fn*)fib->priority;
 	ft_fibpush(fib, (void*)&b);
 	ft_fibpush(fib, (void*)&c);
 	ft_fibpush(fib, (void*)&d);
-	ft_fibpush(fib, (void*)&e);
 //	ft_fibupd(fib, one_hundred, (void*)&upd);
 	ft_fibpush(fib, (void*)&f);
+	ft_fibpush(fib, (void*)&g);
+	ft_fibpush(fib, (void*)&e);
+	ft_fibpush(fib, (void*)&a);
+	ft_fibpush(fib, (void*)&b);
+	ft_fibpush(fib, (void*)&c);
+	ft_fibpush(fib, (void*)&d);
+	ft_fibpush(fib, (void*)&f);
+	ft_fibpush(fib, (void*)&g);
 	for (int i = 0; fib->n; i++)
 		printf("%d: %ld\n", i + 1, *(long*)ft_fibpop(fib));
 	return (0);
 }
 
-//#define SZ 11
+//#define SZ 50000
 //
 //int			main(int ac, char **av)
 //{
-//	char	*t_k[SZ] = {"ahugh", "chermist", "lkarlon-", "adavis", \
-//					"mbalon-s", "ehugh-be", "mwunsch", "O1", "O2", "O3", "O4"};
-//	char	*t_l[SZ] = {"7.90", "7.47", "7.62", "7.11", "7.56", "8.31", "8.72", \
-//						"11", "22", "33", "44"};
 //	t_dict	*d;
 //	void	**table;
 //	char	**keys;
@@ -98,8 +109,8 @@ int			main(int ac, char **av)
 //
 //	d = ft_dictnew(0);
 //
-//	keys = getmems(t_k, SZ, DK_SIZE);
-//	lvls = getmems(t_l, SZ, sizeof(void*));
+//	keys = get_vals("NAME_", SZ, DK_SIZE);
+//	lvls = get_vals("AAA", SZ, DK_SIZE);
 //
 //	for (int i = 0; i < SZ; ++i)
 //		ft_dictset(d, keys[i], &lvls[i]);

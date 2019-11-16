@@ -12,18 +12,22 @@
 
 #include "libft.h"
 
-static inline t_fn	*get_next_full_node(t_fn **nodes, size_t start, size_t end)
+static inline void	replace_null_node(t_fn **nodes, size_t start, size_t end)
 {
 	size_t			i;
 
-	i = start;
+	i = start + 1;
 	while (i < end)
 	{
 		if (nodes[i])
-			return (nodes[i]);
+		{
+			nodes[start] = nodes[i];
+			nodes[i] = NULL;
+			return ;
+		}
 		i++;
 	}
-	return (NULL);
+	nodes[start] = NULL;
 }
 
 static inline void	delete_null_nodes(t_fn **nodes, size_t *len)
@@ -33,12 +37,14 @@ static inline void	delete_null_nodes(t_fn **nodes, size_t *len)
 	i = 0;
 	while (i < *len)
 	{
+//		printf("i = %zu p = %p\n", i, nodes[i]);
 		if (nodes[i] == NULL)
 		{
-			nodes[i] = get_next_full_node(nodes, i + 1, *len);
+			replace_null_node(nodes, i, *len);
 			if (nodes[i] == NULL)
 				break ;
 		}
+//		printf("p:i = %zu p = %p\n", i, nodes[i]);
 		i++;
 	}
 	*len = i;
@@ -66,8 +72,8 @@ static inline void	bind_nodes(t_fn **nodes, size_t len)
 		}
 		i++;
 	}
-	right->left = first;
-	first->right = right;
+	right->right = first;
+	first->left = right;
 }
 
 t_fn				*create_rootlist(t_fn **nodes, size_t len)

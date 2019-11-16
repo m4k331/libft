@@ -24,7 +24,7 @@ static inline void	set_fibpot(t_fib *fib)
 		shift++;
 		pot = 1ULL << shift;
 	}
-	fib->pot = shift + 1;
+	fib->pot = shift + 1 + 10;
 }
 
 static inline void	fibheap_link(t_fn *bound, t_fn *unbound)
