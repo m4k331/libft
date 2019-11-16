@@ -14,11 +14,14 @@
 
 void				fndel(t_fn **node, void del(void*))
 {
-	if (*node)
+	if (node && *node)
 	{
-		if (del)
-			del((*node)->value);
-		(*node)->value = NULL;
+		if ((*node)->value)
+		{
+			if (del)
+				del((*node)->value);
+			(*node)->value = NULL;
+		}
 		ft_memdel((void**)node);
 	}
 }

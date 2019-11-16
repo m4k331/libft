@@ -17,9 +17,11 @@ static inline void	slotdel(t_slot *slot, void del(void*))
 	if (slot)
 	{
 		if (slot->key && del)
+		{
 			ft_memdel((void**)&slot->key);
-		if (slot->value && del)
-			del(&slot->value);
+			if (slot->value && del)
+				del(&slot->value);
+		}
 		free(slot);
 	}
 }
