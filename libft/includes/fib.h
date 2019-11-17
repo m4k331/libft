@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/17 22:43:48 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/17 22:49:02 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int 				del_node_from_dictionary(t_fib *fib, t_fn *req_node);
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 void				*ft_fibpop(t_fib *fib);
 int					ft_fibpush(t_fib *fib, void *value);
-void				*ft_fibupd(t_fib *fib, void *old_val, void *new_val);
+void				*ft_fibupd(t_fib *fib, void *old_value, void *new_value);
 void				ft_fibdel(t_fib **fib);
 
 

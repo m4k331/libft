@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:17:36 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 13:17:54 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/17 23:27:33 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,34 +43,30 @@ static inline void	cascading_cut(t_fib *fib, t_fn *node)
 	}
 }
 
-static inline t_fn	*get_node_with_old_val(t_fib *fib, void *old_val)
+static inline t_fn	*get_node_with_old_val(t_fib *fib, void *old_value)
 {
 	t_vector		*vector_nodes;
-	char			*key;
 	t_fn			*node;
 
-	key = ft_itoa_base((uint64_t)old_val, 16);
-	if (key == NULL)
-		return (NULL);
-	vector_nodes = ft_dictget(fib->values, key);
-	ft_memdel((void**)&key);
+	update_fib_key_buffer(fib->key_buffer, (size_t)old_value);
+	vector_nodes = ft_dictget(fib->values, fib->key_buffer);
 	if (vector_nodes == NULL || vector_nodes->head == 0)
 		return (NULL);
 	node = *(t_fn**)ft_vnext_con(vector_nodes);
 	return (node);
 }
 
-void				*ft_fibupd(t_fib *fib, void *old_val, void *new_val)
+void				*ft_fibupd(t_fib *fib, void *old_value, void *new_value)
 {
 	t_fn			*node;
 	t_fn			*parent;
 
-	if (fib->cmp(old_val, new_val) == TRUE)
+	if (fib->cmp(old_value, new_value) == TRUE)
 		return (NULL);
-	node = get_node_with_old_val(fib, old_val);
+	node = get_node_with_old_val(fib, old_value);
 	if (node == NULL)
 		return (NULL);
-	node->value = new_val;
+	node->value = new_value;
 	if (add_node_to_dictionary(fib, &node) == FALSE)
 		return (NULL);
 	parent = node->parent;
@@ -81,5 +77,5 @@ void				*ft_fibupd(t_fib *fib, void *old_val, void *new_val)
 	}
 	if (fib->cmp(node->value, fib->priority) == TRUE)
 		fib->priority = node;
-	return (old_val);
+	return (old_value);
 }
