@@ -73,7 +73,7 @@ int 				del_node_to_dictionary(t_fib *fib, t_fn *req_node);
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 void				*ft_fibpop(t_fib *fib);
 int					ft_fibpush(t_fib *fib, void *value);
-int					ft_fibupd(t_fib *fib, t_fn *node, void *val);
+void				*ft_fibupd(t_fib *fib, void *old_val, void *new_val);
 void				ft_fibdel(t_fib **fib);
 
 

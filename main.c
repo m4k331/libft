@@ -82,7 +82,6 @@ int			main(int ac, char **av)
 	ft_fibpush(fib, (void*)&b);
 	ft_fibpush(fib, (void*)&c);
 	ft_fibpush(fib, (void*)&d);
-//	ft_fibupd(fib, (void*)&a, (void*)&upd);
 	ft_fibpush(fib, (void*)&f);
 	ft_fibpush(fib, (void*)&g);
 	ft_fibpush(fib, (void*)&e);
@@ -117,7 +116,15 @@ int			main(int ac, char **av)
 	ft_fibpush(fib, (void*)&e);
 	ft_fibpush(fib, (void*)&g);
 	for (int i = 0; fib->n; i++)
+	{
 		printf("%d: %ld\n", i + 1, *(long*)ft_fibpop(fib));
+		if (i == 5)
+		{
+			ft_fibupd(fib, (void*)&a, (void*)&upd);
+//			return (0);
+//			break ;
+		}
+	}
 	ft_fibdel(&fib);
 	return (0);
 }

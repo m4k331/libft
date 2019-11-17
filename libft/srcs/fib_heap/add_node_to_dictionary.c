@@ -47,6 +47,7 @@ int 				add_node_to_dictionary(t_fib *fib, t_fn **node)
 	char			*k;
 
 	k = ft_itoa_base((uint64_t)(*node)->value, 16);
+//	printf("%p -> %ld\n", *node, *(long*)(*node)->value);
 	if (k == NULL)
 		return (FALSE);
 	vec_vals = ft_dictget(fib->values, k);

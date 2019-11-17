@@ -14,12 +14,8 @@
 
 static void			vdel(void *v)
 {
-//	printf("vdel: %p - %zx\n", v, *(size_t*)v);
 	if (v)
-	{
 		ft_vdel((t_vector**)v);
-		v = NULL;
-	}
 }
 
 static inline void	destroy_heap(t_fn **roots, void del(void*))
@@ -33,7 +29,6 @@ static inline void	destroy_heap(t_fn **roots, void del(void*))
 		if (node->child)
 			destroy_heap(&node->child, del);
 		next = node == node->right ? NULL : node->right;
-//		printf("n:%p nxt:%p node->val = %ld node->right = %p\n", node, next, *(long*)node->value, node->right);
 		unbind_node(node);
 		fndel(&node, del);
 		node = next;
