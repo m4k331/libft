@@ -12,11 +12,11 @@
 
 #include "libft.h"
 
-static inline void	unset(t_vector *keys, size_t ix, size_t size)
+static inline void	unset(t_vector *vector_values, size_t ix, size_t size)
 {
 	void			*ptr;
 
-	ptr = ft_vat(keys, ix);
+	ptr = ft_vat(vector_values, ix);
 	if (ptr)
 		ft_bzero(ptr, size);
 }
