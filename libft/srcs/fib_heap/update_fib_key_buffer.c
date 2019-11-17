@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_fibnew.c                                        :+:      :+:    :+:   */
+/*   update_fib_key_buffer.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/11 12:49:30 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 14:16:54 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/17 22:20:53 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/17 22:47:36 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#define SIZE_LINE (DICT_SIZE - 1)
 
-t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*))
+void					update_fib_key_buffer(char *buffer, size_t address)
 {
-	t_fib			*fib;
+	const char			*digits = "0123456789ABCDEF";
+	size_t				i;
 
-	fib = (t_fib*)ft_memalloc(sizeof(t_fib));
-	if (fib == NULL)
-		return (NULL);
-	fib->values = ft_dictnew(DICT_SIZE);
-	if (fib->values == NULL)
+	i = 0;
+	while (i < SIZE_LINE)
 	{
-		ft_memdel((void**)&fib);
-		return (NULL);
+		buffer[SIZE_LINE - i - 1] = digits[address % 16];
+		address /= 16;
+		i++;
 	}
-	ft_bzero(fib->key_buffer, DK_SIZE + 1);
-	fib->cmp = cmp;
-	fib->del = del;
-	return (fib);
 }

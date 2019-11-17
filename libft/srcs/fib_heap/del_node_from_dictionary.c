@@ -20,7 +20,7 @@ static void			vdel(void *v)
 static inline int	delete_require_node(t_fib *fib, \
 										t_fn *req_node, \
 										t_vector *vector_nodes, \
-										char **key)
+										char *key)
 {
 	void			*node;
 	size_t			address_value;
@@ -39,28 +39,20 @@ static inline int	delete_require_node(t_fib *fib, \
 				*(size_t*)curr = address_value;
 			}
 			if (vector_nodes->head == 0)
-				ft_dictunset(fib->values, *key, vdel);
-			ft_memdel((void**)key);
+				ft_dictunset(fib->values, key, vdel);
 			return (TRUE);
 		}
 	}
-	ft_memdel((void**)key);
 	return (FALSE);
 }
 
 int					del_node_from_dictionary(t_fib *fib, t_fn *req_node)
 {
 	t_vector		*vector_nodes;
-	char			*key;
 
-	key = ft_itoa_base((uint64_t)req_node->value, 16);
-	if (key == NULL)
-		return (FALSE);
-	vector_nodes = ft_dictget(fib->values, key);
+	update_fib_key_buffer(fib->key_buffer, (size_t)req_node->value);
+	vector_nodes = ft_dictget(fib->values, fib->key_buffer);
 	if (vector_nodes == NULL)
-	{
-		ft_memdel((void**)&key);
 		return (FALSE);
-	}
-	return (delete_require_node(fib, req_node, vector_nodes, &key));
+	return (delete_require_node(fib, req_node, vector_nodes, fib->key_buffer));
 }

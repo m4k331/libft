@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 17:12:38 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/17 22:43:48 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ t_fn				*unbind_node(t_fn *list);
 t_fn				*create_rootlist(t_fn **nodes, size_t len);
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 void				insert_child_node(t_fn *parent, t_fn *child);
+void				update_fib_key_buffer(char *buffer, size_t address);
 
 /*
 ** fibonacci heap:
@@ -62,6 +63,7 @@ typedef struct		s_fib
 	size_t			n;
 	size_t			pot;
 	t_dict			*values;
+	char			key_buffer[DK_SIZE];
 	int				(*cmp)(void*, void*);
 	void			(*del)(void*);
 }					t_fib;

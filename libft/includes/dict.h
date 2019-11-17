@@ -30,7 +30,7 @@
 # define DKIX_EMPTY(ix)  ((ix) == 0)
 # define DKIX(ix)        ((ix) & MASK_INDICES)
 
-# define USABLE_FRACTION(n) (((n) << 1ULL) / 3ULL)
+# define USABLE(n) (((n) << 1ULL) / 3ULL)
 
 /*
 ** ix bit field which containing values indices slots and his flags

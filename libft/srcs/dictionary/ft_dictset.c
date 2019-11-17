@@ -43,16 +43,22 @@ int					ft_dictset(t_dict *dict, char *key, void *value)
 {
 	size_t			hash;
 	t_slot			*slot;
+	char			*dup_key;
 
 	if (dict == NULL || key == NULL || value == NULL)
 		return (FALSE);
-	if (dict->fill > USABLE_FRACTION(dict->mask))
-		if (ft_dictresize(dict, TRUE) == FALSE)
-			return (FALSE);
-	hash = ft_hash(key);
-	slot = ft_lookup(dict, hash, key, TRUE);
+	dup_key = ft_strdup(key);
+	if (dup_key == NULL)
+		return (FALSE);
+	if (dict->fill > USABLE(dict->mask) && ft_dictresize(dict, TRUE) == FALSE)
+	{
+		ft_memdel((void**)&dup_key);
+		return (FALSE);
+	}
+	hash = ft_hash(dup_key);
+	slot = ft_lookup(dict, hash, dup_key, TRUE);
 	set_ix(dict, slot);
-	set_keys(dict, slot, key);
+	set_keys(dict, slot, dup_key);
 	set_items(dict, slot, value);
 	slot->hash = hash;
 	return (TRUE);
