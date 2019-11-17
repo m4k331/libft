@@ -14,7 +14,7 @@
 
 void		ft_vdel(t_vector **v)
 {
-	if (v)
+	if (v && *v)
 	{
 		ft_verase(*v);
 		ft_memdel((void**)v);

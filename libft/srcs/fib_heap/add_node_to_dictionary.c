@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static inline int	add(t_vector *v, t_fn **n, char **k)
+static inline int	add_node_in_old_vector(t_vector *v, t_fn **n, char **k)
 {
 	ft_memdel((void**)k);
 	if (ft_vpush_back(v, n, VOID_SIZE) == FALSE)
@@ -20,7 +20,7 @@ static inline int	add(t_vector *v, t_fn **n, char **k)
 	return (TRUE);
 }
 
-static inline int	set(t_fib *f, t_fn **n, char **k)
+static inline int	set_node_in_new_vector(t_fib *f, t_fn **n, char **k)
 {
 	t_vector		*v;
 
@@ -43,13 +43,14 @@ static inline int	set(t_fib *f, t_fn **n, char **k)
 
 int 				add_node_to_dictionary(t_fib *fib, t_fn **node)
 {
-	void			*vec_vals;
-	char			*k;
+	void			*vector_nodes;
+	char			*key;
 
-	k = ft_itoa_base((uint64_t)(*node)->value, 16);
-//	printf("%p -> %ld\n", *node, *(long*)(*node)->value);
-	if (k == NULL)
+	key = ft_itoa_base((uint64_t)(*node)->value, 16);
+	if (key == NULL)
 		return (FALSE);
-	vec_vals = ft_dictget(fib->values, k);
-	return (vec_vals == NULL ? set(fib, node, &k) : add(vec_vals, node, &k));
+	vector_nodes = ft_dictget(fib->values, key);
+	return (vector_nodes == NULL ? \
+			set_node_in_new_vector(fib, node, &key) : \
+			add_node_in_old_vector(vector_nodes, node, &key));
 }

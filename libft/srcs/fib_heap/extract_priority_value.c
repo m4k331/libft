@@ -40,7 +40,7 @@ void				*extract_priority_value(t_fib *fib)
 		add_child_nodes_in_rootlist(fib, prior->child);
 	fib->priority = ((prior->right == prior) ? NULL : prior->right);
 	value = prior->value;
-	if (del_node_to_dictionary(fib, prior) == FALSE)
+	if (del_node_from_dictionary(fib, prior) == FALSE)
 		return (NULL);
 	unbind_node(prior);
 	fndel(&prior, NULL);

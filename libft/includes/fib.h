@@ -68,7 +68,7 @@ typedef struct		s_fib
 
 void				*extract_priority_value(t_fib *fib);
 int 				add_node_to_dictionary(t_fib *fib, t_fn **node);
-int 				del_node_to_dictionary(t_fib *fib, t_fn *req_node);
+int 				del_node_from_dictionary(t_fib *fib, t_fn *req_node);
 
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 void				*ft_fibpop(t_fib *fib);

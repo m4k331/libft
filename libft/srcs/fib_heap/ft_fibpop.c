@@ -68,15 +68,13 @@ static inline void	consolidate(t_fib *fib, t_fn **roots)
 static inline t_fn	*get_priority(t_fn **nodes, int (*cmp)(void*, void*))
 {
 	t_fn			*prior;
-	size_t			i;
 
-	prior = nodes[0];
-	i = 1;
-	while (nodes[i])
+	prior = *nodes++;
+	while (*nodes)
 	{
-		if (cmp(nodes[i]->value, prior->value) == TRUE)
-			prior = nodes[i];
-		i++;
+		if (cmp((*nodes)->value, prior->value) == TRUE)
+			prior = *nodes;
+		nodes++;
 	}
 	return (prior);
 }

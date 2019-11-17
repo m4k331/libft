@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   del_node_to_dictionary.c                           :+:      :+:    :+:   */
+/*   del_node_from_dictionary.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,6 @@
 static void			vdel(void *v)
 {
 	ft_vdel((t_vector**)&v);
-	v = NULL;
 }
 
 static inline int	delete_require_node(t_fib *fib, \
@@ -49,7 +48,7 @@ static inline int	delete_require_node(t_fib *fib, \
 	return (FALSE);
 }
 
-int					del_node_to_dictionary(t_fib *fib, t_fn *req_node)
+int					del_node_from_dictionary(t_fib *fib, t_fn *req_node)
 {
 	t_vector		*vector_nodes;
 	char			*key;
