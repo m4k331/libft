@@ -1,11 +1,12 @@
 cmake_minimum_required(VERSION 3.0)
 
-project(test)
+project(libft)
 
-file(GLOB SRC_TEST "main.c")
+file(GLOB SRC "srcs/*/*.c")
 
-add_subdirectory(libft)
-add_executable(test ${SRC_TEST})
+set(GCC_FLAGS "-Wall -Werror -Wextra -Ofast3 -march=native")
 
-target_include_directories(test PUBLIC inc)
-target_link_libraries(test PRIVATE ft)
+add_definitions(${GCC_FLAGS})
+add_library(ft STATIC ${SRC})
+
+target_include_directories(ft PUBLIC ${PROJECT_SOURCE_DIR}/includes)

@@ -8,4 +8,5 @@ libft.a
 *.o
 *.dSYM/*
 mm
+main.c
 test
