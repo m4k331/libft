@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/13 15:57:06 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/18 18:50:12 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -160,20 +160,21 @@ DICT			=	ft_dictnew.c \
 					ft_dictkeys.c \
 					ft_dictiterate.c
 
-FIB				=	ft_fibnew.c \
-					ft_fibpush.c \
-					ft_fibpop.c \
-					ft_fibupd.c \
-					ft_fibdel.c \
-					fnnew.c \
+FIB				=	add_node_to_dictionary.c \
+					del_node_from_dictionary.c \
+					extract_priority_value.c \
 					fndel.c \
-					create_rootlist.c \
+					fnnew.c \
+					ft_fibdel.c \
+					ft_fibnew.c \
+					ft_fibpop.c \
+					ft_fibpush.c \
+					ft_fibupd.c \
+					insert_child_node.c \
 					insert_node_in_rootlist.c \
 					unbind_node.c \
-					insert_child_node.c \
-					extract_priority.c \
-					add_node_to_dictionary.c \
-					del_node_to_dictionary.c
+					update_fib_key_buffer.c
+
 
 FILES			+=	$(MEM) \
 					$(PRT) \
@@ -182,8 +183,18 @@ FILES			+=	$(MEM) \
 					$(DLST) \
 					$(UTL) \
 					$(VEC) \
-					$(DICT)
-#					$(FIB)
+					$(DICT) \
+					$(FIB)
+
+FILES_WITH_PATH	=	$(addprefix ./$(SRC_DIR)/$(MEM_DIR)/, $(MEM)) \
+					$(addprefix ./$(SRC_DIR)/$(PRT_DIR)/, $(PRT)) \
+					$(addprefix ./$(SRC_DIR)/$(STR_DIR)/, $(STR)) \
+					$(addprefix ./$(SRC_DIR)/$(LST_DIR)/, $(LST)) \
+					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
+					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
+					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC)) \
+					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT)) \
+					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
 
 OBJ				=	$(FILES:%.c=%.o)
 
@@ -201,16 +212,7 @@ CC				=	gcc
 all: $(NAME)
 
 $(NAME):
-				@$(CC) $(FLAGS) \
-					$(addprefix ./$(SRC_DIR)/$(MEM_DIR)/, $(MEM)) \
-					$(addprefix ./$(SRC_DIR)/$(PRT_DIR)/, $(PRT)) \
-					$(addprefix ./$(SRC_DIR)/$(STR_DIR)/, $(STR)) \
-					$(addprefix ./$(SRC_DIR)/$(LST_DIR)/, $(LST)) \
-					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
-					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
-					$(addprefix ./$(SRC_DIR)/$(VEC_DIR)/, $(VEC)) \
-					$(addprefix ./$(SRC_DIR)/$(DICT_DIR)/, $(DICT))
-#					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
+				@$(CC) $(FLAGS) $(FILES_WITH_PATH)
 				@ar rc $(NAME) $(OBJ)
 				@ranlib $(NAME)
 				@echo "libft created!"
@@ -225,3 +227,6 @@ fclean: clean
 				@rm -f $(NAME)
 
 re: fclean all
+
+norm:
+				@norminette $(FILES_WITH_PATH)
