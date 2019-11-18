@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/17 22:49:02 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/18 18:19:15 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,8 @@ typedef struct		s_fn
 }					t_fn;
 
 t_fn				*fnnew(void *value);
-void				fndel(t_fn **node, void del(void*));
 t_fn				*unbind_node(t_fn *list);
-t_fn				*create_rootlist(t_fn **nodes, size_t len);
+void				fndel(t_fn **node, void del(void*));
 void				insert_node_in_rootlist(t_fn *rootlist, t_fn *node);
 void				insert_child_node(t_fn *parent, t_fn *child);
 void				update_fib_key_buffer(char *buffer, size_t address);
@@ -50,8 +49,11 @@ void				update_fib_key_buffer(char *buffer, size_t address);
 **		*ptr on priority node and root list
 **		number of nodes
 **		potential fibonacci heap
+**		dictionary values
+**		rootlist it is a buffer for recovery heap
 **		*ptr on function compare
 **		*ptr on function delete t_fn->value
+**		buffer for keys values
 **
 **	Note:
 **	function cmp(value_1, value_2) return TRUE if value_1 priority than value_2
@@ -63,9 +65,10 @@ typedef struct		s_fib
 	size_t			n;
 	size_t			pot;
 	t_dict			*values;
-	char			key_buffer[DK_SIZE];
+	t_fn			**rootlist;
 	int				(*cmp)(void*, void*);
 	void			(*del)(void*);
+	char			key_buffer[DK_SIZE + 1];
 }					t_fib;
 
 void				*extract_priority_value(t_fib *fib);
@@ -74,9 +77,9 @@ int 				del_node_from_dictionary(t_fib *fib, t_fn *req_node);
 
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 void				*ft_fibpop(t_fib *fib);
-int					ft_fibpush(t_fib *fib, void *value);
 void				*ft_fibupd(t_fib *fib, void *old_value, void *new_value);
 void				ft_fibdel(t_fib **fib);
+int					ft_fibpush(t_fib *fib, void *value);
 
 
 #endif

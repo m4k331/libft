@@ -25,7 +25,6 @@ t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*))
 		ft_memdel((void**)&fib);
 		return (NULL);
 	}
-	ft_bzero(fib->key_buffer, DK_SIZE + 1);
 	fib->cmp = cmp;
 	fib->del = del;
 	return (fib);

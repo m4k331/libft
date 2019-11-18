@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-int 				add_node_to_dictionary(t_fib *fib, t_fn **node)
+int				add_node_to_dictionary(t_fib *fib, t_fn **node)
 {
 	t_vector		*vector_nodes;
 

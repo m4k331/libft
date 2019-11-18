@@ -39,5 +39,7 @@ void				ft_fibdel(t_fib **fib)
 {
 	destroy_heap(&(*fib)->priority, (*fib)->del);
 	ft_dictdel(&(*fib)->values, vdel);
+	if ((*fib)->rootlist)
+		ft_memdel((void**)&(*fib)->rootlist);
 	ft_memdel((void**)fib);
 }

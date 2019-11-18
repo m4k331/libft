@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 20:49:01 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/11 20:53:07 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/18 17:37:17 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void				insert_child_node(t_fn *parent, t_fn *child)
 		insert_node_in_rootlist(parent->child, child);
 	else
 	{
-		child = create_rootlist(&child, 1);
+		child->left = child;
+		child->right = child;
 		parent->child = child;
 	}
 	child->parent = parent;

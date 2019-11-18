@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 13:18:30 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 15:57:06 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/18 17:33:30 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ int					ft_fibpush(t_fib *fib, void *value)
 		return (FALSE);
 	}
 	if (fib->priority == NULL)
-		fib->priority = create_rootlist(&node, 1);
+	{
+		node->left = node;
+		node->right = node;
+		fib->priority = node;
+	}
 	else
 	{
 		insert_node_in_rootlist(fib->priority, node);
