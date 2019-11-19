@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 23:52:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/19 17:35:20 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 19:49:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,25 +172,12 @@
 
 int				main(int ac, char **av)
 {
-	ft_putstr("\n");
-	ft_putstr("1\n");
-	ft_putstr("12\n");
-	ft_putstr("123\n");
-	ft_putstr("1234\n");
-	ft_putstr("12345\n");
-	ft_putstr("123456\n");
-	ft_putstr("1234567\n");
-	ft_putstr("12345678\n");
-	ft_putstr("123456789\n");
-	ft_putstr("1234567890\n");
-	ft_putstr("12345678901\n");
-	ft_putstr("123456789012\n");
-	ft_putstr("1234567890123\n");
-	ft_putstr("12345678901234\n");
-	ft_putstr("1234567890123456\n");
-	ft_putstr("1234567890\0A123456A\n");
-	ft_putstr("B1234567890\n123456\n");
-//	printf("%zu\n", strlen(NULL));
-//	printf("%zu\n", ft_strlen(NULL));
+	char		*line;
+
+	for (int i = 0; i < 0xFFFFFFF; i++)
+	{
+		get_next_line(1, &line);
+		printf("%s = %ld\n", line, ft_atol(line));
+	}
 	return (0);
 }

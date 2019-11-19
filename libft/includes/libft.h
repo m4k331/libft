@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:34:31 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/13 14:30:13 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 20:03:25 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ char				*ft_strchr(const char *s, int c);
 char				*ft_strrchr(const char *s, int c);
 char				*ft_strstr(const char *h, const char *n);
 char				*ft_strnstr(const char *h, const char *n, size_t len);
+long				ft_atol(const char *str);
 size_t				ft_strlen(const char *s);
 size_t				ft_strlcat(char *dst, const char *src, size_t size);
 size_t				ft_wc(char const *s, char c);

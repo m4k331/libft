@@ -6,32 +6,18 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/28 14:54:58 by ahugh             #+#    #+#             */
-/*   Updated: 2019/01/19 15:01:24 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 20:22:28 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#define POS(x) ((x) > 0x7FFFFFFF)
+#define NEG(x) ((x) > 0x80000000)
+#define OVER_LIMIT(x) (((x) < 0 && NEG((x))) || ((x) > -1 && POS((x))))
 
-int		ft_atoi(const char *str)
+int				ft_atoi(const char *str)
 {
-	char				sign;
-	unsigned char		len;
-	unsigned long long	result;
+	const long	atol = ft_atol(str);
 
-	len = 0;
-	while (ft_isspace(*str))
-		++str;
-	if ((sign = 1) && !ft_isdigit(*str) && *str == 45)
-		sign = -1;
-	if (!(result = 0) && (*str == 43 || *str == 45))
-		++str;
-	while (*str == 48)
-		str++;
-	while (ft_isdigit(*str) && (++len < 21))
-		result = result * 10 + (*str++ - 48);
-	if (sign > 0 && (len > 19 || result > 9223372036854775807))
-		return (-1);
-	if (sign < 0 && (len > 19 || result > 9223372036854775808ULL))
-		return (0);
-	return (sign * result);
+	return (OVER_LIMIT(atol) ? 0 : (int)atol);
 }
