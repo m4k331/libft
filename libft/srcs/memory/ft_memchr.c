@@ -6,37 +6,42 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 15:24:58 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/19 16:44:31 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 01:02:55 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+static inline void	expand_value(uint64_t *w, uint8_t u)
 {
-	uint64_t	*big;
-	uint64_t	ull;
-	uint8_t		*small;
-	uint8_t		uc;
+	*w = u;
+	*w |= *w << 8ULL;
+	*w |= *w << 16ULL;
+	*w |= *w << 32ULL;
+}
 
-	ull = (unsigned char)c;
-	ull |= ull << 8ULL | ull << 16ULL | ull << 24ULL | ull << 32ULL;
-	ull |= ull << 32ULL;
-	uc = ull;
-	big = (uint64_t*)s;
+void				*ft_memchr(const void *s, int c, size_t n)
+{
+	uint64_t		*longword;
+	uint8_t			*byte;
+	uint64_t		w;
+	uint8_t			u;
+
+	u = (unsigned char)c;
+	expand_value(&w, u);
+	longword = (uint64_t*)s;
 	while (n > 7ULL)
 	{
-		if (DETECTCHAR(*big, ull))
+		if (DETECTCHAR(*longword, w))
 			break ;
-		big++;
+		longword++;
 		n -= 8ULL;
 	}
-	small = (uint8_t*)big;
+	byte = (uint8_t*)longword;
 	while (n--)
-	{
-		if (*small == uc)
-			return (small);
-		small++;
-	}
+		if (*byte == u)
+			return (byte);
+		else
+			byte++;
 	return (NULL);
 }

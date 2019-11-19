@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:34:31 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/19 20:52:50 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 00:51:22 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <stdbool.h>
 # include <limits.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "vector.h"
 # include "list.h"
 # include "dlist.h"
