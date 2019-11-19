@@ -17,16 +17,13 @@ void	ft_putchar_fd(char c, int fd)
 	unsigned char	uc;
 
 	uc = (unsigned char)c;
-	if (fd > -1)
+	if (uc < 128)
+		write(fd, &c, 1);
+	else
 	{
-		if (uc < 128)
-			write(fd, &c, 1);
-		else
-		{
-			uc = (unsigned char)c >> 6 | 0xC0;
-			write(fd, &uc, 1);
-			uc = ((unsigned char)c & 0x3F) | 0x80;
-			write(fd, &uc, 1);
-		}
+		uc = (unsigned char)c >> 6 | 0xC0;
+		write(fd, &uc, 1);
+		uc = ((unsigned char)c & 0x3F) | 0x80;
+		write(fd, &uc, 1);
 	}
 }
