@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/19 20:51:27 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/19 20:51:30 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -114,7 +114,8 @@ UTL				=	ft_arrdel.c \
 					ft_tolower.c \
 					del_any_matrix.c \
 					ft_delcontent.c \
-					ft_swap.c
+					ft_swap.c \
+					ft_isnumeric_str.c
 
 VEC				=	ft_verase.c \
 					ft_vnew.c \
