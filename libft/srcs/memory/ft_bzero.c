@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/21 12:26:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/19 16:27:05 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 17:25:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,18 +25,17 @@ void				ft_bzero(void *s, size_t n)
 	byte = (uint8_t*)s;
 	while ((uint64_t)byte & 7ULL)
 	{
-		*byte++ = 0U;
-		n--;
-		if (n == 0)
+		*byte++ = 00U;
+		if (--n == 0)
 			return ;
 	}
 	longword = (uint64_t*)byte;
 	while (n > 7ULL)
 	{
-		*longword++ = 0ULL;
+		*longword++ = 0x0000000000000000ULL;
 		n -= 8ULL;
 	}
 	byte = (uint8_t*)longword;
 	while (n--)
-		*byte++ = 0U;
+		*byte++ = 00U;
 }
