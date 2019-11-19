@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memchr.c                                        :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 15:24:58 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Created: 2018/11/21 12:26:46 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/19 16:27:05 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memchr(const void *s, int c, size_t n)
+void				ft_bzero(void *s, size_t n)
 {
-	uint64_t	*big;
-	uint64_t	ull;
-	uint8_t		*small;
-	uint8_t		uc;
+	uint64_t	*longword;
+	uint8_t		*byte;
 
-	ull = (unsigned char)c;
-	ull |= ull << 8ULL | ull << 16ULL | ull << 24ULL | ull << 32ULL;
-	ull |= ull << 32ULL;
-	big = (uint64_t*)s;
+	if (n < 0xFFF)
+	{
+		ft_memset(s, 0, n);
+		return ;
+	}
+	byte = (uint8_t*)s;
+	while ((uint64_t)byte & 7ULL)
+	{
+		*byte++ = 0U;
+		n--;
+		if (n == 0)
+			return ;
+	}
+	longword = (uint64_t*)byte;
 	while (n > 7ULL)
 	{
-		if (DETECTCHAR(*big, ull))
-			break ;
-		big++;
+		*longword++ = 0ULL;
 		n -= 8ULL;
 	}
-	uc = ull;
-	small = (uint8_t*)big;
+	byte = (uint8_t*)longword;
 	while (n--)
-	{
-		if (*small == uc)
-			return (small);
-		small++;
-	}
-	return (NULL);
+		*byte++ = 0U;
 }

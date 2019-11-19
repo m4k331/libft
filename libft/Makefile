@@ -204,8 +204,8 @@ OBJ				=	$(FILES:%.c=%.o)
 
 # flags
 
-FLAGS			=	-Wextra -Wall -Werror -O3 -march=native -I./$(INC_DIR)/ -c
-CC				=	gcc
+FLAGS			=	-Wextra -Wall -Werror -Ofast3 -march=native -I./$(INC_DIR)/ -c
+CC				=	clang
 
 # rules
 

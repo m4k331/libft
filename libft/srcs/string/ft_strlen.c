@@ -1,37 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/21 11:04:41 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Created: 2018/11/19 20:36:02 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/19 17:15:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			*ft_memset(void *b, int c, size_t len)
+size_t			ft_strlen(const char *s)
 {
-	uint64_t	*big;
-	uint64_t	w;
-	uint8_t		*small;
-	uint8_t		s;
+	uint64_t	*longword;
+	uint8_t		*byte;
 
-	big = b;
-	w = (unsigned char)c;
-	w |= w << 8ULL;
-	w |= w << 16ULL;
-	w |= w << 32ULL;
-	while (len > 7ULL)
+	byte = (uint8_t*)s;
+	while ((uint64_t)byte & 7ULL)
 	{
-		*big++ = w;
-		len -= 8ULL;
+		if (*byte == '\0')
+			return ((size_t)byte - (size_t)s);
+		byte++;
 	}
-	s = w;
-	small = (uint8_t*)big;
-	while (len--)
-		*small++ = s;
-	return (b);
+	longword = (uint64_t*)byte;
+	while (DETECTNULL(*longword) == FALSE)
+		longword++;
+	byte = (uint8_t*)longword;
+	while (*byte)
+		byte++;
+	return ((size_t)byte - (size_t)s);
 }

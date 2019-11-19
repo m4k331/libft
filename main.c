@@ -6,128 +6,128 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 23:52:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 18:58:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 15:14:41 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-static inline void	del_table(void **table, size_t len)
-{
-	size_t			iter;
-
-	iter = 0;
-	while (iter < len)
-	{
-		ft_memdel((void**)&table[iter]);
-		iter++;
-	}
-}
-
-char		**get_vals(char *prefix, size_t count, size_t size_vals)
-{
-	char	**keys;
-	char	*num;
-	size_t	offset;
-
-	keys = (char**)malloc(sizeof(char*) * count);
-	offset = ft_strlen(prefix);
-	for (size_t i = 0; i < count; ++i)
-	{
-		keys[i] = ft_memalloc(size_vals);
-		ft_memcpy(keys[i], prefix, offset);
-		num = ft_itoa(i);
-		ft_memcpy(keys[i] + offset, num, ft_strlen(num));
-		free(num);
-	}
-	return (keys);
-}
-
-int			lambda(void *val)
-{
-	char	**str;
-
-	str = val;
-	((char*)*str)[0] = 'H';
-	return (TRUE);
-}
-
-int			cmp(void *a, void *b)
-{
-	return (*(long*)a < *(long*)b ? TRUE : FALSE);
-}
-
-void			del(void *a)
-{
-	*(long*)a = 0;
-}
-
-int			main(int ac, char **av)
-{
-	t_fib	*fib;
-	long	a = 100;
-	long 	b = 60;
-	long 	c = 90;
-	long 	d = 10;
-	long 	e = 8;
-	long 	f = 77;
-	long 	g = 13;
-	long 	upd = 1;
-
-	fib = ft_fibnew(cmp, del);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&a);
-//	t_fn	*one_hundred = (t_fn*)fib->priority;
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&c);
-	ft_fibpush(fib, (void*)&d);
-	ft_fibpush(fib, (void*)&f);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&a);
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&a);
-	ft_fibpush(fib, (void*)&c);
-	ft_fibpush(fib, (void*)&d);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&f);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&a);
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&b);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&f);
-	ft_fibpush(fib, (void*)&f);
-	ft_fibpush(fib, (void*)&f);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&a);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&g);
-	ft_fibpush(fib, (void*)&e);
-	ft_fibpush(fib, (void*)&g);
-	for (int i = 0; fib->n; i++)
-	{
-		printf("%d: %ld\n", i + 1, *(long*)ft_fibpop(fib));
-		if (i == 5)
-		{
-			ft_fibupd(fib, (void*)&a, (void*)&upd);
-//			return (0);
-//			break ;
-		}
-	}
-	ft_fibdel(&fib);
-	return (0);
-}
+//static inline void	del_table(void **table, size_t len)
+//{
+//	size_t			iter;
+//
+//	iter = 0;
+//	while (iter < len)
+//	{
+//		ft_memdel((void**)&table[iter]);
+//		iter++;
+//	}
+//}
+//
+//char		**get_vals(char *prefix, size_t count, size_t size_vals)
+//{
+//	char	**keys;
+//	char	*num;
+//	size_t	offset;
+//
+//	keys = (char**)malloc(sizeof(char*) * count);
+//	offset = ft_strlen(prefix);
+//	for (size_t i = 0; i < count; ++i)
+//	{
+//		keys[i] = ft_memalloc(size_vals);
+//		ft_memcpy(keys[i], prefix, offset);
+//		num = ft_itoa(i);
+//		ft_memcpy(keys[i] + offset, num, ft_strlen(num));
+//		free(num);
+//	}
+//	return (keys);
+//}
+//
+//int			lambda(void *val)
+//{
+//	char	**str;
+//
+//	str = val;
+//	((char*)*str)[0] = 'H';
+//	return (TRUE);
+//}
+//
+//int			cmp(void *a, void *b)
+//{
+//	return (*(long*)a < *(long*)b ? TRUE : FALSE);
+//}
+//
+//void			del(void *a)
+//{
+//	*(long*)a = 0;
+//}
+//
+//int			main(int ac, char **av)
+//{
+//	t_fib	*fib;
+//	long	a = 100;
+//	long 	b = 60;
+//	long 	c = 90;
+//	long 	d = 10;
+//	long 	e = 8;
+//	long 	f = 77;
+//	long 	g = 13;
+//	long 	upd = 1;
+//
+//	fib = ft_fibnew(cmp, del);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&a);
+////	t_fn	*one_hundred = (t_fn*)fib->priority;
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&c);
+//	ft_fibpush(fib, (void*)&d);
+//	ft_fibpush(fib, (void*)&f);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&a);
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&a);
+//	ft_fibpush(fib, (void*)&c);
+//	ft_fibpush(fib, (void*)&d);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&f);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&a);
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&b);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&f);
+//	ft_fibpush(fib, (void*)&f);
+//	ft_fibpush(fib, (void*)&f);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&a);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&g);
+//	ft_fibpush(fib, (void*)&e);
+//	ft_fibpush(fib, (void*)&g);
+//	for (int i = 0; fib->n; i++)
+//	{
+//		printf("%d: %ld\n", i + 1, *(long*)ft_fibpop(fib));
+//		if (i == 5)
+//		{
+//			ft_fibupd(fib, (void*)&a, (void*)&upd);
+////			return (0);
+////			break ;
+//		}
+//	}
+//	ft_fibdel(&fib);
+//	return (0);
+//}
 
 //#define SZ 50000
 //
@@ -169,3 +169,26 @@ int			main(int ac, char **av)
 //	ft_dictdel(&d, NULL);
 //	return (0);
 //}
+
+int				main(int ac, char **av)
+{
+	printf("%zu\n", ft_strlen(""));
+	printf("%zu\n", ft_strlen("1"));
+	printf("%zu\n", ft_strlen("12"));
+	printf("%zu\n", ft_strlen("123"));
+	printf("%zu\n", ft_strlen("1234"));
+	printf("%zu\n", ft_strlen("12345"));
+	printf("%zu\n", ft_strlen("123456"));
+	printf("%zu\n", ft_strlen("1234567"));
+	printf("%zu\n", ft_strlen("12345678"));
+	printf("%zu\n", ft_strlen("123456789"));
+	printf("%zu\n", ft_strlen("1234567890"));
+	printf("%zu\n", ft_strlen("12345678901"));
+	printf("%zu\n", ft_strlen("123456789012"));
+	printf("%zu\n", ft_strlen("1234567890123"));
+	printf("%zu\n", ft_strlen("12345678901234"));
+	printf("%zu\n", ft_strlen("123456789012345"));
+//	printf("%zu\n", strlen(NULL));
+//	printf("%zu\n", ft_strlen(NULL));
+	return (0);
+}
