@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 12:51:37 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 18:19:15 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 20:51:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,13 @@ typedef struct		s_fib
 }					t_fib;
 
 void				*extract_priority_value(t_fib *fib);
-int 				add_node_to_dictionary(t_fib *fib, t_fn **node);
-int 				del_node_from_dictionary(t_fib *fib, t_fn *req_node);
+int					add_node_to_dictionary(t_fib *fib, t_fn **node);
+int					del_node_from_dictionary(t_fib *fib, t_fn *req_node);
 
 t_fib				*ft_fibnew(int (*cmp)(void*, void*), void (*del)(void*));
 void				*ft_fibpop(t_fib *fib);
 void				*ft_fibupd(t_fib *fib, void *old_value, void *new_value);
 void				ft_fibdel(t_fib **fib);
 int					ft_fibpush(t_fib *fib, void *value);
-
 
 #endif

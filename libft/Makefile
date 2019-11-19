@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/19 19:04:34 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/19 20:51:27 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -231,4 +231,4 @@ fclean: clean
 re: fclean all
 
 norm:
-				@norminette $(FILES_WITH_PATH)
+				@norminette $(FILES_WITH_PATH) $(INC_DIR)/*.h
