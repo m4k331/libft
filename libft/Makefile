@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/18 18:50:12 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/19 14:42:44 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ PRT				=	ft_putchar.c \
 					ft_putendl.c \
 					ft_putendl_fd.c \
 					ft_putnbr.c \
+					ft_putcline.c \
 					ft_putnbr_fd.c
 
 STR				=	ft_putstr.c \
