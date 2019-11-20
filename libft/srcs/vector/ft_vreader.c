@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 19:01:16 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 19:30:09 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 21:39:38 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ int					ft_vreader(t_vector *v, int fd, int buff_size)
 		v->head -= data_size;
 		v->iter -= data_size;
 		ft_memmove((void*)v->const_con, v->con, v->head);
-		if (ft_vresize(v, (v->size + buff_size) * 2) == FALSE)
-			return (-1);
+		if (ft_vunused_size(v) < buff_size)
+			if (ft_vresize(v, (v->size + buff_size) * 2) == FALSE)
+				return (-1);
 	}
 	read_bytes = read(fd, v->con + v->head, buff_size);
 	if (read_bytes > 0)

@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 18:33:18 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 23:42:45 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,98 +30,95 @@ static int			initialize_elements(int fd, \
 										t_vector **data)
 {
 	char			*key;
-	int				dkix;
+	int				state;
 
 	*line = NULL;
-	dkix = TRUE;
-	*dict = (*dict == NULL ? ft_dictnew(GNL_INIT_DICT_SIZE) : *dict);
+	state = TRUE;
+	if (*dict == NULL)
+		*dict = ft_dictnew(GNL_INIT_DICT_SIZE);
 	if (*dict == NULL)
 		return (FALSE);
 	key = ft_itoa_base(fd, 16);
+	if (key == NULL)
+		return (FALSE);
 	*data = ft_dictget(*dict, key);
 	if (*data == NULL)
 	{
 		*data = ft_vnew(GNL_INIT_VEC_SIZE, sizeof(char));
 		if (*data == NULL || ft_dictset(*dict, key, *data) == FALSE)
-			dkix = FALSE;
+			state = FALSE;
 		else
 			(*data)->iter = 0;
 	}
 	ft_memdel((void**)&key);
-	return (dkix);
+	return (state);
 }
 
 static size_t		set_data_inline(t_vector *data, char **line)
 {
-	size_t			dkix;
+	size_t			length;
 	char			*ptr_nl;
 	char			*begin;
-	char			*end;
 
+	if (data->iter >= data->head)
+		return (0);
 	begin = ((char*)data->const_con) + data->iter;
-	end = ((char*)data->const_con) + data->head;
-	if ((long)begin >= (long)end)
-		return (0);
-	ptr_nl = (char*)ft_memchr(begin, '\n', data->head - (long)begin);
-	data->iter = ptr_nl ? (long)ptr_nl - (long)data->const_con + 1 : data->head;
+	ptr_nl = (char*)ft_memchr(begin, '\n', data->head - data->iter + 1);
 	if (ptr_nl == NULL)
+	{
+		data->iter = data->head;
 		return (0);
-	dkix = (size_t)ptr_nl - (size_t)data->con;
-	*line = ft_strnew(dkix);
+	}
+	data->iter = (long)ptr_nl - (long)data->const_con + 1;
+	length = (size_t)ptr_nl - (size_t)data->con;
+	*line = ft_strnew(length);
 	if (*line)
 	{
-		ft_memcpy(*line, data->con, dkix);
-		data->con += dkix + 1;
+		ft_memcpy(*line, data->con, length);
+		data->con += length + 1;
 	}
-	dkix |= (*line == NULL ? MASK_ERROR : MASK_ACTIVE);
-	return (dkix);
+	length |= (*line == NULL ? MASK_ERROR : MASK_ACTIVE);
+	return (length);
 }
 
-static int			read_data(int fd, t_vector *data)
+
+static size_t		update_buffer_status(int fd, t_vector *data)
 {
-	int				read_bytes;
+	long			read_bytes;
 	int				state;
 
-	if ((data->size - data->head) < MIN_READ_BYTES)
-	{
-		data->head -= ((long)data->con - (long)data->const_con);
-		data->iter -= ((long)data->con - (long)data->const_con);
-		ft_memmove((void*)data->const_con, data->con, data->head);
-		if (ft_vresize(data, (data->size + MIN_READ_BYTES) * 2) == FALSE)
-			return (-1);
-	}
 	read_bytes = 0;
-	while (MIN_READ_BYTES > read_bytes)
+	while (read_bytes < MIN_READ_BYTES)
 	{
-		state = read(fd, data->con + read_bytes, BUFF_SIZE);
+		state = ft_vreader(data, fd, BUFF_SIZE);
+		if (state == -1)
+			return (MASK_ERROR);
 		if (state == 0)
 		{
+			if ((long)&(data->const_con[data->head]) - (long)data->con < 1)
+				return (0);
 			((char*)data->const_con)[data->head] = '\n';
-			read_bytes = (int)(data->con - data->head);
-			break ;
+			return (MASK_ACTIVE);
 		}
-		if (state == -1)
-			return (-1);
 		read_bytes += state;
-		data->head += read_bytes;
 	}
 	return (read_bytes);
 }
 
-static int			del_data_indict(int fd, \
+static int			del_buffer_indict(int fd, \
 									t_dict *dict, \
 									t_vector **data)
 {
 	char			*key;
-	int				state_unset_dictionary;
+	int				state;
 
 	key = ft_itoa_base(fd, 16);
 	if (key == NULL)
 		return (FALSE);
 	ft_vdel(data);
-	state_unset_dictionary = ft_dictunset(dict, key, NULL);
+	state = ft_dictunset(dict, key, NULL);
 	ft_memdel((void**)&key);
-	return (state_unset_dictionary);
+	return (state);
 }
 
 int					get_next_line(const int fd, char **line)
@@ -129,7 +126,6 @@ int					get_next_line(const int fd, char **line)
 	static t_dict	*dict = NULL;
 	t_vector		*data;
 	size_t			dkix;
-	int				read_bytes;
 
 	if (fd < MIN_FD || BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
 		return (-1);
@@ -142,10 +138,10 @@ int					get_next_line(const int fd, char **line)
 			return ((int)(DKIX(dkix)));
 		if (DKIX_ERROR(dkix))
 			return (-1);
-		read_bytes = read_data(fd, data);
-		if (read_bytes < 0)
+		dkix = update_buffer_status(fd, data);
+		if (DKIX_ERROR(dkix))
 			return (-1);
-		if (read_bytes == 0)
-			return (del_data_indict(fd, dict, &data) == TRUE ? 0 : -1);
+		if (DKIX_EMPTY(dkix))
+			return (del_buffer_indict(fd, dict, &data) == TRUE ? 0 : -1);
 	}
 }

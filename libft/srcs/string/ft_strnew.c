@@ -12,14 +12,7 @@
 
 #include "libft.h"
 
-char	*ft_strnew(size_t size)
+char		*ft_strnew(size_t size)
 {
-	char	*str;
-	size_t	max_size;
-
-	max_size = -1;
-	str = NULL;
-	if (!(max_size == size) && (str = (char*)malloc(sizeof(char) * (size + 1))))
-		ft_bzero(str, size + 1);
-	return (str);
+	return(ft_memalloc(sizeof(char) * (size + 1)));
 }

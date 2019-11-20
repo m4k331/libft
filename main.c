@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 23:52:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 19:37:07 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 21:28:24 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,18 +170,35 @@
 //	return (0);
 //}
 
+//int				main(int ac, char **av)
+//{
+//	char		*line;
+//	t_vector	*v;
+//	int			fd;
+//
+//	v = ft_vnew(1, 1);
+//	fd = open("/Users/ahugh/libft_fh/tests", O_RDONLY);
+//	for (int i = 0; TRUE; i++)
+//		if (ft_vreader(v, fd, 10) == 0)
+//			break ;
+//	write(1, v->con, v->head);
+//	return (0);
+//}
+
 int				main(int ac, char **av)
 {
 	char		*line;
-	t_vector	*v;
+	int			state;
 	int			fd;
-	int			sz = 10;
 
-	v = ft_vnew(1, 1);
 	fd = open("/Users/ahugh/libft_fh/tests", O_RDONLY);
-	for (int i = 0; TRUE; i++)
-		if (ft_vreader(v, fd, sz) == 0)
+	while (TRUE)
+	{
+		state = get_next_line(fd, &line);
+		printf("%d - %s\n", state, line);
+		free(line);
+		if (state < 1)
 			break ;
-	write(1, v->con, v->head);
+	}
 	return (0);
 }

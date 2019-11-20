@@ -129,6 +129,7 @@ VEC				=	ft_verase.c \
 					ft_vnext_con.c \
 					ft_vback_con.c \
 					ft_vcurr_con.c \
+					ft_vreader.c \
 					ft_vdel.c \
 					ft_vcopy.c
 
