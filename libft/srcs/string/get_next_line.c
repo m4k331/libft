@@ -6,118 +6,132 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/03/29 16:21:53 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 13:23:31 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				free_vector(const int fd, t_vec **v_arr)
+static int			initialize_elements(int fd, \
+										char **line, \
+										t_dict *dict, \
+										t_vector **data)
 {
-	ft_memdel((void**)&v_arr[fd]->con);
-	ft_memdel((void**)&v_arr[fd]);
-	v_arr[fd] = NULL;
-}
+	char			*key;
+	int				dkix;
 
-t_vec				*get_vec(const int fd, t_vec **v_arr)
-{
-	if (!v_arr || fd > STACK_SIZE || read(fd, 0, 0) == -1)
-		return (NULL);
-	if (!v_arr[fd] && (v_arr[fd] = (t_vec*)malloc(sizeof(t_vec))))
+	*line = NULL;
+	dkix = TRUE;
+	dict = (dict == NULL ? ft_dictnew(GNL_INIT_DICT_SIZE) : dict);
+	if (dict == NULL)
+		return (FALSE);
+	key = ft_itoa_base(fd, 16);
+	*data = ft_dictget(dict, key);
+	if (*data == NULL)
 	{
-		if ((v_arr[fd]->con = malloc(BUFF_SIZE)))
-		{
-			v_arr[fd]->fd = fd;
-			v_arr[fd]->st = 0;
-			v_arr[fd]->hd = 0;
-			v_arr[fd]->sz = BUFF_SIZE;
-		}
+		*data = ft_vnew(GNL_INIT_VEC_SIZE, sizeof(char));
+		if (*data == NULL || ft_dictset(dict, key, *data) == FALSE)
+			dkix = FALSE;
 		else
-		{
-			ft_memdel((void**)&v_arr[fd]);
-			v_arr[fd] = NULL;
-		}
+			(*data)->iter = 0;
 	}
-	return (v_arr[fd]);
+	ft_memdel((void**)&key);
+	return (dkix);
 }
 
-int					get_content_line(t_vec *v, char **line)
+static size_t		set_data_inline(t_vector *data, char **line)
 {
-	if (v && line && v->hd && v->con)
+	size_t			dkix;
+	char			*nl_character;
+	char			*begin;
+
+	begin = (char*)data->con + data->iter;
+	nl_character = (char*)ft_memchr(begin, '\n', data->head - (size_t)begin);
+	if (nl_character == NULL)
 	{
-		while (v->con[v->st] != 10 && v->st < v->hd)
-			v->st++;
-		if (v->con[v->st] == 10)
-		{
-			if (!(*line = malloc(v->st + 1)))
-				return (-1);
-			ft_memcpy(*line, v->con, v->st);
-			(*line)[v->st] = 0;
-			v->st == v->sz ? v->st : v->st++;
-			ft_memmove(v->con, &v->con[v->st], v->hd);
-			if (!(v->st < v->hd ? (v->hd -= v->st) : 0))
-				v->hd = 0;
-			v->st = 0;
-			return (1);
-		}
+		data->iter = data->head;
+		return (0);
 	}
-	return (0);
+	dkix = (size_t)nl_character - (size_t)data->con;
+	*line = ft_strnew(dkix);
+	if (*line)
+	{
+		ft_memcpy(*line, data->con, dkix);
+		data->con += dkix;
+	}
+	dkix |= (*line == NULL ? MASK_ERROR : MASK_ACTIVE);
+	return (dkix);
 }
 
-int					add_nl(t_vec *v)
+static int			read_data(int fd, t_vector *data)
 {
-	unsigned char	buff[BUFF_SIZE + 1];
-	ssize_t			sz_rd;
-	ssize_t			i;
-	char			tr;
+	long			free;
+	int				offset;
+	int				read_bytes;
 
-	i = 0;
-	tr = 1;
-	sz_rd = -1;
-	while (v && ((sz_rd = read(v->fd, buff, BUFF_SIZE)) > 0))
+	free = data->size - data->head;
+	offset = MIN_READ_BYTES;
+	if (free < offset)
 	{
-		if (v->sz - v->hd < BUFF_SIZE && (v->sz == 0 ? (v->sz = BUFF_SIZE) : 1))
-			if ((v->con = ft_realloc(v->con, (v->sz *= 2))) == NULL)
-				break ;
-		while (i < sz_rd)
-		{
-			if (tr && (buff[i] == 10) && tr--)
-				v->st = v->hd;
-			v->con[v->hd++] = buff[i++];
-		}
-		if (i != BUFF_SIZE)
-			v->con[v->hd] = 10;
-		if (!(i = 0) && v->con[v->st] == 10)
-			return (1);
+		data->head -= (size_t)data->con;
+		ft_memmove((void*)data->const_con, data->con, data->head);
+		data->iter = 0;
+		if (ft_vresize(data, (data->size + offset) * 2) == FALSE)
+			return (-1);
 	}
-	return (sz_rd == 0 ? 0 : -1);
+	while (offset > 0)
+	{
+		read_bytes = read(fd, data->con, BUFF_SIZE);
+		if (read_bytes < 1)
+			return (read_bytes);
+		offset -= read_bytes;
+		data->con += read_bytes;
+	}
+	return (-offset + MIN_READ_BYTES);
+}
+
+static int			del_data_indict(int fd, \
+									char **line, \
+									t_dict *dict, \
+									t_vector **data)
+{
+	char			*key;
+	size_t			dkix;
+
+	dkix = set_data_inline(*data, line);
+	if (DKIX_ERROR(dkix))
+		return (FALSE);
+	key = ft_itoa_base(fd, 16);
+	if (key == NULL)
+		return (FALSE);
+	ft_vdel(data);
+	dkix = ft_dictunset(dict, key, NULL);
+	ft_memdel((void**)&key);
+	return (dkix);
 }
 
 int					get_next_line(const int fd, char **line)
 {
-	static t_vec	*v_arr[STACK_SIZE];
-	t_vec			*v;
-	int				nl;
-	int				gcl;
+	static t_dict	*dict = NULL;
+	t_vector		*data;
+	size_t			dkix;
+	int				read_bytes;
 
-	nl = 0;
-	gcl = -1;
-	v = NULL;
-	if (fd > -1 && line && BUFF_SIZE > -1 && (v = get_vec(fd, v_arr)))
-		if ((gcl = get_content_line(v, line)) == 0)
-		{
-			if ((nl = add_nl(v)) == 0)
-				v->hd != 0 ? (v->con[v->hd] = 10) : 1;
-			gcl = get_content_line(v, line);
-		}
-	if (gcl == 1)
-		return (1);
-	if (v)
-		free_vector(fd, v_arr);
-	if (gcl == 0)
+	if (fd < MIN_FD || BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
+		return (-1);
+	if (initialize_elements(fd, line, dict, &data) == FALSE)
+		return (-1);
+	while (TRUE)
 	{
-		(line != NULL) ? (line = NULL) : line;
-		return (0);
+		dkix = set_data_inline(data, line);
+		if (DKIX_ACTIVE(dkix))
+			return ((int)(DKIX(dkix)));
+		if (DKIX_ERROR(dkix))
+			return (-1);
+		read_bytes = read_data(fd, data);
+		if (read_bytes < 0)
+			return (-1);
+		if (read_bytes == 0)
+			return (del_data_indict(fd, line, dict, &data) == TRUE ? 0 : -1);
 	}
-	return (-1);
 }
