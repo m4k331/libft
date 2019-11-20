@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 16:11:13 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 13:23:31 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 15:36:12 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # endif
 
 # define GNL_INIT_DICT_SIZE 16
-# define GNL_INIT_VEC_SIZE (BUFF_SIZE * 4)
+# define GNL_INIT_VEC_SIZE ((BUFF_SIZE) * 2)
 
 int					get_next_line(const int fd, char **line);
 

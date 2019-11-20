@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 23:52:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/19 19:49:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 19:37:07 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,11 +173,15 @@
 int				main(int ac, char **av)
 {
 	char		*line;
+	t_vector	*v;
+	int			fd;
+	int			sz = 10;
 
-	for (int i = 0; i < 0xFFFFFFF; i++)
-	{
-		get_next_line(1, &line);
-		printf("%s = %ld\n", line, ft_atol(line));
-	}
+	v = ft_vnew(1, 1);
+	fd = open("/Users/ahugh/libft_fh/tests", O_RDONLY);
+	for (int i = 0; TRUE; i++)
+		if (ft_vreader(v, fd, sz) == 0)
+			break ;
+	write(1, v->con, v->head);
 	return (0);
 }
