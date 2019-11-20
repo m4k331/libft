@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 23:42:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 01:48:48 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static size_t		set_data_inline(t_vector *data, char **line)
 	char			*ptr_nl;
 	char			*begin;
 
-	if (data->iter >= data->head)
+	if (data->head == 0)
 		return (0);
 	begin = ((char*)data->const_con) + data->iter;
 	ptr_nl = (char*)ft_memchr(begin, '\n', data->head - data->iter + 1);
@@ -81,7 +81,6 @@ static size_t		set_data_inline(t_vector *data, char **line)
 	return (length);
 }
 
-
 static size_t		update_buffer_status(int fd, t_vector *data)
 {
 	long			read_bytes;
@@ -101,12 +100,13 @@ static size_t		update_buffer_status(int fd, t_vector *data)
 			return (MASK_ACTIVE);
 		}
 		read_bytes += state;
+		((char*)data->const_con)[data->head] = '\0';
 	}
 	return (read_bytes);
 }
 
 static int			del_buffer_indict(int fd, \
-									t_dict *dict, \
+									t_dict **dict, \
 									t_vector **data)
 {
 	char			*key;
@@ -116,8 +116,10 @@ static int			del_buffer_indict(int fd, \
 	if (key == NULL)
 		return (FALSE);
 	ft_vdel(data);
-	state = ft_dictunset(dict, key, NULL);
+	state = ft_dictunset(*dict, key, NULL);
 	ft_memdel((void**)&key);
+	if ((*dict)->used == 0)
+		ft_dictdel(dict, NULL);
 	return (state);
 }
 
@@ -142,6 +144,6 @@ int					get_next_line(const int fd, char **line)
 		if (DKIX_ERROR(dkix))
 			return (-1);
 		if (DKIX_EMPTY(dkix))
-			return (del_buffer_indict(fd, dict, &data) == TRUE ? 0 : -1);
+			return (del_buffer_indict(fd, &dict, &data) == TRUE ? 0 : -1);
 	}
 }

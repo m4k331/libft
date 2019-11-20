@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/29 11:23:13 by ahugh             #+#    #+#             */
-/*   Updated: 2018/12/05 10:50:58 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 00:00:32 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 char		*ft_strnew(size_t size)
 {
-	return(ft_memalloc(sizeof(char) * (size + 1)));
+	return (ft_memalloc(sizeof(char) * (size + 1)));
 }

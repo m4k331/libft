@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 23:52:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 21:28:24 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 01:54:43 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -190,15 +190,30 @@ int				main(int ac, char **av)
 	char		*line;
 	int			state;
 	int			fd;
+	int 		i = 0;
 
-	fd = open("/Users/ahugh/libft_fh/tests", O_RDONLY);
+	usleep(5000000);
+	fd = open("/Users/ahugh/libft_fh/tests/01_test.txt", O_RDONLY);
 	while (TRUE)
 	{
 		state = get_next_line(fd, &line);
-		printf("%d - %s\n", state, line);
+		printf("%d - |%s|\n", state, line);
 		free(line);
-		if (state < 1)
-			break ;
+		if (line == NULL)
+		{
+			i++;
+			close(fd);
+			if (i == 1)
+				fd = open("/Users/ahugh/libft_fh/tests/02_test.txt", O_RDONLY);
+			else if (i == 2)
+				fd = open("/Users/ahugh/libft_fh/tests/03_test.txt", O_RDONLY);
+			else if (i == 3)
+				fd = open("/Users/ahugh/libft_fh/tests/04_test.txt", O_RDONLY);
+			else if (i == 4)
+				fd = open("/Users/ahugh/libft_fh/tt", O_RDONLY);
+			else if (i == 5)
+				break ;
+		}
 	}
 	return (0);
 }
