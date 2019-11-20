@@ -10,3 +10,4 @@ libft.a
 mm
 main.c
 test
+gnl_test_main.c
