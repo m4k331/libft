@@ -6,13 +6,13 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 20:54:25 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 20:54:25 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 20:56:10 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void				*ft_tstrdel(t_str **str)
+void				ft_tstrdel(t_str **str)
 {
 	if (str && *str)
 	{
