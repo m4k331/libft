@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 21:43:29 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 21:57:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 22:00:09 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ int					ft_vmap(t_vector *v, int (*map)(void*))
 
 	elem = ft_vnext_con(v);
 	while (elem)
+	{
 		if (map(elem) == FALSE)
 			return (FALSE);
+		elem = ft_vnext_con(v);
+	}
 	return (TRUE);
 }
