@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:34:31 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 03:30:45 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 19:01:48 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include "dict.h"
 # include "fib.h"
 # include "get_next_line.h"
+# include "tstr.h"
 # define FALSE 0
 # define TRUE 1
 # define DETECTNULL(X) (((X) - 0x0101010101010101) & ~(X) & 0x8080808080808080)

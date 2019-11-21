@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/21 04:08:50 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/21 19:15:36 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ INC_DIR			=	includes
 MEM_DIR			=	memory
 PRT_DIR			=	print
 STR_DIR			=	string
+TSTR_DIR		=	tstring
 LST_DIR			=	list
 DLST_DIR		=	dlist
 UTL_DIR			=	utils
@@ -81,6 +82,9 @@ STR				=	ft_putstr.c \
 					ft_strncpy.c \
 					ft_strsplit.c \
 					get_next_line.c
+
+TSTR			=	ft_tstrbuilt.c \
+					ft_tstrnew.c
 
 LST				=	ft_lstadd.c \
 					ft_lstaddlast.c \
@@ -183,6 +187,7 @@ FIB				=	add_node_to_dictionary.c \
 FILES			+=	$(MEM) \
 					$(PRT) \
 					$(STR) \
+					$(TSTR) \
 					$(LST) \
 					$(DLST) \
 					$(UTL) \
@@ -193,6 +198,7 @@ FILES			+=	$(MEM) \
 FILES_WITH_PATH	=	$(addprefix ./$(SRC_DIR)/$(MEM_DIR)/, $(MEM)) \
 					$(addprefix ./$(SRC_DIR)/$(PRT_DIR)/, $(PRT)) \
 					$(addprefix ./$(SRC_DIR)/$(STR_DIR)/, $(STR)) \
+					$(addprefix ./$(SRC_DIR)/$(TSTR_DIR)/, $(TSTR)) \
 					$(addprefix ./$(SRC_DIR)/$(LST_DIR)/, $(LST)) \
 					$(addprefix ./$(SRC_DIR)/$(DLST_DIR)/, $(DLST)) \
 					$(addprefix ./$(SRC_DIR)/$(UTL_DIR)/, $(UTL)) \
