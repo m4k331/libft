@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 19:48:02 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 21:53:30 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,13 @@ void				ft_verase(t_vector *v);
 void				ft_vdel(t_vector **v);
 long				ft_vsize(t_vector *v);
 long				ft_vunused_size(t_vector *v);
+/*
+** ft_vmap - the function applies the subfunc map to each element of the vector
+** subfinc int map(void*) takes one value of the vector and in case of success
+**						manipulation with it returns TRUE and otherwise FALSE.
+** returns: TRUE or FALSE depending on the success of applying the subfunc
+*/
+int					ft_vmap(t_vector *v, int (*map)(void*));
 int					ft_vreserve(t_vector *v, long count);
 int					ft_vreader(t_vector *v, int fd, int buff_size);
 int					ft_vresize(t_vector *v, long v_size);

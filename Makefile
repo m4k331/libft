@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/21 20:57:34 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/21 21:03:01 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -138,6 +138,7 @@ VEC				=	ft_verase.c \
 					ft_vcurr_con.c \
 					ft_vreader.c \
 					ft_vdel.c \
+					ft_vmap.c \
 					ft_vcopy.c
 
 DLST			=	ft_dlstnew.c \
