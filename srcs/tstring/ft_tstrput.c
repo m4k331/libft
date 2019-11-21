@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*   ft_tstrput.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/30 14:05:50 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 04:08:09 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/21 20:57:37 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/21 20:59:03 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void			ft_putstr(char const *s)
+void				ft_tstrput(t_str *str)
 {
-	int			w;
+	int				w;
 
-	w = write(STDOUT_FILENO, (char*)s, ft_strlen(s));
+	w = write(STDOUT_FILENO, str->con, str->len);
 	w++;
 }

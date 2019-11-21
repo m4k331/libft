@@ -19,13 +19,13 @@ void				ft_putchar(char c)
 
 	uc = (unsigned char)c;
 	if (uc < 128)
-		w = write(1, &c, 1);
+		w = write(STDOUT_FILENO, &c, 1);
 	else
 	{
 		uc = (unsigned char)c >> 6 | 0xC0;
-		w = write(1, &uc, 1);
+		w = write(STDOUT_FILENO, &uc, 1);
 		uc = ((unsigned char)c & 0x3F) | 0x80;
-		w = write(1, &uc, 1);
+		w = write(STDOUT_FILENO, &uc, 1);
 	}
 	w++;
 }

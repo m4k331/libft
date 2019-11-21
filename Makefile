@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/21 20:42:36 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/21 20:57:34 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,9 @@ STR				=	ft_putstr.c \
 
 TSTR			=	ft_tstrbuilt.c \
 					ft_tstrnew.c \
-					ft_tstrdel.c
+					ft_tstrdel.c \
+					ft_tstrput.c \
+					ft_tstrputendl.c
 
 LST				=	ft_lstadd.c \
 					ft_lstaddlast.c \
