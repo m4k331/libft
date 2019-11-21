@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/02 16:07:48 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 16:07:48 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 23:15:00 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void		*ft_vcurr_con(t_vector *v)
 {
-	if (v->iter > -1 && v->iter < v->head + 1)
+	if (v->iter > -1 && v->iter < v->head)
 		return (v->con + v->iter * v->type_size);
 	return (NULL);
 }
