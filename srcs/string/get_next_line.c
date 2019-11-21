@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 04:02:48 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/22 01:12:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,34 +24,36 @@
 ** data->size - memory size of the whole vector
 */
 
-static int			initialize_elements(int fd, \
+static t_dict		*get_dictionary_update(int fd, \
 										char **line, \
-										t_dict **dict, \
+										t_dict *dict, \
 										t_vector **data)
 {
 	char			*key;
-	int				state;
 
 	*line = NULL;
-	state = TRUE;
-	if (*dict == NULL)
-		*dict = ft_dictnew(GNL_INIT_DICT_SIZE);
-	if (*dict == NULL)
-		return (FALSE);
+	if (dict == NULL)
+		dict = ft_dictnew(GNL_INIT_DICT_SIZE);
+	if (dict == NULL)
+		return (NULL);
 	key = ft_itoa_base(fd, 16);
 	if (key == NULL)
 		return (FALSE);
-	*data = ft_dictget(*dict, key);
+	*data = ft_dictget(dict, key);
 	if (*data == NULL)
 	{
 		*data = ft_vnew(GNL_INIT_VEC_SIZE, sizeof(char));
-		if (*data == NULL || ft_dictset(*dict, key, *data) == FALSE)
-			state = FALSE;
-		else
-			(*data)->iter = 0;
+		if (*data == NULL || ft_dictset(dict, key, *data) == FALSE)
+		{
+			ft_memdel((void**)&key);
+			ft_vdel(data);
+			ft_dictdel(&dict, NULL);
+			return (NULL);
+		}
+		(*data)->iter = 0;
 	}
 	ft_memdel((void**)&key);
-	return (state);
+	return (dict);
 }
 
 static size_t		set_data_inline(t_vector *data, char **line)
@@ -120,8 +122,6 @@ static int			del_buffer_indict(int fd, \
 	ft_vdel(data);
 	state = ft_dictunset(*dict, key, NULL);
 	ft_memdel((void**)&key);
-	if ((*dict)->used == 0)
-		ft_dictdel(dict, NULL);
 	return (state);
 }
 
@@ -133,7 +133,8 @@ int					get_next_line(const int fd, char **line)
 
 	if (fd < MIN_FD || BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
 		return (-1);
-	if (initialize_elements(fd, line, &dict, &data) == FALSE)
+	dict = get_dictionary_update(fd, line, dict, &data);
+	if (dict == NULL)
 		return (-1);
 	while (TRUE)
 	{
