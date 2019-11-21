@@ -1,26 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_vpop_back.c                                     :+:      :+:    :+:   */
+/*   ft_isnumeric_str.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/24 22:57:24 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/02 13:56:59 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/19 21:12:56 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/19 21:15:30 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_vpop_back(t_vector *v)
+int			ft_isnumeric_str(const char *str, int is_spaces)
 {
-	void	*element;
+	char	*s;
 
-	element = NULL;
-	if (v && v->head)
-	{
-		v->head--;
-		element = (void*)(v->con + v->type_size * v->head);
-	}
-	return (element);
+	s = (char*)str;
+	if (is_spaces == TRUE)
+		while (ft_isspace(*s))
+			s++;
+	while (ft_isdigit(*s))
+		s++;
+	if (is_spaces == TRUE)
+		while (ft_isspace(*s))
+			s++;
+	return (*s == '\0');
 }

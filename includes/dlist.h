@@ -12,7 +12,6 @@
 
 #ifndef DLIST_H
 # define DLIST_H
-# include "libft.h"
 
 typedef struct		s_dlist
 {

@@ -16,7 +16,8 @@ size_t			ft_wc(char const *s, char c)
 {
 	size_t	count;
 
-	if (!(count = 0) && s)
+	count = 0;
+	if (s)
 		while (*s)
 		{
 			if (*s++ != c && ++count)

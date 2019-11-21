@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/21 04:08:50 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -106,13 +106,15 @@ UTL				=	ft_arrdel.c \
 					ft_itoa_base.c \
 					ft_toupper.c \
 					ft_atoi.c \
+					ft_atol.c \
 					ft_isalpha.c \
 					ft_isdigit.c \
 					ft_isspace.c \
 					ft_tolower.c \
 					del_any_matrix.c \
 					ft_delcontent.c \
-					ft_swap.c
+					ft_swap.c \
+					ft_isnumeric_str.c
 
 VEC				=	ft_verase.c \
 					ft_vnew.c \
@@ -126,6 +128,7 @@ VEC				=	ft_verase.c \
 					ft_vnext_con.c \
 					ft_vback_con.c \
 					ft_vcurr_con.c \
+					ft_vreader.c \
 					ft_vdel.c \
 					ft_vcopy.c
 
@@ -198,13 +201,15 @@ FILES_WITH_PATH	=	$(addprefix ./$(SRC_DIR)/$(MEM_DIR)/, $(MEM)) \
 
 OBJ				=	$(FILES:%.c=%.o)
 
+
 # exceptions
 
 .PHONY:				all clean fclean re
 
 # flags
 
-FLAGS			=	-Wextra -Wall -Werror -O3 -march=native -I./$(INC_DIR)/ -c
+WWW				=	-Wextra -Wall -Werror
+FLAGS			=	$(WWW) -O3 -march=native -I./$(INC_DIR)/ -c
 CC				=	gcc
 
 # rules
@@ -217,7 +222,7 @@ $(NAME):
 				@ranlib $(NAME)
 				@echo "libft created!"
 
-%.o: %c
+%.o: $(FILES_WITH_PATH)%c
 				$(CC) $(FLAGS) $< -o $@
 
 clean:
@@ -229,4 +234,4 @@ fclean: clean
 re: fclean all
 
 norm:
-				@norminette $(FILES_WITH_PATH)
+				@norminette $(FILES_WITH_PATH) $(INC_DIR)/*.h

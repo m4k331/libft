@@ -12,7 +12,6 @@
 
 #ifndef LIST_H
 # define LIST_H
-# include "libft.h"
 
 typedef struct		s_list
 {

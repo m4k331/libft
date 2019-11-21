@@ -6,18 +6,29 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/19 20:36:02 by ahugh             #+#    #+#             */
-/*   Updated: 2018/11/30 19:38:26 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/19 17:15:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
+size_t			ft_strlen(const char *s)
 {
-	size_t len;
+	uint64_t	*longword;
+	uint8_t		*byte;
 
-	len = 0;
-	while (*(unsigned char*)s++)
-		len++;
-	return (len);
+	byte = (uint8_t*)s;
+	while ((uint64_t)byte & 7ULL)
+	{
+		if (*byte == '\0')
+			return ((size_t)byte - (size_t)s);
+		byte++;
+	}
+	longword = (uint64_t*)byte;
+	while (DETECTNULL(*longword) == FALSE)
+		longword++;
+	byte = (uint8_t*)longword;
+	while (*byte)
+		byte++;
+	return ((size_t)byte - (size_t)s);
 }

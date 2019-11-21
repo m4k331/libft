@@ -20,9 +20,9 @@ char			**ft_strsplit(char const *s, char c)
 	char	**result;
 
 	i = 0;
-	len = 0;
+	result = NULL;
 	wc = ft_wc(s, c);
-	if (!(result = NULL) && s)
+	if (s)
 		if ((result = (char**)malloc(sizeof(char*) * ++wc)))
 			while (!(result[i] = 0) && --wc)
 			{

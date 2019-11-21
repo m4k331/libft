@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/20 19:48:02 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void				ft_vdel(t_vector **v);
 long				ft_vsize(t_vector *v);
 long				ft_vunused_size(t_vector *v);
 int					ft_vreserve(t_vector *v, long count);
+int					ft_vreader(t_vector *v, int fd, int buff_size);
 int					ft_vresize(t_vector *v, long v_size);
 int					ft_vpush_back(t_vector *v, void *val, long val_size);
 
