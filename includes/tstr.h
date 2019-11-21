@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 18:59:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 20:48:33 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/21 20:52:36 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ t_str				*ft_tstrbuilt(char *con, size_t len);
 ** tstrnew - the function create a new string t_str (with allocating memory)
 */
 t_str				*ft_tstrnew(char *con, size_t len);
+/*
+** tstrdel - function frees struct t_str memory
+*/
+void				*ft_tstrdel(t_str **str);
 
 #endif
