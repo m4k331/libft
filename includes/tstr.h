@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 18:59:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 21:05:01 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/22 23:41:05 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,10 @@ void				ft_tstrput(t_str *str);
 ** tstrputendl - the function printing content on stdout with '\n' in end line
 */
 void				ft_tstrputendl(t_str *str);
+/*
+** tstrdup - creates a copy of the string
+** returns a *ptr to new string in case of an error returns NULL
+*/
+t_str				*ft_tstrdup(const t_str *str);
 
 #endif
