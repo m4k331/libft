@@ -30,6 +30,8 @@
 # include "tstr.h"
 # define FALSE 0
 # define TRUE 1
+# define SUCCESS 1
+# define FAIL 0
 # define DETECTNULL(X) (((X) - 0x0101010101010101) & ~(X) & 0x8080808080808080)
 # define DETECTCHAR(X, MASK) (DETECTNULL((X) ^ (MASK)))
 

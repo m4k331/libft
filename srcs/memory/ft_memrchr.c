@@ -24,10 +24,16 @@ static inline void	set_values(uint64_t *w, uint8_t *u, int c)
 static inline void	*longword_research(uint64_t *longword, uint8_t u)
 {
 	uint8_t			*byte;
+	uint8_t			len;
 
-	byte = (uint8_t*)longword;
-	while (*byte ^ u)
-		byte++;
+	len = 8;
+	byte = (uint8_t*)longword + 8;
+	while (len--)
+	{
+		if (*byte == u)
+			break ;
+		byte--;
+	}
 	return (byte);
 }
 
