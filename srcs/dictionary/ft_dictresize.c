@@ -19,12 +19,13 @@ static inline void	reindexing(t_dict *dst, t_dict *src)
 	char			*key;
 
 	src->keys->iter = -1;
-	while (src->keys->iter < src->keys->head)
+	key = ft_vnext_con(src->keys);
+	while (key)
 	{
-		key = ft_vnext_con(src->keys);
 		hash = ft_hash(key);
 		slot = ft_lookup(src, hash, key, FALSE);
 		ft_dictset(dst, slot->key, slot->value);
+		key = ft_vnext_con(src->keys);
 	}
 }
 
