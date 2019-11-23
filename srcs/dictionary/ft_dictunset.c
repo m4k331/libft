@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 16:14:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/23 22:33:29 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,7 @@ static inline void	unset(t_vector *vector_values, size_t ix, size_t size)
 	void			*ptr;
 
 	ptr = ft_vat(vector_values, ix);
-	if (ptr)
-		ft_bzero(ptr, size);
+	ft_bzero(ptr, size);
 }
 
 int					ft_dictunset(t_dict *dict, char *key, void del(void*))
@@ -37,7 +36,7 @@ int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 	slot->ix = MASK_DUMMY | DKIX(slot->ix);
 	ft_memdel((void**)&slot->key);
 	if (del)
-		del(slot->value);
+		del(&slot->value);
 	dict->used--;
 	return (TRUE);
 }

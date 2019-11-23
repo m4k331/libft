@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/06 17:13:15 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/23 21:55:54 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static inline void	reindexing(t_dict *dst, t_dict *src)
 
 	src->keys->iter = -1;
 	key = ft_vnext_con(src->keys);
-	while (key)
+	while (src->keys->iter < src->keys->head)
 	{
 		hash = ft_hash(key);
 		slot = ft_lookup(src, hash, key, FALSE);

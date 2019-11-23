@@ -16,10 +16,10 @@ static inline void	slotdel(t_slot *slot, void del(void*))
 {
 	if (slot)
 	{
-		if (slot->key && del)
+		if (slot->key)
 		{
 			ft_memdel((void**)&slot->key);
-			if (slot->value)
+			if (slot->value && del)
 				del(&slot->value);
 		}
 		free(slot);

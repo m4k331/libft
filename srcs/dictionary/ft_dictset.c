@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 20:34:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/20 23:51:16 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/23 23:06:27 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ static inline void	set_keys(t_dict *dict, t_slot *slot, char *key)
 	ft_vpush_back(dict->keys, key, DK_SIZE);
 }
 
-static inline void	set_items(t_dict *dict, t_slot *slot, char *value)
+static inline void	set_items(t_dict *dict, t_slot *slot, void *value)
 {
 	slot->value = value;
-	ft_vpush_back(dict->items, value, VOID_SIZE);
+	ft_vpush_back(dict->items, &value, VOID_SIZE);
 }
 
 int					ft_dictset(t_dict *dict, char *key, void *value)
@@ -54,6 +54,7 @@ int					ft_dictset(t_dict *dict, char *key, void *value)
 	t_slot			*slot;
 	char			*dup_key;
 
+	printf("%p\n", value);
 	if (dict == NULL || key == NULL || value == NULL)
 		return (FALSE);
 	if (duplicate_key(&dup_key, key) == FALSE)

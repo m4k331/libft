@@ -22,7 +22,7 @@ int				ft_dictiterate(t_dict *dict, int map(void*))
 	while (iter < dict->used)
 	{
 		item = ft_vnext_con(dict->items);
-		while (item == NULL)
+		while (*(size_t*)item == 0)
 			item = ft_vnext_con(dict->items);
 		if (map(item) == FALSE)
 			return (FALSE);
