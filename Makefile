@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/22 23:41:05 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/22 23:41:21 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -171,7 +171,8 @@ DICT			=	ft_dictnew.c \
 					ft_dictget.c \
 					ft_dictunset.c \
 					ft_dictkeys.c \
-					ft_dictiterate.c
+					ft_dictiterate.c \
+					insert_values_in_dict.c
 
 FIB				=	add_node_to_dictionary.c \
 					del_node_from_dictionary.c \

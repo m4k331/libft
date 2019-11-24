@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/24 05:09:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ int				ft_dictiterate(t_dict *dict, int map(void*));
 
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set);
+void			insert_values_in_dict(t_dict *dict, char *key, void *value);
 
 #endif

@@ -6,19 +6,11 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 16:14:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/23 22:33:29 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/24 06:03:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static inline void	unset(t_vector *vector_values, size_t ix, size_t size)
-{
-	void			*ptr;
-
-	ptr = ft_vat(vector_values, ix);
-	ft_bzero(ptr, size);
-}
 
 int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 {
@@ -31,8 +23,8 @@ int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 	if (slot->value == NULL)
 		return (FALSE);
 	index = DKIX(slot->ix);
-	unset(dict->items, index, VOID_SIZE);
-	unset(dict->keys, index, DK_SIZE);
+	ft_bzero(ft_vat(dict->items, index), sizeof(void**));
+	ft_bzero(ft_vat(dict->keys, index), DK_SIZE);
 	slot->ix = MASK_DUMMY | DKIX(slot->ix);
 	ft_memdel((void**)&slot->key);
 	if (del)
