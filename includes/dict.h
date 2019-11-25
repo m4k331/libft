@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/24 05:09:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/24 05:09:16 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ int				ft_dictunset(t_dict *dict, char *key, void del(void*));
 int				ft_dictset(t_dict *dict, char *key, void *value);
 int				ft_dictresize(t_dict *dict, int grow);
 int				ft_dictiterate(t_dict *dict, int map(void*));
+void			*ft_dictnext_item(t_dict *dict);
+char			*ft_dictnext_key(t_dict *dict);
 
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set);
