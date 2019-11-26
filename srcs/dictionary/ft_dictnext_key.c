@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:08:13 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/25 18:33:46 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/25 18:34:47 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char			*ft_dictnext_key(t_dict *dict)
 	key = ft_vnext_con(dict->keys);
 	count = dict->keys->head - dict->keys->iter;
 	if (count > 0)
-		while (*(size_t*)key == 0 && count--)
+		while (count-- && *(size_t*)key == 0)
 			key = ft_vnext_con(dict->keys);
 	return (key);
 }
