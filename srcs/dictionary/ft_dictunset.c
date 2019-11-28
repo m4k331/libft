@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 16:14:46 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/24 06:03:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/24 06:25:40 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,9 @@ int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 	ft_memdel((void**)&slot->key);
 	if (del)
 		del(&slot->value);
+	else
+		slot->value = NULL;
+	slot->hash = 0;
 	dict->used--;
 	return (TRUE);
 }

@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/11/22 23:41:21 by ahugh            ###   ########.fr        #
+#    Updated: 2019/11/24 05:09:04 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,8 +107,7 @@ LST				=	ft_lstadd.c \
 					ft_lstcopy.c \
 					ft_lstsize.c
 
-UTL				=	ft_arrdel.c \
-					ft_isalnum.c \
+UTL				=	ft_isalnum.c \
 					ft_isascii.c \
 					ft_isprint.c \
 					ft_itoa.c \

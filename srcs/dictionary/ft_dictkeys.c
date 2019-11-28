@@ -6,71 +6,36 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 18:03:14 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/09 21:25:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:37:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static inline void	del_table(void **table, size_t len)
+char				**ft_dictkeys(t_dict *dict)
 {
-	size_t			iter;
-
-	iter = 0;
-	while (iter < len)
-	{
-		ft_memdel((void**)&table[iter]);
-		iter++;
-	}
-}
-
-static inline void	**allocate_keytable(size_t len)
-{
-	void			**table;
-	size_t			iter;
-
-	table = (void**)malloc(sizeof(void*) * len);
-	if (table == NULL)
-		return (NULL);
-	iter = 0;
-	while (iter < len)
-	{
-		table[iter] = (void*)malloc(DK_SIZE);
-		if (table[iter] == NULL)
-		{
-			del_table(table, iter);
-			ft_memdel((void**)&table);
-			return (NULL);
-		}
-		iter++;
-	}
-	return (table);
-}
-
-static inline void	fill_keytable(void **table, t_vector *keys, size_t len)
-{
+	char			**keys;
 	char			*key;
-	size_t			iter;
+	char			*dup_key;
+	long			iter;
 
-	iter = 0;
-	keys->iter = -1;
-	while (iter < len)
-	{
-		key = ft_vnext_con(keys);
-		while (key == NULL)
-			key = ft_vnext_con(keys);
-		ft_memcpy(table[iter], key, DK_SIZE);
-		iter++;
-	}
-}
-
-void				**ft_dictkeys(t_dict *dict)
-{
-	void			**keys;
-
-	keys = allocate_keytable(dict->used);
+	keys = (char**)ft_memalloc(dict->used * sizeof(char*));
 	if (keys == NULL)
 		return (NULL);
-	fill_keytable(keys, dict->keys, dict->used);
+	dict->keys->iter = -1;
+	key = ft_dictnext_key(dict);
+	iter = 0;
+	while (key)
+	{
+		key = ft_dictnext_key(dict);
+		dup_key = ft_strdup(key);
+		if (dup_key == NULL)
+		{
+			ft_arrdel((void**)keys);
+			return (NULL);
+		}
+		keys[iter] = dup_key;
+		iter++;
+	}
 	return (keys);
 }
