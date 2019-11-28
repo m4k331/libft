@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 20:34:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/24 05:09:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/28 19:30:51 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,11 @@
 
 static inline int	duplicate_key(char **dup_key, char *key)
 {
-	*dup_key = ft_strnew(DK_SIZE);
+	*dup_key = (char*)malloc((DK_SIZE + 1) * sizeof(char));
 	if (*dup_key == NULL)
 		return (FALSE);
-	ft_strcpy(*dup_key, key);
+	ft_memccpy(*dup_key, key, 0, DK_SIZE);
+	(*dup_key)[DK_SIZE] = 0;
 	return (TRUE);
 }
 
