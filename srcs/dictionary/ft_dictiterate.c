@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/09 20:34:06 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/23 22:43:56 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,15 @@
 
 int				ft_dictiterate(t_dict *dict, int map(void*))
 {
-	size_t		iter;
 	void		*item;
 
 	dict->items->iter = -1;
-	iter = 0;
-	while (iter < dict->used)
+	item = ft_dictnext_item(dict);
+	while (item)
 	{
-		item = ft_vnext_con(dict->items);
-		while (*(size_t*)item == 0)
-			item = ft_vnext_con(dict->items);
 		if (map(item) == FALSE)
 			return (FALSE);
-		iter++;
+		item = ft_dictnext_item(dict);
 	}
 	return (TRUE);
 }
