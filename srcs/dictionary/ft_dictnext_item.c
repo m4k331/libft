@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/25 18:09:23 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/25 18:37:22 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/30 01:41:21 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void			*ft_dictnext_item(t_dict *dict)
 {
-	void		*item;
+	void		**item;
 	long		count;
 
 	item = ft_vnext_con(dict->items);
@@ -22,5 +22,7 @@ void			*ft_dictnext_item(t_dict *dict)
 	if (count > 0)
 		while (count-- && *(size_t*)item == 0)
 			item = ft_vnext_con(dict->items);
-	return (item);
+	else
+		return (NULL);
+	return ((item ? *(void**)item : NULL));
 }
