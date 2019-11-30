@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/25 18:08:09 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/27 18:37:04 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,5 +71,6 @@ char			*ft_dictnext_key(t_dict *dict);
 size_t			ft_hash(char *key);
 t_slot			*ft_lookup(t_dict *d, size_t hash, char *key, int set);
 void			insert_values_in_dict(t_dict *dict, char *key, void *value);
+int8_t			duplicate_key(char **dup_key, char *key);
 
 #endif

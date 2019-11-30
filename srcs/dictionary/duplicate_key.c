@@ -1,30 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_dictset.c                                       :+:      :+:    :+:   */
+/*   duplicate_key.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/05 20:34:10 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/28 19:31:23 by ahugh            ###   ########.fr       */
+/*   Created: 2019/11/30 03:34:03 by ahugh             #+#    #+#             */
+/*   Updated: 2019/11/30 03:34:19 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int					ft_dictset(t_dict *dict, char *key, void *value)
+int8_t			duplicate_key(char **dup_key, char *key)
 {
-	char			*dup_key;
-
-	if (dict == NULL || key == NULL || value == NULL)
+	*dup_key = (char*)malloc((DK_SIZE + 1) * sizeof(char));
+	if (*dup_key == NULL)
 		return (FALSE);
-	if (duplicate_key(&dup_key, key) == FALSE)
-		return (FALSE);
-	if (dict->fill > USABLE(dict->mask) && ft_dictresize(dict, TRUE) == FALSE)
-	{
-		ft_memdel((void**)&dup_key);
-		return (FALSE);
-	}
-	insert_values_in_dict(dict, dup_key, value);
+	ft_memccpy(*dup_key, key, 0, DK_SIZE);
+	(*dup_key)[DK_SIZE] = 0;
 	return (TRUE);
 }
+
