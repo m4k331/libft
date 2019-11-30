@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 17:07:12 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/30 22:38:00 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void			vdel(void *v)
 {
-	ft_vdel((t_vector**)&v);
+	ft_vdel((t_vector**)v);
 }
 
 static inline int	delete_require_node(t_fib *fib, \
@@ -22,26 +22,20 @@ static inline int	delete_require_node(t_fib *fib, \
 										t_vector *vector_nodes, \
 										char *key)
 {
-	void			*node;
-	size_t			address_value;
-	void			*ptr_to_current_node_in_vector;
+	void			**node;
 
 	vector_nodes->iter = -1;
-	while (vector_nodes->iter < vector_nodes->head)
+	node = ft_vnext_con(vector_nodes);
+	while (node)
 	{
-		node = *(void**)ft_vnext_con(vector_nodes);
-		if (req_node == node)
+		if (req_node == *(t_fn**)node)
 		{
-			address_value = *(size_t*)ft_vpop_back(vector_nodes);
-			if (address_value != (size_t)node)
-			{
-				ptr_to_current_node_in_vector = ft_vcurr_con(vector_nodes);
-				*(size_t*)ptr_to_current_node_in_vector = address_value;
-			}
+			ft_vpop_at(vector_nodes, vector_nodes->iter);
 			if (vector_nodes->head == 0)
 				ft_dictunset(fib->values, key, vdel);
 			return (TRUE);
 		}
+		node = ft_vnext_con(vector_nodes);
 	}
 	return (FALSE);
 }

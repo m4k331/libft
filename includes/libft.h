@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:34:31 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 19:01:48 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/30 20:14:19 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void				*ft_memchr(const void *s, int c, size_t n);
 void				*ft_memrchr(const void *s, int c, size_t n);
 void				*ft_memalloc(size_t size);
 void				ft_memdel(void **ap);
-void				ft_memswap(void *a, void *b, int size);
+void				ft_memswap(void **a, void **b, size_t n);
 void				ft_swap8(uint8_t *a, uint8_t *b);
 void				ft_swap16(uint16_t *a, uint16_t *b);
 void				ft_swap32(uint32_t *a, uint32_t *b);

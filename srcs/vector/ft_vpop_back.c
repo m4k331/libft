@@ -20,7 +20,7 @@ void		*ft_vpop_back(t_vector *v)
 	if (v && v->head)
 	{
 		v->head--;
-		element = (void*)(v->con + v->type_size * v->head);
+		element = (void*)(v->const_con + v->type_size * v->head);
 	}
 	return (element);
 }

@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/23 16:29:11 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/21 21:53:30 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/30 19:54:45 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_vector			*ft_vnew(long bytes_size, long type_size);
 t_vector			*ft_vcopy(t_vector *v);
 void				*ft_vat(t_vector *v, long position);
 void				*ft_vpop_back(t_vector *v);
+void				*ft_vpop_at(t_vector *v, long position);
 void				*ft_vnext_con(t_vector *v);
 void				*ft_vback_con(t_vector *v);
 void				*ft_vcurr_con(t_vector *v);
