@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/05 13:36:05 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/27 18:37:04 by ahugh            ###   ########.fr       */
+/*   Updated: 2019/11/30 03:36:37 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define DICT_H
 # define DICT_MINSIZE 8ULL
 # define DK_SIZE 16ULL
-# define VOID_SIZE 8ULL
 # define GROW_RATE(dict)   ((dict)->mask * 3ULL)
 # define REDUCE_RATE(dict) ((dict)->used * 3ULL)
 # define PERTURB_SHIFT 5ULL

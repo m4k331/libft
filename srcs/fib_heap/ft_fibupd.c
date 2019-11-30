@@ -67,7 +67,7 @@ void				*ft_fibupd(t_fib *fib, void *old_value, void *new_value)
 	if (node == NULL)
 		return (NULL);
 	node->value = new_value;
-	if (add_node_to_dictionary(fib, &node) == FALSE)
+	if (add_node_to_dictionary(fib, node) == FALSE)
 		return (NULL);
 	parent = node->parent;
 	if (parent != NULL && fib->cmp(node->value, parent->value) == TRUE)

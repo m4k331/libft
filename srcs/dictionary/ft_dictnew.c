@@ -24,7 +24,7 @@ t_dict				*ft_dictnew(size_t size)
 	dict->mask = size < DICT_MINSIZE ? DICT_MINSIZE : size;
 	dict->table = ft_slotsnew(dict->mask);
 	dict->keys = ft_vnew((long)(dict->mask * DK_SIZE), DK_SIZE);
-	dict->items = ft_vnew((long)(dict->mask * VOID_SIZE), VOID_SIZE);
+	dict->items = ft_vnew((long)(dict->mask * sizeof(void*)), sizeof(void*));
 	if (dict->table == NULL || dict->keys == NULL || dict->items == NULL)
 		ft_dictdel(&dict, NULL);
 	return (dict);
