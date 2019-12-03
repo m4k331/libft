@@ -22,7 +22,7 @@ static inline void	reindexing(t_dict *dst, t_dict *src)
 	key = ft_vnext_con(src->keys);
 	while (src->keys->iter < src->keys->head)
 	{
-		if (*(size_t*)key)
+		if (*key)
 		{
 			hash = ft_hash(key);
 			slot = ft_lookup(src, hash, key, FALSE);
