@@ -24,6 +24,7 @@ int					ft_vreader(t_vector *v, int fd, int buff_size)
 		v->head -= data_size;
 		v->iter -= data_size;
 		ft_memmove((void*)v->const_con, v->con, v->head);
+		v->con = (void*)v->const_con;
 		if (ft_vunused_size(v) <= buff_size)
 			if (ft_vresize(v, (v->size + buff_size) * 2) == FALSE)
 				return (-1);
