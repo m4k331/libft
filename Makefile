@@ -122,6 +122,7 @@ UTL				=	ft_isalnum.c \
 					del_any_matrix.c \
 					ft_delcontent.c \
 					ft_swap.c \
+					ft_munlen.c \
 					ft_isnumeric_str.c
 
 VEC				=	ft_verase.c \
