@@ -21,4 +21,3 @@ int8_t			duplicate_key(char **dup_key, char *key)
 	(*dup_key)[DK_SIZE] = 0;
 	return (TRUE);
 }
-
