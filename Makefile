@@ -88,6 +88,7 @@ TSTR			=	ft_tstrbuilt.c \
 					ft_tstrdel.c \
 					ft_tstrput.c \
 					ft_tstrputendl.c \
+					ft_tstrputendl_fd.c \
 					ft_tstrdup.c
 
 LST				=	ft_lstadd.c \

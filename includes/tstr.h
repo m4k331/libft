@@ -46,6 +46,10 @@ void				ft_tstrput(t_str *str);
 */
 void				ft_tstrputendl(t_str *str);
 /*
+** tstrputendl_fd - the function printing content on stdout with '\n' in end line
+*/
+void				ft_tstrputendl_fd(int fd, t_str *str);
+/*
 ** tstrdup - creates a copy of the string
 ** returns a *ptr to new string in case of an error returns NULL
 */
