@@ -6,7 +6,7 @@
 #    By: ahugh <marvin@42.fr>                       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/23 18:51:35 by ahugh             #+#    #+#              #
-#    Updated: 2019/12/09 02:15:38 by ahugh            ###   ########.fr        #
+#    Updated: 2019/12/09 02:57:35 by ahugh            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -133,6 +133,7 @@ VEC				=	ft_verase.c \
 					ft_vat.c \
 					ft_vsize.c \
 					ft_vpop_back.c \
+					ft_vpop_at.c \
 					ft_vreserve.c \
 					ft_vunused_size.c \
 					ft_vnext_con.c \
@@ -173,6 +174,8 @@ DICT			=	ft_dictnew.c \
 					ft_dictunset.c \
 					ft_dictkeys.c \
 					ft_dictiterate.c \
+					ft_dictnext_item.c \
+					ft_dictnext_key.c \
 					insert_values_in_dict.c \
 					duplicate_key.c
 
