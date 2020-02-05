@@ -81,7 +81,8 @@ STR				=	ft_putstr.c \
 					ft_strlen.c \
 					ft_strncpy.c \
 					ft_strsplit.c \
-					get_next_line.c
+					get_next_line.c \
+					gnl_utils.c
 
 TSTR			=	ft_tstrbuilt.c \
 					ft_tstrnew.c \

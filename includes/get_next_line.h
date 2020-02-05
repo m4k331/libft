@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # define BUFF_SIZE 4096
-# define MIN_FD 0
+# define FREE_FD -1
 # define MIN_BUFF_SIZE 0
 
 # if BUFF_SIZE < 1024
@@ -29,5 +29,6 @@
 # define GNL_INIT_VEC_SIZE ((MIN_READ_BYTES) * 2)
 
 int					get_next_line(const int fd, char **line);
+int					del_entire_dict(t_dict **dict);
 
 #endif

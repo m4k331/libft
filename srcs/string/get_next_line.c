@@ -131,11 +131,13 @@ int					get_next_line(const int fd, char **line)
 	t_vector		*data;
 	size_t			dkix;
 
-	if (fd < MIN_FD || BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
+	if (BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
 		return (-1);
 	dict = get_dictionary_update(fd, line, dict, &data);
 	if (dict == NULL)
 		return (-1);
+	if (fd == FREE_FD)
+		return (del_entire_dict(&dict));
 	while (TRUE)
 	{
 		dkix = set_data_inline(data, line);
