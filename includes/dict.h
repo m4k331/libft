@@ -14,22 +14,12 @@
 # define DICT_H
 # define DICT_MINSIZE 8ULL
 # define DK_SIZE 16ULL
-# define GROW_RATE(dict)   ((dict)->mask * 3ULL)
-# define REDUCE_RATE(dict) ((dict)->used * 3ULL)
 # define PERTURB_SHIFT 5ULL
 
 # define MASK_ACTIVE  0x8000000000000000ULL
 # define MASK_DUMMY   0x4000000000000000ULL
 # define MASK_ERROR   0x2000000000000000ULL
 # define MASK_INDICES 0x0FFFFFFFFFFFFFFFULL
-
-# define DKIX_ACTIVE(ix) ((ix) & MASK_ACTIVE)
-# define DKIX_DUMMY(ix)  ((ix) & MASK_DUMMY)
-# define DKIX_ERROR(ix)  ((ix) & MASK_ERROR)
-# define DKIX_EMPTY(ix)  ((ix) == 0)
-# define DKIX(ix)        ((ix) & MASK_INDICES)
-
-# define USABLE(n) (((n) << 1ULL) / 3ULL)
 
 /*
 ** ix bit field which containing values indices slots and his flags

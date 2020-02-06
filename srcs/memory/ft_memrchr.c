@@ -49,7 +49,7 @@ void				*ft_memrchr(const void *s, int c, size_t n)
 	while (n > 7ULL)
 	{
 		longword--;
-		if (DETECTCHAR(*longword, w))
+		if (((((*longword) - M1) & ~(*longword) & M2) ^ w))
 			return (longword_research(longword, u));
 		n -= 8ULL;
 	}

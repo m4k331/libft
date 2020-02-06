@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#define SIZE_LINE (DICT_SIZE - 1)
 
 void					update_fib_key_buffer(char *buffer, size_t address)
 {
@@ -19,9 +18,9 @@ void					update_fib_key_buffer(char *buffer, size_t address)
 	size_t				i;
 
 	i = 0;
-	while (i < SIZE_LINE)
+	while (i < DICT_SIZE - 1)
 	{
-		buffer[SIZE_LINE - i - 1] = digits[address % 16];
+		buffer[DICT_SIZE - i - 2] = digits[address % 16];
 		address /= 16;
 		i++;
 	}

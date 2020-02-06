@@ -32,7 +32,7 @@ void				*ft_memchr(const void *s, int c, size_t n)
 	longword = (uint64_t*)s;
 	while (n > 7ULL)
 	{
-		if (DETECTCHAR(*longword, w))
+		if (((((*longword) - M1) & ~(*longword) & M2) ^ w))
 			break ;
 		longword++;
 		n -= 8ULL;

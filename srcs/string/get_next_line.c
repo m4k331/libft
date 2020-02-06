@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/22 01:12:21 by ahugh            ###   ########.fr       */
+/*   Updated: 2020/02/06 20:04:10 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static t_dict		*get_dictionary_update(int fd, \
 	*data = ft_dictget(dict, key);
 	if (*data == NULL)
 	{
-		*data = ft_vnew(GNL_INIT_VEC_SIZE, sizeof(char));
+		*data = ft_vnew((MIN_READ_BYTES) * 3, sizeof(char));
 		if (*data == NULL || ft_dictset(dict, key, *data) == FALSE)
 		{
 			ft_memdel((void**)&key);
@@ -141,14 +141,14 @@ int					get_next_line(const int fd, char **line)
 	while (TRUE)
 	{
 		dkix = set_data_inline(data, line);
-		if (DKIX_ACTIVE(dkix))
-			return ((int)(DKIX(dkix)));
-		if (DKIX_ERROR(dkix))
+		if ((dkix & MASK_ACTIVE) != FALSE)
+			return ((dkix & MASK_INDICES));
+		if ((dkix & MASK_ERROR) != FALSE)
 			return (-1);
 		dkix = update_buffer_status(fd, data);
-		if (DKIX_ERROR(dkix))
+		if ((dkix & MASK_ERROR) != FALSE)
 			return (-1);
-		if (DKIX_EMPTY(dkix))
+		if (dkix == 0)
 			return (del_buffer_indict(fd, &dict, &data) == TRUE ? 0 : -1);
 	}
 }

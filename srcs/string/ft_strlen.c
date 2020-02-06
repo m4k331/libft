@@ -25,7 +25,7 @@ size_t			ft_strlen(const char *s)
 		byte++;
 	}
 	longword = (uint64_t*)byte;
-	while (DETECTNULL(*longword) == FALSE)
+	while ((((*longword) - M1) & ~(*longword) & M2) == FALSE)
 		longword++;
 	byte = (uint8_t*)longword;
 	while (*byte)

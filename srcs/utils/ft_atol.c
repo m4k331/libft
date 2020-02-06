@@ -11,33 +11,34 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#define POS(x) ((x) > 0x7FFFFFFFFFFFFFFF)
-#define NEG(x) ((x) > 0x8000000000000000)
-#define OVER_LIMIT(s, x) (((s) == -1 && NEG((x))) || ((s) == 1 && POS((x))))
+#define POS 0x7FFFFFFFFFFFFFFF
+#define NEG 0x8000000000000000
 
 long			ft_atol(const char *str)
 {
-	uint64_t	result;
+	uint64_t	res;
 	uint8_t		len;
-	int8_t		sign;
+	int8_t		sgn;
 
-	result = 0;
+	res = 0;
 	len = 0;
 	while (ft_isspace(*str))
 		str++;
-	sign = (!ft_isdigit(*str) && *str == '-' ? -1 : 1);
+	sgn = (!ft_isdigit(*str) && *str == '-' ? -1 : 1);
 	str += (*str == '+' || *str == '-' ? 1 : 0);
 	while (*str == '0')
 		str++;
 	while (ft_isdigit(*str))
 	{
-		result = result * 10 + (*str - '0');
+		res = res * 10 + (*str - '0');
 		str++;
 		len++;
 	}
 	while (ft_isspace(*str))
 		str++;
-	if (len > 19 || (len == 19 && OVER_LIMIT(sign, result)) || *str != '\0')
+	if (len > 19 || \
+		(len == 19 && ((sgn == -1 && res > NEG) || (sgn == 1 && res > POS))) \
+															|| *str != '\0')
 		return (0);
-	return ((long)sign * (long)result);
+	return ((long)sgn * (long)res);
 }

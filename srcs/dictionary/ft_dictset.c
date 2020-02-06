@@ -20,7 +20,8 @@ int					ft_dictset(t_dict *dict, char *key, void *value)
 		return (FALSE);
 	if (duplicate_key(&dup_key, key) == FALSE)
 		return (FALSE);
-	if (dict->fill > USABLE(dict->mask) && ft_dictresize(dict, TRUE) == FALSE)
+	if (dict->fill > ((dict->mask << 1) / 3) \
+										&& ft_dictresize(dict, TRUE) == FALSE)
 	{
 		ft_memdel((void**)&dup_key);
 		return (FALSE);

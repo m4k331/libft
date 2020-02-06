@@ -74,7 +74,7 @@ static inline int	resize(t_dict *dict, size_t size)
 int					ft_dictresize(t_dict *dict, int grow)
 {
 	if (grow)
-		return (resize(dict, GROW_RATE(dict)));
+		return (resize(dict, dict->mask * 3));
 	else
-		return (resize(dict, REDUCE_RATE(dict)));
+		return (resize(dict, dict->used * 3));
 }

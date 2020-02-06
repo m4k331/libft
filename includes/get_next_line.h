@@ -18,15 +18,14 @@
 # define MIN_BUFF_SIZE 0
 
 # if BUFF_SIZE < 1024
-#  define MIN_READ_BYTES (1024)
+#  define MIN_READ_BYTES 1024
 # endif
 
 # if BUFF_SIZE > 1024
-#  define MIN_READ_BYTES (BUFF_SIZE)
+#  define MIN_READ_BYTES BUFF_SIZE
 # endif
 
 # define GNL_INIT_DICT_SIZE 16
-# define GNL_INIT_VEC_SIZE ((MIN_READ_BYTES) * 2)
 
 int					get_next_line(const int fd, char **line);
 int					del_entire_dict(t_dict **dict);

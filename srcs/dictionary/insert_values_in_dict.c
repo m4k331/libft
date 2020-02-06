@@ -6,7 +6,7 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/24 05:07:36 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/24 06:25:40 by ahugh            ###   ########.fr       */
+/*   Updated: 2020/02/06 19:59:33 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,15 +23,15 @@ void				insert_values_in_dict(t_dict *dict, char *key, void *value)
 	slot->hash = hash;
 	slot->key = key;
 	slot->value = value;
-	if (DKIX_DUMMY(slot->ix))
+	if ((slot->ix & MASK_DUMMY) != 0)
 	{
 		dict->used++;
-		index = DKIX(slot->ix);
+		index = (slot->ix & MASK_INDICES);
 		ft_memcpy(ft_vat(dict->keys, index), key, DK_SIZE);
 		ft_memcpy(ft_vat(dict->items, index), &value, sizeof(void**));
 		slot->ix = MASK_ACTIVE | index;
 	}
-	if (DKIX_EMPTY(slot->ix))
+	if (slot->ix == 0)
 	{
 		dict->used++;
 		dict->fill++;

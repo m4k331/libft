@@ -6,18 +6,17 @@
 /*   By: ahugh <ahugh@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/11 17:13:52 by ahugh             #+#    #+#             */
-/*   Updated: 2019/11/18 19:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2020/02/06 20:00:40 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#define EXPAND_ROOTLIST(n, pot) ((n) > (1ULL << pot))
 
 static inline int		update_length_rootlist(t_fib *fib)
 {
 	size_t				pot;
 
-	if (EXPAND_ROOTLIST(fib->n, fib->pot))
+	if (fib->n > (1 << fib->pot))
 	{
 		fib->pot = 0;
 		pot = 0;

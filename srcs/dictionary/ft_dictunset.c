@@ -22,10 +22,10 @@ int					ft_dictunset(t_dict *dict, char *key, void del(void*))
 	slot = ft_lookup(dict, hash, key, FALSE);
 	if (slot->value == NULL)
 		return (FALSE);
-	index = DKIX(slot->ix);
+	index = slot->ix & MASK_INDICES;
 	ft_bzero(ft_vat(dict->items, index), sizeof(void**));
 	ft_bzero(ft_vat(dict->keys, index), DK_SIZE);
-	slot->ix = MASK_DUMMY | DKIX(slot->ix);
+	slot->ix = MASK_DUMMY | (slot->ix & MASK_INDICES);
 	ft_memdel((void**)&slot->key);
 	if (del)
 		del(&slot->value);

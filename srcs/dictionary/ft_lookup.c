@@ -23,7 +23,7 @@ t_slot					*ft_lookup(t_dict *d, size_t hash, char *key, int set)
 	i = hash & mask;
 	while (TRUE)
 	{
-		if ((DKIX_DUMMY(d->table[i]->ix) && set) || DKIX_EMPTY(d->table[i]->ix))
+		if (((d->table[i]->ix & MASK_DUMMY) && set) || (d->table[i]->ix == 0))
 			return (d->table[i]);
 		if (d->table[i]->hash == hash && \
 							ft_strncmp(d->table[i]->key, key, DK_SIZE) == 0)

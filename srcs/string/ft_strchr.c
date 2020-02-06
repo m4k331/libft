@@ -39,10 +39,11 @@ char				*ft_strchr(const char *s, int c)
 		byte++;
 	}
 	longword = (uint64_t*)byte;
-	while (DETECTNULL(*longword) == FALSE && DETECTCHAR(*longword, w) == FALSE)
+	while ((((*longword) - M1) & ~(*longword) & M2) == FALSE && \
+					(((((*longword) - M1) & ~(*longword) & M2) ^ w)) == FALSE)
 		longword++;
 	byte = (uint8_t*)longword;
-	if (DETECTCHAR(*longword, w))
+	if (((((*longword) - M1) & ~(*longword) & M2) ^ w) != FALSE)
 		while (*byte && *byte != u)
 			byte++;
 	return (*byte == u ? (char*)byte : NULL);
