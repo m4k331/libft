@@ -6,7 +6,7 @@
 /*   By: ahugh <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/05 19:39:19 by ahugh             #+#    #+#             */
-/*   Updated: 2020/02/06 20:04:10 by ahugh            ###   ########.fr       */
+/*   Updated: 2020/02/06 20:16:11 by ahugh            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,13 +131,13 @@ int					get_next_line(const int fd, char **line)
 	t_vector		*data;
 	size_t			dkix;
 
+	if (fd == FREE_FD)
+		return (del_entire_dict(&dict));
 	if (BUFF_SIZE < MIN_BUFF_SIZE || line == NULL)
 		return (-1);
 	dict = get_dictionary_update(fd, line, dict, &data);
 	if (dict == NULL)
 		return (-1);
-	if (fd == FREE_FD)
-		return (del_entire_dict(&dict));
 	while (TRUE)
 	{
 		dkix = set_data_inline(data, line);
