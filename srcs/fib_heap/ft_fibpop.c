@@ -16,7 +16,7 @@ static inline int		update_length_rootlist(t_fib *fib)
 {
 	size_t				pot;
 
-	if (fib->n > (1 << fib->pot))
+	if (fib->n > (size_t)(1ULL << fib->pot))
 	{
 		fib->pot = 0;
 		pot = 0;
