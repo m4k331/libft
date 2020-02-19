@@ -227,7 +227,7 @@ OBJ				=	$(FILES:%.c=%.o)
 
 # flags
 
-WWW				=	-Wextra -Wall -Werror
+WWW				=	-Wextra -Wall -Werror -Ofast -march=native
 FLAGS			=	$(WWW) -I./$(INC_DIR)/ -c
 CC				=	gcc
 
