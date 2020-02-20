@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+inline uint64_t		any_zeroes(uint64_t value)
+{
+	return (value - 0x0101010101010101) & ~value & 0x8080808080808080;
+}
+
 static inline void	expand_value(uint64_t *w, uint8_t u)
 {
 	*w = u;
@@ -32,7 +37,7 @@ void				*ft_memchr(const void *s, int c, size_t n)
 	longword = (uint64_t*)s;
 	while (n > 7ULL)
 	{
-		if (((((*longword) - M1) & ~(*longword) & M2) ^ w))
+		if (any_zeroes(*longword) | any_zeroes(*longword ^ w))
 			break ;
 		longword++;
 		n -= 8ULL;

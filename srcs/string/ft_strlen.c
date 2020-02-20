@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+inline uint64_t	any_zeroes(uint64_t value)
+{
+	return (value - 0x0101010101010101) & ~value & 0x8080808080808080;
+}
+
 size_t			ft_strlen(const char *s)
 {
 	uint64_t	*longword;
@@ -25,7 +30,7 @@ size_t			ft_strlen(const char *s)
 		byte++;
 	}
 	longword = (uint64_t*)byte;
-	while ((((*longword) - M1) & ~(*longword) & M2) == FALSE)
+	while (any_zeroes(*longword) == 0)
 		longword++;
 	byte = (uint8_t*)longword;
 	while (*byte)

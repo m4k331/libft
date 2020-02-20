@@ -12,6 +12,11 @@
 
 #include "libft.h"
 
+inline uint64_t		any_zeroes(uint64_t value)
+{
+	return (value - 0x0101010101010101) & ~value & 0x8080808080808080;
+}
+
 static inline void	expand_value(uint64_t *w, uint8_t u)
 {
 	*w = u;
@@ -39,11 +44,11 @@ char				*ft_strchr(const char *s, int c)
 		byte++;
 	}
 	longword = (uint64_t*)byte;
-	while ((((*longword) - M1) & ~(*longword) & M2) == FALSE && \
-					(((((*longword) - M1) & ~(*longword) & M2) ^ w)) == FALSE)
+	while (any_zeroes(*longword) == 0 && \
+					(any_zeroes(*longword) | any_zeroes(*longword ^ w)) == 0)
 		longword++;
 	byte = (uint8_t*)longword;
-	if (((((*longword) - M1) & ~(*longword) & M2) ^ w) != FALSE)
+	if (any_zeroes(*longword) | any_zeroes(*longword ^ w))
 		while (*byte && *byte != u)
 			byte++;
 	return (*byte == u ? (char*)byte : NULL);

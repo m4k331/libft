@@ -33,8 +33,6 @@
 # define SUCCESS 1
 # define FAIL 0
 # define ERROR -1
-# define M1 0x0101010101010101
-# define M2 0x8080808080808080
 
 int					ft_memcmp(const void *s1, const void *s2, size_t n);
 int					ft_isdigit(int c);

@@ -12,7 +12,12 @@
 
 #include "libft.h"
 
-static inline void	set_values(uint64_t *w, uint8_t *u, int c)
+inline uint64_t         any_zeroes(uint64_t value)
+{
+    return (value - 0x0101010101010101) & ~value & 0x8080808080808080;
+}
+
+static inline void	    set_values(uint64_t *w, uint8_t *u, int c)
 {
 	*u = (unsigned char)c;
 	*w = *u;
@@ -21,10 +26,10 @@ static inline void	set_values(uint64_t *w, uint8_t *u, int c)
 	*w |= *w << 32ULL;
 }
 
-static inline void	*longword_research(uint64_t *longword, uint8_t u)
+static inline void	    *longword_research(uint64_t *longword, uint8_t u)
 {
-	uint8_t			*byte;
-	uint8_t			len;
+	uint8_t			    *byte;
+	uint8_t			    len;
 
 	len = 8;
 	byte = (uint8_t*)longword + 8;
@@ -37,19 +42,19 @@ static inline void	*longword_research(uint64_t *longword, uint8_t u)
 	return (byte);
 }
 
-void				*ft_memrchr(const void *s, int c, size_t n)
+void				    *ft_memrchr(const void *s, int c, size_t n)
 {
-	uint64_t		*longword;
-	uint8_t			*byte;
-	uint64_t		w;
-	uint8_t			u;
+	uint64_t		    *longword;
+	uint8_t			    *byte;
+	uint64_t		    w;
+	uint8_t			    u;
 
 	set_values(&w, &u, c);
 	longword = (uint64_t*)((uint8_t*)s + n);
 	while (n > 7ULL)
 	{
 		longword--;
-		if (((((*longword) - M1) & ~(*longword) & M2) ^ w))
+		if (any_zeroes(*longword) | any_zeroes(*longword ^ w))
 			return (longword_research(longword, u));
 		n -= 8ULL;
 	}
