@@ -16,6 +16,7 @@ NAME			=	libft.a
 
 SRC_DIR			=	srcs
 INC_DIR			=	includes
+OBJ_DIR			=	obj
 
 # sub directories
 
@@ -219,7 +220,12 @@ FILES_WITH_PATH	=	$(addprefix ./$(SRC_DIR)/$(MEM_DIR)/, $(MEM)) \
 					$(addprefix ./$(SRC_DIR)/$(FIB_DIR)/, $(FIB))
 
 OBJ				=	$(FILES:%.c=%.o)
+DEPS 			= 	$(OBJS:.o=.d)
 
+OBJS			=	$(FILES:%.c=./$(OBJ_DIR)/%.o)
+DEPS 			= 	$(OBJS:.o=.d)
+
+MAKE_P = make -p
 
 # exceptions
 
@@ -235,21 +241,34 @@ CC				=	gcc
 
 all: $(NAME)
 
-$(NAME):
-				@$(CC) $(FLAGS) $(FILES_WITH_PATH)
-				@ar rc $(NAME) $(OBJ)
-				@ranlib $(NAME)
+$(NAME):$(OBJS) | $(OBJ_DIR)
+				ar rc $@ $^
+				ranlib $@
 				@echo "libft created!"
 
-%.o: $(FILES_WITH_PATH)%c
-				$(CC) $(FLAGS) $< -o $@
+export WWW FLAGS CC
+$(OBJS):
+		$(MAKE) -C $(MEM_DIR)/
+		$(MAKE) -C $(PRT_DIR)/
+		$(MAKE) -C $(STR_DIR)/
+		$(MAKE) -C $(TSTR_DIR)/
+		$(MAKE) -C $(LST_DIR)/
+		$(MAKE) -C $(DLST_DIR)/
+		$(MAKE) -C $(UTL_DIR)/
+		$(MAKE) -C $(VEC_DIR)/
+		$(MAKE) -C $(DICT_DIR)/
+		$(MAKE) -C $(FIB_DIR)/
+		
+$(OBJ_DIR):
+		$(MAKE_P) $@
 
 clean:
-				@rm -f $(OBJ)
-
+				@rm -f $(OBJS)
+				@rm -rf $(OBJ_DIR)
+				
 fclean: clean
 				@rm -f $(NAME)
-
+				
 re: fclean all
 
 norm:
