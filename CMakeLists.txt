@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.0)
 
 project(libft)
 
-file(GLOB SRC "srcs/*/*.c")
+file(GLOB SRC "*/*/*.c")
 
 set(GCC_FLAGS "-Ofast -march=native")
 
