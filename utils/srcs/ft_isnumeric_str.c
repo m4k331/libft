@@ -22,7 +22,7 @@ int			ft_isnumeric_str(const char *str, int is_spaces)
 		while (ft_isspace(*s))
 			s++;
 	if (*s == '-' || *s == '+')
-	    s++;
+		s++;
 	empty = ft_isdigit(*s) ? FALSE : TRUE;
 	while (ft_isdigit(*s))
 		s++;
